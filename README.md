@@ -3,7 +3,7 @@ A Python distribution for Neuroscience based on [conda](https://www.anaconda.com
 
 Although creating a virtual environment for each project is considered best practice, it can be a major obstacle for early-career neuroscientists that are just starting to learn programming. neuro-conda aims to simplify learning and using Python in Neuroscience by bundling commonly used packages in Neuroscience into tested and versioned conda environments. 
 
-It is inspired by similar projects at the [Ernst Strüngmann Institute for Neuroscience](https://github.com/esi-neuroscience/esi-conda) and [University of Cambridge](https://github.com/jooh/neuroconda) providing read-made environments at their computing clusters.
+It is inspired by the similar projects at the [Ernst Strüngmann Institute for Neuroscience](https://github.com/esi-neuroscience/esi-conda) and [University of Cambridge](https://github.com/jooh/neuroconda) as well as [NeuroDesk](https://www.neurodesk.org) providing easy-to-install environments at their computing clusters.
 
 Currently the neuro-conda includes the following neuroscientific Python packages (in alphabetic order):
 
@@ -20,7 +20,7 @@ Currently the neuro-conda includes the following neuroscientific Python packages
 
 More neuroscience tools will be added in the future.
 
-Other non-neuroscience include (see [/envs] for details)
+Other non-neuroscience includes are (see [the environment files](/envs) for details)
 - [dask](https://www.dask.org)
 - [esi-acme](https://esi-acme.readthedocs.io)
 - [jupyter](https://jupyter.org)
@@ -65,9 +65,11 @@ If (-not (Get-Command "conda" -errorAction SilentlyContinue))
 conda update -n base conda -c defaults -y
 
 # install mamba for faster dependency resolution
-conda install mamba -n base -c conda-forge
+conda install mamba -n base -c conda-forge -y
 
 # activate conda and install environment
+conda activate
+
 # download environment file
 $NeuroCondaLatestUrl = "https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-latest.yml"
 Invoke-WebRequest $NeuroCondaLatestUrl -OutFile "$Env:temp\neuro-conda-latest.yml"
@@ -75,4 +77,15 @@ Invoke-WebRequest $NeuroCondaLatestUrl -OutFile "$Env:temp\neuro-conda-latest.ym
 mamba env create --file "$Env:temp\neuro-conda-latest.yml"
 ```
 
+### Linux
 
+
+### macOS
+
+## From an existing conda Installation
+
+### Windows 10/11 (PowerShell)
+```
+Invoke-WebRequest $NeuroCondaLatestUrl -OutFile "$Env:temp\neuro-conda-latest.yml"
+mamba env create --file "$Env:temp\neuro-conda-latest.yml"
+```
