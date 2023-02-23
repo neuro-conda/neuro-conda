@@ -82,14 +82,16 @@ mamba env create --file "$Env:temp\neuro-conda-latest.yml"
 </details>
 
 ### Linux
-
+Coming soon...
 
 ### macOS
+Coming soon...
 
-## From an existing conda Installation
+## Install neuro-conda using an existing conda installation
 
 ### Windows 10/11 (PowerShell)
 ```
-Invoke-WebRequest https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-latest.yml -OutFile "$Env:temp\neuro-conda-latest.yml"
-mamba env create --file "$Env:temp\neuro-conda-latest.yml"
+$version = "2023a"
+Invoke-WebRequest "https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-$version.yml" -OutFile "$Env:temp\neuro-conda-$version.yml"
+mamba env create --file "$Env:temp\neuro-conda-$version.yml"
 ```
