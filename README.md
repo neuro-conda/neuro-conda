@@ -1,5 +1,4 @@
-# neuro-conda
-A Python distribution for neuroscience based on [conda](https://www.anaconda.com)
+# neuro-conda - a Python distribution for neuroscience based on [conda](https://www.anaconda.com)
 
 Although creating a virtual environment for each project is considered best practice, it can be a major obstacle for early-career neuroscientists that are just starting to learn programming. **neuro-conda** aims to simplify learning and using Python in neuroscience by bundling commonly used packages in neuroscience into curated conda environments. 
 
