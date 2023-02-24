@@ -227,7 +227,7 @@ fi
 
 # Install neuro-conda environment (remove previously existing env of the same name)
 info "Creating latest neuro-conda environment"
-execute "mamba" "env" "create" "--file" "${NeuroCondaLatestTarget}" "--force"
+execute "${CondaInstallationDirectory}/bin/mamba" "env" "create" "--file" "${NeuroCondaLatestTarget}" "--force"
 
 # If everything works (should we test this?), remove tmp dir
 info "Cleaning up"
