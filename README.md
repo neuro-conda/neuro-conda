@@ -1,6 +1,6 @@
 # neuro-conda - a Python distribution for neuroscience based on [conda](https://www.anaconda.com)
 
-Although creating a virtual environment for each project is considered best practice, it can be a major obstacle for early-career neuroscientists that are just starting to learn programming. **neuro-conda** aims to simplify learning and using Python in neuroscience by bundling commonly used packages in neuroscience into curated conda environments. 
+Although creating a virtual environment for each project is considered best practice, it can be a major obstacle for early-career neuroscientists that are just starting to learn programming. **neuro-conda** aims to simplify learning and using Python in neuroscience by bundling commonly used packages in neuroscience into curated conda environments.
 
 It is inspired by the similar projects at the [Ernst Strüngmann Institute for Neuroscience](https://github.com/esi-neuroscience/esi-conda) and [University of Cambridge](https://github.com/jooh/neuroconda) as well as [NeuroDesk](https://www.neurodesk.org) providing easy-to-install Python environments for neuroscience.
 
@@ -47,8 +47,8 @@ $MinicondaLatestUrl = "https://repo.anaconda.com/miniconda/Miniconda3-latest-Win
 If ($Env:username -match " ") { $CondaInstallationDirectory = "$Env:public\miniconda3" }
 
 winget list --id Anaconda.Miniconda3 | out-null
-If ($LASTEXITCODE -ne 0) 
-{   
+If ($LASTEXITCODE -ne 0)
+{
     Write-Host "Downloading miniconda3"
     Invoke-WebRequest $MinicondaLatestUrl -OutFile $Env:temp\Miniconda3-latest-Windows-x86_64.exe
     iex "$Env:temp\Miniconda3-latest-Windows-x86_64.exe /RegisterPython=1 /S /InstallationType=JustMe /D=$CondaInstallationDirectory"
@@ -60,7 +60,7 @@ If ($LASTEXITCODE -ne 0)
 If (-not (Get-Command "conda" -errorAction SilentlyContinue))
 {
     throw "Conda is installed but not available in this PowerShell. Please continue with the neuro-conda installation from a PowerShell with conda activated."
-} 
+}
 
 
 # update conda
@@ -85,7 +85,13 @@ mamba env create --file "$Env:temp\neuro-conda-latest.yml"
 Coming soon...
 
 ### macOS
-Coming soon...
+
+Open `Terminal.App` and run the following command:
+
+```zsh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/libexec/install.sh)"
+```
+
 
 ## Install neuro-conda using an existing conda installation
 
