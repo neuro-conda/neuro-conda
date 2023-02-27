@@ -5,9 +5,13 @@ If ($Env:username -match " ") { $CondaInstallationDirectory = "$Env:public\minic
 
 
 function Find-Miniconda {           
-    $software = "Miniconda3"
-    return (((Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*).DisplayName -Match $software).Length -gt 0) -or `
-        (((Get-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*).DisplayName -Match $software).Length -gt 0)
+    $name = "Miniconda3"
+    $systemInstalled = (Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*).DisplayName -Match $name
+    $userInstalled = (Get-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*).DisplayName -Match $name
+    Write-Host "Found conda installations:"
+    Write-Host $systemInstalled
+    Write-Host $userInstalled
+    return (($userInstalled.Length -gt 0) -or ($systemInstalled.Length -gt 0))
 }
 
 $CondaIsInstalled = Find-Miniconda
