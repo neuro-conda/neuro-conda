@@ -1,0 +1,28 @@
+name: Test Fresh neuro-conda Installation
+run-name: ${{ github.actor }} is running tests
+on: [push]
+jobs:
+  Test-Install:
+    name: Test neuro-conda Installation (${{ matrix.python-version }}, ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ "macos-latest", "windows-latest"]
+        python-version: ["3.10"]
+        include:
+          - os: windows-latest
+            script_name: .\libexec\install.ps1
+          - os: macos-latest
+            script_name: ./libexec/install.sh
+    steps:
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+          python-version: ${{ matrix.python-version }}
+          mamba-version: "*"
+          channels: conda-forge,defaults
+      - name: Download repository
+        uses: actions/checkout@v3
+      - name: Run installation script ${{ matrix.script_name }} for ${{ matrix.os }}
+        run: ${{ matrix.script_name }}
