@@ -20,6 +20,8 @@ jobs:
         with:
           auto-update-conda: true
           python-version: ${{ matrix.python-version }}
+          mamba-version: "*"
+          channels: conda-forge,defaults
       - name: Download repository
         uses: actions/checkout@v3
       - name: Run installation script ${{ matrix.script_name }} for ${{ matrix.os }}
