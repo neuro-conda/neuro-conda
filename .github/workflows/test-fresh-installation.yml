@@ -2,37 +2,25 @@ name: Test Fresh neuro-conda Installation
 run-name: ${{ github.actor }} is running tests
 on: [push]
 jobs:
-  Install-Windows:
-    runs-on: windows-latest
+  Test-Install:
+    name: Test neuro-conda Installation (${{ matrix.python-version }}, ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ "macos-latest", "windows-latest"]
+        python-version: ["3.10"]
+        include:
+          - os: windows-latest
+            script_name: .\libexec\install.ps1
+          - os: macos-latest
+            script_name: ./libexec/install.sh
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Download installation script
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+          python-version: ${{ matrix.python-version }}
+      - name: Download repository
         uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}      
-      - name: Setup Miniconda
-          uses: conda-incubator/setup-miniconda@v2
-      - run: Invoke-Expression .\libexec\install.ps1
-      - run: echo "🍏 This job's status is ${{ job.status }}."
-  Install-macOS:
-    runs-on: macos-latest
-    steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Download installation script
-        uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - name: Setup Miniconda
-          uses: conda-incubator/setup-miniconda@v2
-      - run: bash ./libexec/install.sh
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: Run installation script ${{ matrix.script_name }} for ${{ matrix.os }}
+        run: ${{ matrix.script_name }}
