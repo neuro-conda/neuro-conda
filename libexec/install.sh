@@ -71,7 +71,9 @@ chomp()
 
 debug()
 {
-  printf "${tty_green}DEBUG: ${tty_reset}%s\n" "$(shell_join "$@")"
+  if [[ ! -z "${ncDebug-}" ]]; then
+    printf "${tty_green}DEBUG: ${tty_reset}%s\n" "$(shell_join "$@")"
+  fi
 }
 
 info()
@@ -102,6 +104,23 @@ execute() {
   fi
 }
 
+# Blocking wait for user input
+user_input() {
+  local ans save_state
+  echo
+  echo "Press ${tty_bold}RETURN${tty_reset}/${tty_bold}ENTER${tty_reset} to continue or any other key to abort:"
+  save_state="$(/bin/stty -g)"
+  /bin/stty raw -echo
+  IFS='' read -r -n 1 -d '' "ans"
+  /bin/stty "${save_state}"
+  # we test for \r and \n because some stuff does \r instead
+  if ! [[ "${ans}" == $'\r' || "${ans}" == $'\n' ]]
+  then
+    exit 1
+  fi
+}
+
+# All neuro-conda specific env vars
 CondaInstallationDirectory="${HOME}/.local/miniconda3"
 CondaDownloadDirectory="${HOME}/.local/downloads"
 CondaDownloadTarget="${CondaDownloadDirectory}/miniconda.sh"
@@ -117,13 +136,12 @@ if [[ -z "${USER-}" ]]; then
   USER="$(chomp "$(id -un)")"
   export USER
 fi
-if [[ ! -z "${DEBUG-}" ]]; then
-  debug "Running as user ${USER}"
-fi
+debug "Running as user ${USER}"
 
 # First ensure OS and machine architecture are supported
 OS="$(uname)"
 mArch=`uname -m`
+debug "Detected ${OS} running on ${mArch}"
 if [[ "${OS}" == "Linux" ]]; then
   if [[ "${mArch}" == "x86_64" ]]; then
     MinicondaLatestUrl="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
@@ -151,38 +169,53 @@ curlPath=`command -v curl`
 if [[ -z "${curlPath-}" ]]; then
   error "cURL not found. Please install cURL before installing neuro-conda. "
 fi
-if [[ ! -z "${DEBUG-}" ]]; then
-  debug "Found cURL: ${curlPath}"
-fi
+debug "Found cURL: ${curlPath}"
 mkdirPath=`command -v mkdir`
 if [[ -z "${mkdirPath-}" ]]; then
   error 'mkdir not available. Please ensure `mkdir` works before installing neuro-conda. '
 fi
-if [[ ! -z "${DEBUG-}" ]]; then
-  debug "Found mkdir: ${mkdirPath}"
-fi
+debug "Found mkdir: ${mkdirPath}"
 rmPath=`command -v rm`
 if [[ -z "${rmPath-}" ]]; then
   error 'rm not available. Please ensure `rm` works before installing neuro-conda. '
 fi
-if [[ ! -z "${DEBUG-}" ]]; then
-  debug "Found rm: ${rmPath}"
-fi
+debug "Found rm: ${rmPath}"
 chmodPath=`command -v chmod`
 if [[ -z "${chmodPath-}" ]]; then
   error 'chmod not available. Please ensure `chmod` works before installing neuro-conda. '
 fi
-if [[ ! -z "${DEBUG-}" ]]; then
-  debug "Found rm: ${chmodPath}"
+debug "Found chmod: ${chmodPath}"
+
+# Display a warning message in case we're running non-interactively
+if [[ ! -z "${ncNoninteractive-}" ]]; then
+  warn "Running in non-interactive mode - will not prompt for input!"
 fi
 
 # ----------------------------------------------------------------------
 #   PERFORM INSTALLATION
 # ----------------------------------------------------------------------
 
+# First, check if another conda version is already installed and initialized
+condaPath=`command -v conda`
+if [[ ! -z "${condaPath-}" ]]; then
+  existingConda=`dirname $(dirname $CONDA_EXE)`
+  if [[ -z "${ncNoninteractive-}" ]]; then
+    warn "conda is already installed and initialized. Do you really want to install neuro-conda alongside the version in ${existingConda}?"
+    user_input
+  else
+    info "Installing neuro-conda alongside ${existingConda}"
+  fi
+  # Deactivate all active conda environments
+  for i in $(seq ${CONDA_SHLVL}); do
+    conda deactivate
+    debug "Deactivated pre-installed conda environment"
+  done
+fi
+
 # Set up temp directory as download target
 if [[ ! -d "${CondaDownloadDirectory}" ]]; then
   execute "mkdir" "-p" "${CondaDownloadDirectory}"
+  debug "Created ${CondaDownloadDirectory}"
 fi
 
 # Install conda
@@ -190,8 +223,12 @@ if [[ ! -f "${CondaInstallationDirectory}/bin/conda" ]]; then
   if [[ ! -f "${CondaDownloadTarget}" ]]; then
     info "Downloading miniconda3..."
     execute "curl" "-fsSL" "${MinicondaLatestUrl}" "-o" "${CondaDownloadTarget}"
+    debug "Downloaded ${MinicondaLatestUrl} to ${CondaDownloadTarget}"
+  else
+    debug "${CondaDownloadTarget} exists, miniconda has already been downloaded"
   fi
   execute "chmod" "550" "${CondaDownloadTarget}"
+  debug "Made ${CondaDownloadTarget} executable"
   info "Installing conda..."
   execute "${CondaDownloadTarget}" "-b" "-p" "${CondaInstallationDirectory}"
   info "Installed miniconda into ${CondaInstallationDirectory}"
@@ -203,33 +240,46 @@ fi
 execute "source" "${CondaInstallationDirectory}/etc/profile.d/conda.sh"
 execute "conda" "init" "zsh"
 execute "conda" "init" "bash"
+debug "Ran conda init for zsh and bash"
 
 # Check if conda command is available (i.e., if the above worked as intended)
 condaPath=`command -v conda`
 if [[ -z "${condaPath-}" ]]; then
   error 'conda not available. Something went wrong with initializing conda. '
 fi
-if [[ ! -z "${DEBUG-}" ]]; then
-  debug "Found conda: ${condaPath}"
-fi
+debug "Found new conda at ${condaPath}"
 
 # Update conda
 execute "conda" "update" "-n" "base" "conda" "-c" "defaults" "-y"
+debug "Updated conda itself"
 
 # Install mamba for faster dependency resolution
 execute "conda" "install" "mamba" "-n" "base" "-c" "conda-forge" "-y"
+debug "Installed mamba"
 
 # Download latest neuro-conda environment (if necessary)
+info "Creating latest neuro-conda environment"
 if [[ ! -f "${NeuroCondaLatestTarget}" ]]; then
-  info "Downloading latest neuro-conda environment"
   execute "curl" "-fsSL" "${NeuroCondaLatestUrl}" "-o" "${NeuroCondaLatestTarget}"
+  debug "Downloaded ${NeuroCondaLatestUrl} to ${NeuroCondaLatestTarget}"
+else
+  debug "${NeuroCondaLatestTarget} exists, environment file has already been downloaded"
 fi
 
 # Install neuro-conda environment (remove previously existing env of the same name)
-info "Creating latest neuro-conda environment"
 execute "${CondaInstallationDirectory}/bin/mamba" "env" "create" "--file" "${NeuroCondaLatestTarget}" "--force"
 
-# If everything works (should we test this?), remove tmp dir
+# Try to activate environment as most basal sanity check
+envName=`cat ${NeuroCondaLatestTarget} | grep "name:" | awk '{print $2}'`
+execute "conda" "activate" "${envName}"
+debug "Activated ${envName}"
+if [[ -z "$(command -v python | grep ${CondaInstallationDirectory})" ]]; then
+  error "Environment ${envName} was not installed correclty"
+fi
+execute "conda" "deactivate"
+debug "Deactivated ${envName}"
+
+# Everything works, remove tmp dir
 info "Cleaning up"
 execute "rm" "-rf" "${CondaDownloadDirectory}"
 info "All done."
