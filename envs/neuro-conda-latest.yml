@@ -7,8 +7,7 @@ dependencies:
   - scipy=1.10.*
   - numpy=1.23.*
   - hdf5=1.12.*
-  - pycuda=2022.2
-  - mpi4py=3.1.*  
+  - mpi4py=3.1.*
   - matplotlib=3.6.*
   - pandas
   - pytest
@@ -18,7 +17,6 @@ dependencies:
   - r-base
   - r-irkernel
   - scikit-learn
-  - scikit-learn-intelex
   - mne=1.3.*
   - esi-syncopy
   - esi-acme
@@ -32,4 +30,5 @@ dependencies:
     - neurodsp==2.2.*
     - fooof==1.0.*
     - bycycle==1.0.*
-
+    - pycuda=2022.2; platform_machine != "arm64" # NOTE: we assume here that no machine with ARM CPU could possible have an NVIDIA card...
+    - scikit-learn-intelex; platform_machine == "x86_64"
