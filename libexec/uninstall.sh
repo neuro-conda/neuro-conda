@@ -119,6 +119,23 @@ user_input() {
   fi
 }
 
+# Config file restore
+config_restore() {
+  configFile="$1"
+  configBackup=`find "${HOME}" -maxdepth 1 -mindepth 1 -type f -name "${configFile}"'.neuro-conda.backup*'`
+  if [[ ! -z "${configBackup}" ]]; then
+    info "Restoring ${configFile} configuration backup"
+    execute "mv" "${configBackup}" "${HOME}/${configFile}"
+  else
+    info "No ${configFile} configuration backup found. Manually removing conda init from ${configFile}"
+    execute "conda" "init" "--reverse"
+    debug "Ran conda init reverse"
+    execute "awk" '{gsub("conda activate neuro-conda", "# conda activate neuro-conda"); print}' "${HOME}/${configFile}" >| "${HOME}/.tmp${configFile}"
+    execute "mv" "${HOME}/.tmp${configFile}" "${HOME}/${configFile}"
+    debug "Removed 'conda activate neuro-conda*' from ~/${configFile}"
+  fi
+}
+
 # All neuro-conda specific env vars
 CondaInstallationDirectory="${HOME}/.local/miniconda3"
 
@@ -177,30 +194,12 @@ else
   info "Could not initialize conda in ${CondaInstallationDirectory}. Continuing anyway."
 fi
 
-# Check if shell RC backup files exist and restore them if wanted
-bashrcBackup=`find "${HOME}" -maxdepth 1 -mindepth 1 -type f -name '.bashrc.neuro-conda.backup*'`
-if [[ ! -z "${bashrcBackup}" ]]; then
-  info "Restoring bash configuration backup"
-  execute "mv" "${bashrcBackup}" "${HOME}/.bashrc"
-else
-  info "No bash configuration backup found. Manually Removing conda init from bash config"
-  execute "conda" "init" "--reverse"
-  debug "Ran conda init reverse"
-  execute "awk" '{gsub("conda activate neuro-conda", "# conda activate neuro-conda"); print}' "${HOME}/.bashrc" >| "${HOME}/.tmp.bashrc"
-  execute "mv" "${HOME}/.tmp.bashrc" "${HOME}/.bashrc"
-  debug "Removed 'conda activate neuro-conda*' from ~/.bashrc"
+# Check if shell RC backup files exist and restore them
+if [[ -f "${HOME}/.bashrc" ]]; then
+  config_restore ".bashrc"
 fi
-zshrcBackup=`find "${HOME}" -maxdepth 1 -mindepth 1 -type f -name '.zshrc.neuro-conda.backup*'`
-if [[ ! -z "${zshrcBackup}" ]]; then
-  info "Restoring zsh configuration backup"
-  execute "mv" "${zshrcBackup}" "${HOME}/.zshrc"
-else
-  info "No zsh configuration backup found. Manually Removing conda init from zshell config"
-  execute "conda" "init" "--reverse"
-  debug "Ran conda init reverse"
-  execute "awk" '{gsub("conda activate neuro-conda", "# conda activate neuro-conda"); print}' "${HOME}/.zshrc" >| "${HOME}/.tmp.zshrc"
-  execute "mv" "${HOME}/.tmp.zshrc" "${HOME}/.zshrc"
-  debug "Removed 'conda activate neuro-conda*' from ~/.zshrc"
+if [[ -f "${HOME}/.zshrc" ]]; then
+  config_restore ".zshrc"
 fi
 
 # Now wipe the actual installation directory
