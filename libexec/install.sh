@@ -6,8 +6,8 @@
 # https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
 
 # TODO:
-# - include debug prints!
-# - check if really need $USER
+# - check if we really need $USER
+# - include timing info?
 
 # ----------------------------------------------------------------------
 #   CHECK SHELL
@@ -126,6 +126,7 @@ CondaDownloadDirectory="${HOME}/.local/downloads"
 CondaDownloadTarget="${CondaDownloadDirectory}/miniconda.sh"
 NeuroCondaLatestUrl="https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-latest.yml"
 NeuroCondaLatestTarget="${CondaDownloadDirectory}/neuro-conda-latest.yml"
+NeuroCondaDate=$(date +"%Y_%m_%d")
 
 # ----------------------------------------------------------------------
 #   CHECK ENVIRONMENT
@@ -236,6 +237,16 @@ else
   info "miniconda3 is already installed"
 fi
 
+# Backup current shell config
+if [[ -f "${HOME}/.bashrc" ]]; then
+  execute "cp" "${HOME}/.bashrc" "${HOME}/.bashrc.neuro-conda.backup-${NeuroCondaDate}"
+  debug "backed up ~/.bashrc"
+fi
+if [[ -f "${HOME}/.zshrc" ]]; then
+  execute "cp" "${HOME}/.zshrc" "${HOME}/.zshrc.neuro-conda.backup-${NeuroCondaDate}"
+  debug "backed up ~/.zshrc"
+fi
+
 # Initialize shell (we're running inside a bash, so use conda.sh)
 execute "source" "${CondaInstallationDirectory}/etc/profile.d/conda.sh"
 execute "conda" "init" "zsh"
@@ -276,12 +287,20 @@ debug "Activated ${envName}"
 if [[ -z "$(command -v python | grep ${CondaInstallationDirectory})" ]]; then
   error "Environment ${envName} was not installed correclty"
 fi
-execute "conda" "deactivate"
-debug "Deactivated ${envName}"
+
+# Do not activate base environment upon startup...
+execute "conda" "config" "--set" "auto_activate_base" "false"
+debug "Turned off auto-activation of base environment"
+
+# ...but instead activate neuro-conda environment
+echo "conda activate ${envName}" >> "${HOME}/.bashrc"
+echo "conda activate ${envName}" >> "${HOME}/.zshrc"
+debug "Auto-activate ${envName}"
 
 # Everything works, remove tmp dir
 info "Cleaning up"
 execute "rm" "-rf" "${CondaDownloadDirectory}"
 info "All done."
+info "Please close this window and open a new terminal to start using neuo-conda"
 
 exit 0
