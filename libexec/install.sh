@@ -6,8 +6,7 @@
 # https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
 
 # TODO:
-# - check if we really need $USER
-# - include timing info?
+# - check if we really need $USER; we probably do for debugging...
 
 # ----------------------------------------------------------------------
 #   CHECK SHELL
@@ -131,6 +130,10 @@ NeuroCondaDate=$(date +"%Y_%m_%d")
 # ----------------------------------------------------------------------
 #   CHECK ENVIRONMENT
 # ----------------------------------------------------------------------
+
+# Start actual script execution
+debug "Installation started at $(date)"
+tic=`date +%s`
 
 # USER isn't always set so provide a fallback for the installer and subprocesses.
 if [[ -z "${USER-}" ]]; then
@@ -288,6 +291,12 @@ if [[ -z "$(command -v python | grep ${CondaInstallationDirectory})" ]]; then
   error "Environment ${envName} was not installed correclty"
 fi
 
+# Install editor if requested
+if [[ ! -z "${ncEditor-}" ]]; then
+  execute "mamba" "install" "spyder"
+  debug "Variable ncEditor is set, installed Spyder"
+fi
+
 # Do not activate base environment upon startup...
 execute "conda" "config" "--set" "auto_activate_base" "false"
 debug "Turned off auto-activation of base environment"
@@ -302,5 +311,11 @@ info "Cleaning up"
 execute "rm" "-rf" "${CondaDownloadDirectory}"
 info "All done."
 info "Please close this window and open a new terminal to start using neuo-conda"
+
+# If we're debugging, print timing info
+toc=`date +%s`
+runtime=$((toc-tic))
+runHrs=$((runtime / 3600)); runMin=$(( (runtime % 3600) / 60 )); runSec=$(( (runtime % 3600) % 60 ))
+debug "Installation finished. Runtime: ${runHrs}:${runMin}:${runSec} (hh:mm:ss)"
 
 exit 0

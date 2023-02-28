@@ -143,6 +143,10 @@ CondaInstallationDirectory="${HOME}/.local/miniconda3"
 #   CHECK ENVIRONMENT
 # ----------------------------------------------------------------------
 
+# Start actual script execution
+debug "Uninstall script started at $(date)"
+tic=`date +%s`
+
 # USER isn't always set so provide a fallback for the installer and subprocesses.
 if [[ -z "${USER-}" ]]; then
   USER="$(chomp "$(id -un)")"
@@ -207,5 +211,11 @@ info "Removing conda located in ${CondaInstallationDirectory}"
 execute "rm" "-rf" "${CondaInstallationDirectory}"
 info "All done."
 info "Please close this window and open a new terminal."
+
+# If we're debugging, print timing info
+toc=`date +%s`
+runtime=$((toc-tic))
+runHrs=$((runtime / 3600)); runMin=$(( (runtime % 3600) / 60 )); runSec=$(( (runtime % 3600) % 60 ))
+debug "Installation finished. Runtime: ${runHrs}:${runMin}:${runSec} (hh:mm:ss)"
 
 exit 0
