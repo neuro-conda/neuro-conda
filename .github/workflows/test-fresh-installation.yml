@@ -1,6 +1,9 @@
 name: Test Fresh neuro-conda Installation
 run-name: ${{ github.actor }} is running tests
 on: [push]
+env:
+  ncDebug: 1
+  ncCI: 1
 jobs:
   Test-Install:
     name: Test neuro-conda Installation (${{ matrix.python-version }}, ${{ matrix.os }})

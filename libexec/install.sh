@@ -190,6 +190,12 @@ if [[ -z "${chmodPath-}" ]]; then
 fi
 debug "Found chmod: ${chmodPath}"
 
+# Check if script is executed by a CI runner
+if [[ ! -z "${ncCI-}" ]]; then
+  info "Running inside CI pipeline, turning on non-interactive mode"
+  ncNoninteractive=1
+fi
+
 # Display a warning message in case we're running non-interactively
 if [[ ! -z "${ncNoninteractive-}" ]]; then
   warn "Running in non-interactive mode - will not prompt for input!"
@@ -272,10 +278,16 @@ execute "conda" "install" "mamba" "-n" "base" "-c" "conda-forge" "-y"
 debug "Installed mamba"
 
 # Download latest neuro-conda environment (if necessary)
+# In a CI job, copy the yml file from the repo to test most recent changes
 info "Creating latest neuro-conda environment"
 if [[ ! -f "${NeuroCondaLatestTarget}" ]]; then
-  execute "curl" "-fsSL" "${NeuroCondaLatestUrl}" "-o" "${NeuroCondaLatestTarget}"
-  debug "Downloaded ${NeuroCondaLatestUrl} to ${NeuroCondaLatestTarget}"
+  if [[ ! -z "${ncCI-}" ]]; then
+    execute "cp" "../envs/neuro-conda-latest.yml" "${NeuroCondaLatestTarget}"
+    debug "Copied local repository version of latest environment file to ${NeuroCondaLatestTarget}"
+  else
+    execute "curl" "-fsSL" "${NeuroCondaLatestUrl}" "-o" "${NeuroCondaLatestTarget}"
+    debug "Downloaded ${NeuroCondaLatestUrl} to ${NeuroCondaLatestTarget}"
+  fi
 else
   debug "${NeuroCondaLatestTarget} exists, environment file has already been downloaded"
 fi
