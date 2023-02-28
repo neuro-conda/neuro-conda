@@ -148,6 +148,11 @@ fi
 #   UNINSTALL
 # ----------------------------------------------------------------------
 
+# Check if there's even anythin to uninstall
+if [[ ! -d "${CondaInstallationDirectory}" ]]; then
+  error "No neuro-conda installation found on this system. Exiting..."
+fi
+
 # Be specific: show which conda installation we're about to wipe
 info "About to remove the conda installation found in ${CondaInstallationDirectory}"
 if [[ -z "${ncNoninteractive-}" ]]; then
@@ -159,19 +164,24 @@ execute "source" "${CondaInstallationDirectory}/etc/profile.d/conda.sh"
 debug "Sourced ${CondaInstallationDirectory}/etc/profile.d/conda.sh"
 
 # If deletion candidate does not contain a neuro-conda environment, ask for confirmation...
-if [[ -z "$(conda env list | grep neuro-conda)" ]]; then
-  if [[ -z "${ncNoninteractive-}" ]]; then
-    warn "neuro-conda environment NOT found in ${CondaInstallationDirectory}. Are you sure you want to delete this installation?"
-    user_input
-  else
-    info "Removing ${CondaInstallationDirectory} despite it not containing a neuro-conda environment"
+if [[ ! -z "$(command -v conda)" ]]; then
+  if [[ -z "$(conda env list | grep neuro-conda)" ]]; then
+    if [[ -z "${ncNoninteractive-}" ]]; then
+      warn "neuro-conda environment NOT found in ${CondaInstallationDirectory}. Are you sure you want to delete this installation?"
+      user_input
+    else
+      info "Removing ${CondaInstallationDirectory} despite it not containing a neuro-conda environment"
+    fi
+  fi
+else
+  info "Could not initialize conda in ${CondaInstallationDirectory}. Continuing anyway."
 fi
 
 # Check if shell RC backup files exist and restore them if wanted
 bashrcBackup=`find "${HOME}" -maxdepth 1 -mindepth 1 -type f -name '.bashrc.neuro-conda.backup*'`
 if [[ ! -z "${bashrcBackup}" ]]; then
   info "Restoring bash configuration backup"
-  execute "mv" "bashrcBackup" "${HOME}/.bashrc"
+  execute "mv" "${bashrcBackup}" "${HOME}/.bashrc"
 else
   info "No bash configuration backup found. Manually Removing conda init from bash config"
   execute "conda" "init" "--reverse"
@@ -183,7 +193,7 @@ fi
 zshrcBackup=`find "${HOME}" -maxdepth 1 -mindepth 1 -type f -name '.zshrc.neuro-conda.backup*'`
 if [[ ! -z "${zshrcBackup}" ]]; then
   info "Restoring zsh configuration backup"
-  execute "mv" "zshrcBackup" "${HOME}/.zshrc"
+  execute "mv" "${zshrcBackup}" "${HOME}/.zshrc"
 else
   info "No zsh configuration backup found. Manually Removing conda init from zshell config"
   execute "conda" "init" "--reverse"
@@ -197,6 +207,6 @@ fi
 info "Removing conda located in ${CondaInstallationDirectory}"
 execute "rm" "-rf" "${CondaInstallationDirectory}"
 info "All done."
-info "Please close this window and open a new terminal. "
+info "Please close this window and open a new terminal."
 
 exit 0
