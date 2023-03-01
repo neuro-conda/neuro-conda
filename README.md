@@ -1,6 +1,6 @@
 # neuro-conda - a Python distribution for neuroscience based on [conda](https://www.anaconda.com)
 
-Although creating a virtual environment for each project is considered best practice, it can be a major obstacle for early-career neuroscientists that are just starting to learn programming. **neuro-conda** aims to simplify learning and using Python in neuroscience by bundling commonly used packages in neuroscience into curated conda environments. 
+Although creating a virtual environment for each project is considered best practice, it can be a major obstacle for early-career neuroscientists that are just starting to learn programming. **neuro-conda** aims to simplify learning and using Python in neuroscience by bundling commonly used packages in neuroscience into curated conda environments.
 
 It is inspired by the similar projects at the [Ernst Strüngmann Institute for Neuroscience](https://github.com/esi-neuroscience/esi-conda) and [University of Cambridge](https://github.com/jooh/neuroconda) as well as [NeuroDesk](https://www.neurodesk.org) providing easy-to-install Python environments for neuroscience.
 
@@ -33,13 +33,18 @@ Open a PowerShell and run the following command:
 ```PowerShell
 Invoke-WebRequest https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/libexec/install.ps1 -OutFile $Env:temp\install_neuroconda.ps1; Invoke-Expression $Env:temp\install_neuroconda.ps1;
 ```
-If you don't like obscure one-liners, check out the [installation script](libexec/install.ps1) for details.
 
 ### Linux
 Coming soon...
 
 ### macOS
-Coming soon...
+
+Open `Terminal.App` and run the following command:
+
+```zsh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/libexec/install.sh)"
+```
+
 
 ## Install neuro-conda using an existing conda installation
 
