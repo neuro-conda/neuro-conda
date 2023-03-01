@@ -30,5 +30,5 @@ dependencies:
     - neurodsp==2.2.*
     - fooof==1.0.*
     - bycycle==1.0.*
-    - pycuda==2022.2; platform_machine != "arm64" # NOTE: we assume here that no machine with ARM CPU could possible have an NVIDIA card...
+    - pycuda==2022.2; platform_system != "Darwin" # NOTE: Cuda is not supported any more on macOS
     - scikit-learn-intelex; platform_machine == "x86_64"
