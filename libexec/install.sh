@@ -282,6 +282,7 @@ debug "Installed mamba"
 info "Creating latest neuro-conda environment"
 if [[ ! -f "${NeuroCondaLatestTarget}" ]]; then
   if [[ ! -z "${ncCI-}" ]]; then
+    echo ">>>>>>>>>>>>>>>>>> `pwd` <<<<<<<<<<<<<<<<<"
     execute "cp" "../envs/neuro-conda-latest.yml" "${NeuroCondaLatestTarget}"
     debug "Copied local repository version of latest environment file to ${NeuroCondaLatestTarget}"
   else
