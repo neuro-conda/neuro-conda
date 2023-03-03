@@ -34,8 +34,13 @@ Open a PowerShell and run the following command:
 Invoke-WebRequest https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/libexec/install.ps1 -OutFile $Env:temp\install_neuroconda.ps1; Invoke-Expression $Env:temp\install_neuroconda.ps1;
 ```
 
-### Linux
-Coming soon...
+### Linux and Windows Subsystem for Linux (WSL)
+
+Open a terminal and run the following command:
+
+```zsh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/libexec/install.sh)"
+```
 
 ### macOS
 
@@ -50,7 +55,12 @@ Open `Terminal.App` and run the following command:
 
 ### Windows 10/11 (PowerShell)
 ```
-$version = "2023a"
-Invoke-WebRequest "https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-$version.yml" -OutFile "$Env:temp\neuro-conda-$version.yml"
-mamba env create --file "$Env:temp\neuro-conda-$version.yml"
+Invoke-WebRequest "https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-latest.yml" -OutFile "$Env:temp\neuro-conda-latest.yml"
+conda env create --file "$Env:temp\neuro-conda-latest.yml"
+```
+
+### Linux, WSL, macOS
+```bash
+wget "https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-latest.yml" -O /tmp/neuro-conda-latest.yml
+conda env create --file /tmp/neuro-conda-latest.yml
 ```
