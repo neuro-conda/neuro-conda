@@ -4,9 +4,7 @@
 
 Although creating a virtual environment for each project is considered best practice, it can be a major obstacle for early-career neuroscientists that are just starting to learn programming. **neuro-conda** aims to simplify learning and using Python in neuroscience by bundling commonly used packages in neuroscience into curated conda environments, i.e. providing a **Python distribution for neuroscience based on [conda](https://www.anaconda.com)**
 
-It is inspired by the similar projects at the [Ernst Strüngmann Institute for Neuroscience](https://github.com/esi-neuroscience/esi-conda) and [University of Cambridge](https://github.com/jooh/neuroconda) as well as [NeuroDesk](https://www.neurodesk.org) providing easy-to-install Python environments for neuroscience.
-
-Currently the neuro-conda includes the following neuroscientific Python packages (in alphabetic order):
+Currently neuro-conda includes the following neuroscientific Python packages (in alphabetic order):
 
 - [bycycle](https://bycycle-tools.github.io)
 - [elephant](https://elephant.readthedocs.io) + [viziphant](https://viziphant.readthedocs.io)
@@ -19,12 +17,15 @@ Currently the neuro-conda includes the following neuroscientific Python packages
 - [pynwb](https://pynwb.readthedocs.io)
 - [spikeinterface](https://spikeinterface.readthedocs.io)
 
-More neuroscience tools will be added in the future.
+More neuroscience tools will be added in the future. Please open an issue or pull request if you'd like a specfic
+package.
 
 Other non-neuroscience includes are (see [the environment files](/envs) for details)
 - [dask](https://www.dask.org)
 - [esi-acme](https://esi-acme.readthedocs.io)
 - [jupyter](https://jupyter.org)
+
+neuro-conda is inspired by similar projects at the [Ernst Strüngmann Institute for Neuroscience](https://github.com/esi-neuroscience/esi-conda), [University of Cambridge](https://github.com/jooh/neuroconda) and [NeuroDesk](https://www.neurodesk.org) providing easy-to-install Python environments for neuroscience.
 
 ## Fresh installation
 
@@ -66,3 +67,5 @@ conda env create --file "$Env:temp\neuro-conda-latest.yml"
 wget "https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-latest.yml" -O /tmp/neuro-conda-latest.yml
 conda env create --file /tmp/neuro-conda-latest.yml
 ```
+
+
