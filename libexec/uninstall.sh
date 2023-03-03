@@ -26,11 +26,11 @@ then
   posix_abort "Bash is required to interpret this script."
 fi
 
-# Check if script is run in POSIX mode
-if [[ -n "${POSIXLY_CORRECT+1}" ]]
-then
-  posix_abort 'Bash must not run in POSIX mode. Please unset POSIXLY_CORRECT and try again.'
-fi
+# # Check if script is run in POSIX mode
+# if [[ -n "${POSIXLY_CORRECT+1}" ]]
+# then
+#   posix_abort 'Bash must not run in POSIX mode. Please unset POSIXLY_CORRECT and try again.'
+# fi
 
 # ----------------------------------------------------------------------
 #   PREPARE STDOUT
