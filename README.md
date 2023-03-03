@@ -1,6 +1,8 @@
-# neuro-conda - a Python distribution for neuroscience based on [conda](https://www.anaconda.com)
+[![Test Installation](https://github.com/neuro-conda/neuro-conda/actions/workflows/test-fresh-installation.yml/badge.svg)](https://github.com/neuro-conda/neuro-conda/actions/workflows/test-fresh-installation.yml)
 
-Although creating a virtual environment for each project is considered best practice, it can be a major obstacle for early-career neuroscientists that are just starting to learn programming. **neuro-conda** aims to simplify learning and using Python in neuroscience by bundling commonly used packages in neuroscience into curated conda environments.
+# neuro-conda 🧠🐍
+
+Although creating a virtual environment for each project is considered best practice, it can be a major obstacle for early-career neuroscientists that are just starting to learn programming. **neuro-conda** aims to simplify learning and using Python in neuroscience by bundling commonly used packages in neuroscience into curated conda environments, i.e. providing a **Python distribution for neuroscience based on [conda](https://www.anaconda.com)**
 
 It is inspired by the similar projects at the [Ernst Strüngmann Institute for Neuroscience](https://github.com/esi-neuroscience/esi-conda) and [University of Cambridge](https://github.com/jooh/neuroconda) as well as [NeuroDesk](https://www.neurodesk.org) providing easy-to-install Python environments for neuroscience.
 
