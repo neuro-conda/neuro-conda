@@ -20,10 +20,15 @@ Currently neuro-conda includes the following neuroscientific Python packages (in
 More neuroscience tools will be added in the future. Please open an issue or pull request if you'd like a specfic
 package.
 
-Other non-neuroscience includes are (see [the environment files](/envs) for details)
+Other included non-neuroscience pacakges are (see [the environment files](/envs) for details)
 - [dask](https://www.dask.org)
 - [esi-acme](https://esi-acme.readthedocs.io)
 - [jupyter](https://jupyter.org)
+
+On Linux, several machine-learning tools are installed as well:
+- [tensforflow](https://www.tensorflow.org)
+- [PyTorch](https://pytorch.org)
+- [scikit-learn](https://scikit-learn.org)
 
 neuro-conda is inspired by similar projects at the [Ernst Strüngmann Institute for Neuroscience](https://github.com/esi-neuroscience/esi-conda), [University of Cambridge](https://github.com/jooh/neuroconda) and [NeuroDesk](https://www.neurodesk.org) providing easy-to-install Python environments for neuroscience.
 
