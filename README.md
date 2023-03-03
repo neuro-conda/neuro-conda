@@ -25,11 +25,11 @@ Other included non-neuroscience pacakges are (see [the environment files](/envs)
 - [jupyter](https://jupyter.org)
 
 On Linux, several machine-learning tools are installed as well:
-- [tensforflow](https://www.tensorflow.org)
+- [tensorflow](https://www.tensorflow.org)
 - [PyTorch](https://pytorch.org)
 - [scikit-learn](https://scikit-learn.org)
 
-neuro-conda is inspired by similar projects at the [Ernst Strüngmann Institute for Neuroscience](https://github.com/esi-neuroscience/esi-conda), [University of Cambridge](https://github.com/jooh/neuroconda) and [NeuroDesk](https://www.neurodesk.org) providing easy-to-install Python environments for neuroscience.
+neuro-conda is inspired by similar projects at the [Ernst Strüngmann Institute for Neuroscience](https://github.com/esi-neuroscience/esi-conda), [University of Cambridge](https://github.com/jooh/neuroconda) and [NeuroDesk](https://www.neurodesk.org), providing easy-to-install Python environments for neuroscience.
 
 ## Fresh installation
 
