@@ -17,8 +17,7 @@ Currently neuro-conda includes the following neuroscientific Python packages (in
 - [pynwb](https://pynwb.readthedocs.io)
 - [spikeinterface](https://spikeinterface.readthedocs.io)
 
-More neuroscience tools will be added in the future. Please open an issue or pull request if you'd like a specfic
-package.
+More neuroscience tools will be added in the future. Please open an [issue](https://github.com/neuro-conda/neuro-conda/issues) or [pull request](https://github.com/neuro-conda/neuro-conda/pulls) if you'd like a specific package to be included.
 
 Other included non-neuroscience pacakges are (see [the environment files](/envs) for details)
 - [dask](https://www.dask.org)
@@ -73,4 +72,6 @@ wget "https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-
 conda env create --file /tmp/neuro-conda-latest.yml
 ```
 
+## Extending a neuro-conda installation
+Coming soon...
 
