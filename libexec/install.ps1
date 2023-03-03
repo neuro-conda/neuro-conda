@@ -58,3 +58,9 @@ Else
 }
 
 mamba env create --file $filename
+
+If ($Env:ncEditor)
+{
+    Write-Host "Installing Spyder on Windows is not yet supported. You can add it later on by activating the neuro-conda environment and installing it via"
+    Write-Host "    conda install spyder"
+}
