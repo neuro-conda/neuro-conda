@@ -34,6 +34,7 @@ dependencies:
     - dataconf==2.1.*
     - fooof==1.0.*
     - bycycle==1.0.*
+    - spikeinterface[full]==0.97.*
     - scikit-image==0.20.*
     - torch==1.13.*; platform_system == "Linux"
     - opencv-python==4.7.*; platform_system == "Linux"
