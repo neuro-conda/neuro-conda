@@ -45,8 +45,22 @@ conda install mamba -n base -c conda-forge -y
 # activate conda and install environment
 conda activate
 
-# download environment file
-$NeuroCondaLatestUrl = "https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-latest.yml"
-Invoke-WebRequest $NeuroCondaLatestUrl -OutFile "$Env:temp\neuro-conda-latest.yml"
+# download environment file if not on GitHub runner
+If (-not $Env:ncCI)
+{
+    $NeuroCondaLatestUrl = "https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-latest.yml"
+    Invoke-WebRequest $NeuroCondaLatestUrl -OutFile "$Env:temp\neuro-conda-latest.yml"
+    $filename = "$Env:temp\neuro-conda-latest.yml"
+}
+Else 
+{
+    $filename = "envs\neuro-conda-latest.yml"
+}
 
-mamba env create --file "$Env:temp\neuro-conda-latest.yml"
+mamba env create --file $filename
+
+If ($Env:ncEditor)
+{
+    Write-Host "Installing Spyder on Windows is not yet supported. You can add it later on by activating the neuro-conda environment and installing it via"
+    Write-Host "    conda install spyder"
+}
