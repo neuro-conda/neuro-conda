@@ -35,4 +35,4 @@ jobs:
       - name: Run installation script ${{ matrix.install_script }} for ${{ matrix.os }}
         run: ${{ matrix.install_script }}
       - name: Run uninstall script ${{ matrix.uninstall_script }} for ${{ matrix.os }}
-        run: ${{ matrix.install_script }}
+        run: ${{ matrix.uninstall_script }}
