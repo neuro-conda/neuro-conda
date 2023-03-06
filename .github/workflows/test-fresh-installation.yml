@@ -15,11 +15,14 @@ jobs:
         python-version: ["3.10"]
         include:
           - os: windows-latest
-            script_name: .\libexec\install.ps1
+            install_script: .\libexec\install.ps1
+            uninstall_script: Write-Host "Not implemented yet"
           - os: macos-latest
-            script_name: ./libexec/install.sh
+            install_script: ./libexec/install.sh
+            uninstall_script: ./libexec/uninstall.sh
           - os: ubuntu-latest
-            script_name: ./libexec/install.sh
+            install_script: ./libexec/install.sh
+            uninstall_script: ./libexec/uninstall.sh
     steps:
       - uses: conda-incubator/setup-miniconda@v2
         with:
@@ -29,5 +32,7 @@ jobs:
           channels: conda-forge,defaults
       - name: Download repository
         uses: actions/checkout@v3
-      - name: Run installation script ${{ matrix.script_name }} for ${{ matrix.os }}
-        run: ${{ matrix.script_name }}
+      - name: Run installation script ${{ matrix.install_script }} for ${{ matrix.os }}
+        run: ${{ matrix.install_script }}
+      - name: Run uninstall script ${{ matrix.uninstall_script }} for ${{ matrix.os }}
+        run: ${{ matrix.install_script }}
