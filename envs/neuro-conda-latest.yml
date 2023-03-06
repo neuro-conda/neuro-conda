@@ -62,4 +62,4 @@ dependencies:
     - pybids==0.15.*
     - nipype==1.8.*
     - nitime==0.9.*; platform_system != "Darwin"
-    - nipy==0.5.*; platform_system != "Darwin"
+    - nipy==0.5.*; platform_system == "Linux"
