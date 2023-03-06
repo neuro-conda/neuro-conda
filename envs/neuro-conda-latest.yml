@@ -6,6 +6,8 @@ dependencies:
   - python=3.10.*
   - scipy=1.10.*
   - numpy=1.23.*
+  - cython
+  - numcodecs
   - hdf5=1.12.*
   - mpi4py=3.1.*
   - matplotlib=3.6.*
@@ -14,9 +16,7 @@ dependencies:
   - ipympl
   - r-base=4.*
   - r-irkernel=1.3.*
-  - nipype=1.8.*
-  - dipy=1.6.*
-  - nitime=0.9.*
+  - dipy=1.5.*
   - nilearn=0.10.*
   - mnelab=0.8.*
   - mne-realtime=0.2.*
@@ -58,5 +58,7 @@ dependencies:
     - scikit-learn==1.2.*; platform_system == "Linux"
     - scikit-learn-intelex; platform_machine == "x86_64"
     - napari-nibabel==0.1.0
-    - popeye==1.0.0
+    - popeye==1.0.0; platform_system != "Darwin"
     - pybids==0.15.*
+    - nipype==1.8.*
+    - nitime==0.9.*; platform_system != "Darwin"
