@@ -26,12 +26,6 @@ then
   posix_abort "Bash is required to interpret this script."
 fi
 
-# # Check if script is run in POSIX mode
-# if [[ -n "${POSIXLY_CORRECT+1}" ]]
-# then
-#   posix_abort 'Bash must not run in POSIX mode. Please unset POSIXLY_CORRECT and try again.'
-# fi
-
 # ----------------------------------------------------------------------
 #   PREPARE STDOUT
 # ----------------------------------------------------------------------
@@ -160,6 +154,12 @@ if [[ -z "${rmPath-}" ]]; then
 fi
 debug "Found rm: ${rmPath}"
 
+# Check if script is executed by a CI runner
+if [[ ! -z "${ncCI-}" ]]; then
+  info "Running inside CI pipeline, turning on non-interactive mode"
+  ncNoninteractive=1
+fi
+
 # Display a warning message in case we're running non-interactively
 if [[ ! -z "${ncNoninteractive-}" ]]; then
   warn "Running in non-interactive mode - will not prompt for input!"
@@ -216,6 +216,6 @@ info "Please close this window and open a new terminal."
 toc=`date +%s`
 runtime=$((toc-tic))
 runHrs=$((runtime / 3600)); runMin=$(( (runtime % 3600) / 60 )); runSec=$(( (runtime % 3600) % 60 ))
-debug "Installation finished. Runtime: ${runHrs}:${runMin}:${runSec} (hh:mm:ss)"
+debug "Removal finished. Runtime: ${runHrs}:${runMin}:${runSec} (hh:mm:ss)"
 
 exit 0
