@@ -11,13 +11,16 @@ dependencies:
   - hdf5=1.12.*
   - mpi4py=3.1.*
   - matplotlib=3.6.*
+  - seaborn
   - pandas=1.5.*
   - jupyter
   - ipympl
+  - imageio
   - r-base=4.*
   - r-irkernel=1.3.*
   - dipy=1.5.*
   - nilearn=0.10.*
+  - mne=1.3.*
   - mnelab=0.8.*
   - mne-realtime=0.2.*
   - mne-rsa=0.8
@@ -27,6 +30,10 @@ dependencies:
   - mne-features=0.2.*
   - mne-bids-pipeline=1.1.*
   - mne-ari=0.1.*
+  - mne-microstates=0.3.*
+  - pactools=0.3.*
+  - eelbrain=0.38.*
+  - pyprep=0.4.*
   - deid=0.3.*
   - intensity-normalization=2.1.*
   - pip
@@ -63,3 +70,7 @@ dependencies:
     - nipype==1.8.*
     - nitime==0.9.*; platform_system != "Darwin"
     - nipy==0.5.*; platform_system == "Linux"
+    - mne-hcp==0.1.dev12
+    - alphacsc==0.4.*
+    - sesameeg==0.*
+    - invertmeeg==0.*; platform_system == "Linux"
