@@ -3,6 +3,11 @@
 # Central pytest configuration
 #
 
+# Run full test suite using
+#
+# pytest -sv --full
+#
+
 # Builtin/3rd party package imports
 import sys
 import pytest

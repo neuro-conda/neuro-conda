@@ -10,15 +10,20 @@ import yaml
 import platform
 
 @pytest.mark.full
-def test_something():
-    assert True
+def test_packages():
 
+    # Mainly for illustration purposes: run ACME's test suite
+    import acme
+    acmePath = str(pathlib.Path(acme.__file__).resolve().parent)
+    pytest.main(["-v", acmePath])
+
+    return
 
 def test_imports():
 
     # We only do this for the current neuro-conda environment
-    pkgDir = pathlib.Path(__file__).resolve().parents[1]
-    envFile = pkgDir / "envs" / "neuro-conda-latest.yml"
+    ncDir = pathlib.Path(__file__).resolve().parents[1]
+    envFile = ncDir / "envs" / "neuro-conda-latest.yml"
     with open(envFile, "r", encoding="utf-8") as ymlFile:
         ymlDict = yaml.safe_load(ymlFile)
 
@@ -70,8 +75,3 @@ def test_imports():
         importlib.import_module(pkg)
 
     return
-
-def test_b():
-    assert True
-    return
-
