@@ -4,6 +4,7 @@
 #
 
 import pytest
+import pathlib
 import importlib
 import yaml
 import platform
@@ -16,7 +17,8 @@ def test_something():
 def test_imports():
 
     # We only do this for the current neuro-conda environment
-    envFile = "../envs/neuro-conda-latest.yml"
+    pkgDir = pathlib.Path(__file__).resolve().parents[1]
+    envFile = pkgDir / "envs" / "neuro-conda-latest.yml"
     with open(envFile, "r", encoding="utf-8") as ymlFile:
         ymlDict = yaml.safe_load(ymlFile)
 
