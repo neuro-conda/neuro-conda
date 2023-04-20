@@ -18,32 +18,23 @@ jobs:
           - os: windows-latest
             install_script: .\libexec\install.ps1
             uninstall_script: Write-Host "Not implemented yet"
-            use_shell: pwsh
+            prepare_shell: Write-Host "Nothing"
           - os: macos-latest
             install_script: ./libexec/install.sh
             uninstall_script: ./libexec/uninstall.sh
-            use_shell: zsh -l {0}
+            prepare_shell: source ~/.zshrc
           - os: ubuntu-latest
             install_script: ./libexec/install.sh
             uninstall_script: ./libexec/uninstall.sh
-            use_shell: bash -l {0}
-    defaults:
-      run:
-        shell: ${{ matrix.use_shell }}
+            prepare_shell: source ~/.bashrc
     steps:
-      - uses: conda-incubator/setup-miniconda@v2
-        with:
-          auto-update-conda: true
-          python-version: ${{ matrix.python-version }}
-          mamba-version: "*"
-          channels: conda-forge,defaults
       - name: Download repository
         uses: actions/checkout@v3
       - name: Run installation script ${{ matrix.install_script }} for ${{ matrix.os }}
         run: ${{ matrix.install_script }}
       - name: Activate environment ${{ env.ncEnv }} and run tests on ${{ matrix.os }}
         run: |
-          source ~/.bashrc
+          ${{ matrix.prepare_shell }}
           conda activate ${{ env.ncEnv }}
           pytest -sv
       - name: Run uninstall script ${{ matrix.uninstall_script }} for ${{ matrix.os }}
