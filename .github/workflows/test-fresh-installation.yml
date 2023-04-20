@@ -18,15 +18,21 @@ jobs:
           - os: windows-latest
             install_script: .\libexec\install.ps1
             uninstall_script: Write-Host "Not implemented yet"
+            use_shell : pwsh
             prepare_shell: Write-Host "Nothing"
           - os: macos-latest
             install_script: ./libexec/install.sh
             uninstall_script: ./libexec/uninstall.sh
+            use_shell : zsh -l {0}
             prepare_shell: source ~/.zshrc
           - os: ubuntu-latest
             install_script: ./libexec/install.sh
             uninstall_script: ./libexec/uninstall.sh
+            use_shell : bash -l {0}
             prepare_shell: source ~/.bashrc
+    defaults:
+      run:
+        shell: ${{ matrix.use_shell }}
     steps:
       - name: Download repository
         uses: actions/checkout@v3
