@@ -31,6 +31,12 @@ jobs:
       run:
         shell: ${{ matrix.use_shell }}
     steps:
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+          python-version: ${{ matrix.python-version }}
+          mamba-version: "*"
+          channels: conda-forge,defaults
       - name: Download repository
         uses: actions/checkout@v3
       - name: Run installation script ${{ matrix.install_script }} for ${{ matrix.os }}
