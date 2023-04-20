@@ -69,8 +69,6 @@ dependencies:
     - pybids==0.15.*
     - nipype==1.8.*
     - nitime==0.9.*; platform_system != "Darwin"
-    - nipy==0.5.*; platform_system == "Linux"
-    - mne-hcp==0.1.dev12
     - alphacsc==0.4.*
     - sesameeg==0.*
     - invertmeeg==0.*; platform_system == "Linux"
