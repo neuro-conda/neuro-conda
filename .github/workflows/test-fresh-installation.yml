@@ -43,6 +43,7 @@ jobs:
         run: ${{ matrix.install_script }}
       - name: Activate environment ${{ env.ncEnv }} and run tests on ${{ matrix.os }}
         run: |
+          source ~/.bashrc
           conda activate ${{ env.ncEnv }}
           pytest -sv
       - name: Run uninstall script ${{ matrix.uninstall_script }} for ${{ matrix.os }}
