@@ -3,6 +3,7 @@
 # Test basic functionality of all provided packages
 #
 
+import os
 import pytest
 import pathlib
 import importlib
@@ -29,6 +30,10 @@ def test_imports():
 
     # Don't attempt to import these packages
     ignorePkgs = ["python", "r-", "pip", "pytest", "hdf5"]
+
+    # Additionally, don't bother trying to import these packages in a CI run
+    if os.getenv("ncCI"):
+         ignorePkgs += ["invertmeeg", "torchaudio", "tensorflow"]
 
     # Packages whose name does not correspond to their Python module name
     pkgMap = {
@@ -71,7 +76,10 @@ def test_imports():
     # Remove installation specifiers (e.g., `[full]`)
     pkgList = [pkg.partition("[")[0] for pkg in pkgList]
 
+    # Finally start the actual test
+    print("\n")
     for pkg in pkgList:
+        print(">>> importing ", pkg)
         importlib.import_module(pkg)
 
     return

@@ -19,28 +19,29 @@ jobs:
             install_script: .\libexec\install.ps1
             uninstall_script: Write-Host "Not implemented yet"
             use_shell : pwsh
-            prepare_shell: Write-Host "Nothing"
           - os: macos-latest
             install_script: ./libexec/install.sh
             uninstall_script: ./libexec/uninstall.sh
-            use_shell : zsh -l {0}
-            prepare_shell: source ~/.zshrc
+            use_shell : zsh -ile --pipefail {0}
           - os: ubuntu-latest
             install_script: ./libexec/install.sh
             uninstall_script: ./libexec/uninstall.sh
-            use_shell : bash -l {0}
-            prepare_shell: source ~/.bashrc
+            use_shell : bash -ileo pipefail {0}
     defaults:
       run:
         shell: ${{ matrix.use_shell }}
     steps:
       - name: Download repository
         uses: actions/checkout@v3
+      - name: Install system packages on Linux
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install libgl1 -y
       - name: Run installation script ${{ matrix.install_script }} for ${{ matrix.os }}
         run: ${{ matrix.install_script }}
       - name: Activate environment ${{ env.ncEnv }} and run tests on ${{ matrix.os }}
         run: |
-          ${{ matrix.prepare_shell }}
           conda activate ${{ env.ncEnv }}
           pytest -sv
       - name: Run uninstall script ${{ matrix.uninstall_script }} for ${{ matrix.os }}

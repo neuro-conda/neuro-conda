@@ -4,13 +4,13 @@ $MinicondaLatestUrl = "https://repo.anaconda.com/miniconda/Miniconda3-latest-Win
 If ($Env:username -match " ") { $CondaInstallationDirectory = "$Env:public\miniconda3" }
 
 
-function Find-Miniconda {           
+function Find-Miniconda {
     $name = "Miniconda3"
     $systemInstalled = (Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*).DisplayName -Match $name
     try {
         $userInstalled = (Get-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*).DisplayName -Match $name
     }
-    catch 
+    catch
     {
         $userInstalled = ""
     }
@@ -22,7 +22,8 @@ function Find-Miniconda {
 
 $CondaIsInstalled = Find-Miniconda
 
-If (-not $CondaIsInstalled) {
+# On GH CI runners, conda is always installed
+If ((-not $CondaIsInstalled) -or ($Env:ncCI)){
     Write-Host "Downloading miniconda3"
     Invoke-WebRequest $MinicondaLatestUrl -OutFile $Env:temp\Miniconda3-latest-Windows-x86_64.exe
     Invoke-Expression "$Env:temp\Miniconda3-latest-Windows-x86_64.exe /RegisterPython=1 /S /InstallationType=JustMe /D=$CondaInstallationDirectory"
@@ -31,6 +32,7 @@ If (-not $CondaIsInstalled) {
     conda init powershell
 }
 Else { Write-Host "miniconda3 is already installed" }
+}
 
 If (-not (Get-Command "conda" -errorAction SilentlyContinue)) {
     throw "Conda is installed but not available in this PowerShell. Please continue with the neuro-conda installation from a PowerShell with conda activated."
@@ -52,7 +54,7 @@ If (-not $Env:ncCI)
     Invoke-WebRequest $NeuroCondaLatestUrl -OutFile "$Env:temp\neuro-conda-latest.yml"
     $filename = "$Env:temp\neuro-conda-latest.yml"
 }
-Else 
+Else
 {
     $filename = "envs\neuro-conda-latest.yml"
 }
