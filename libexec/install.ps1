@@ -32,7 +32,6 @@ If ((-not $CondaIsInstalled) -or ($Env:ncCI)){
     conda init powershell
 }
 Else { Write-Host "miniconda3 is already installed" }
-}
 
 If (-not (Get-Command "conda" -errorAction SilentlyContinue)) {
     throw "Conda is installed but not available in this PowerShell. Please continue with the neuro-conda installation from a PowerShell with conda activated."
