@@ -29,7 +29,7 @@ jobs:
             install_script: ./libexec/install.sh
             uninstall_script: ./libexec/uninstall.sh
             use_shell : bash -leo pipefail {0}
-            prepare_shell: . ~/.bashrc
+            prepare_shell: ~/.local/miniconda3/bin/activate ${{ ncEnv }})
     defaults:
       run:
         shell: ${{ matrix.use_shell }}
