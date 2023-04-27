@@ -28,7 +28,7 @@ If ((-not $CondaIsInstalled) -or ($Env:ncCI)){
     Invoke-WebRequest $MinicondaLatestUrl -OutFile $Env:temp\Miniconda3-latest-Windows-x86_64.exe
     Invoke-Expression "$Env:temp\Miniconda3-latest-Windows-x86_64.exe /RegisterPython=1 /S /InstallationType=JustMe /D=$CondaInstallationDirectory"
     Write-Host "Installed miniconda into $CondaInstallationDirectory"
-    & "$CondaInstallationDirectory\shell\condabin\conda-hook.ps1"
+    & '$CondaInstallationDirectory\shell\condabin\conda-hook.ps1'
     conda init powershell
 }
 Else { Write-Host "miniconda3 is already installed" }
