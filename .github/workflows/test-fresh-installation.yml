@@ -28,9 +28,8 @@ jobs:
           - os: ubuntu-latest
             install_script: ./libexec/install.sh
             uninstall_script: ./libexec/uninstall.sh
-            use_shell : bash -l {0}
-            prepare_shell: ~/.local/miniconda3/bin/activate
-            CONDA: ~/.local/miniconda3
+            use_shell : bash -il {0}
+            prepare_shell: source ~/.bashrc
     defaults:
       run:
         shell: ${{ matrix.use_shell }}
