@@ -28,7 +28,7 @@ jobs:
           - os: ubuntu-latest
             install_script: ./libexec/install.sh
             uninstall_script: ./libexec/uninstall.sh
-            use_shell : bash -leo pipefail {0}
+            use_shell : bash -l {0}
             prepare_shell: ~/.local/miniconda3/bin/activate
     defaults:
       run:
@@ -45,7 +45,7 @@ jobs:
         run: ${{ matrix.install_script }}
       - name: Activate environment ${{ env.ncEnv }} and run tests on ${{ matrix.os }}
         run: |
-          ${{ matrix.prepare_shell }} ${{ env.ncEnv }}
+          # ${{ matrix.prepare_shell }} ${{ env.ncEnv }}
           conda activate ${{ env.ncEnv }}
           pytest -sv
       - name: Run uninstall script ${{ matrix.uninstall_script }} for ${{ matrix.os }}
