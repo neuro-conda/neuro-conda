@@ -23,7 +23,7 @@ jobs:
           - os: macos-latest
             install_script: ./libexec/install.sh
             uninstall_script: ./libexec/uninstall.sh
-            use_shell : zsh -le --pipefail {0}
+            use_shell : zsh -il {0}
             prepare_shell: source ~/.zshrc
           - os: ubuntu-latest
             install_script: ./libexec/install.sh
@@ -45,7 +45,7 @@ jobs:
         run: ${{ matrix.install_script }}
       - name: Activate environment ${{ env.ncEnv }} and run tests on ${{ matrix.os }}
         run: |
-          source ~/.bashrc
+          ${{ matrix.prepare_shell }}
           conda activate ${{ env.ncEnv }}
           pytest -sv
       - name: Run uninstall script ${{ matrix.uninstall_script }} for ${{ matrix.os }}
