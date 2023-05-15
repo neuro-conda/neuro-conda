@@ -26,7 +26,7 @@ $CondaIsInstalled = Find-Miniconda
 If ((-not $CondaIsInstalled) -or ($Env:ncCI)){
     Write-Host "Downloading miniconda3"
     Invoke-WebRequest $MinicondaLatestUrl -OutFile $Env:temp\Miniconda3-latest-Windows-x86_64.exe
-    Invoke-Expression "$Env:temp\Miniconda3-latest-Windows-x86_64.exe /RegisterPython=1 /S /InstallationType=JustMe /D=$CondaInstallationDirectory"
+    Invoke-Expression "$Env:temp\Miniconda3-latest-Windows-x86_64.exe /RegisterPython=1 /InstallationType=JustMe /D=$CondaInstallationDirectory"
     Write-Host "Installed miniconda into $CondaInstallationDirectory"
     Invoke-Expression "ls C:\Users\runneradmin"
     # Invoke-Expression -Command "$CondaInstallationDirectory\shell\condabin\conda-hook.ps1"
