@@ -32,7 +32,7 @@ If ((-not $CondaIsInstalled) -or ($Env:ncCI)){
     Start-Process -FilePath "$Env:temp\Miniconda3-latest-Windows-x86_64.exe" -ArgumentList "/InstallationType=JustMe","/D=$CondaInstallationDirectory"
     # & "$Env:temp\Miniconda3-latest-Windows-x86_64.exe /InstallationType=JustMe /D=$CondaInstallationDirectory"
     Write-Host "Installed miniconda into $CondaInstallationDirectory"
-    Invoke-Expression "ls $CondaInstallationDirectory"
+    Invoke-Expression "ls $Env:temp"
     # Invoke-Expression -Command "$CondaInstallationDirectory\shell\condabin\conda-hook.ps1"
     (& "$CondaInstallationDirectory\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
     # Invoke-Expression "$CondaInstallationDirectory\shell\condabin\conda.exe init powershell"
