@@ -1,6 +1,6 @@
 # Install miniconda3 if not installed
 $CondaInstallationDirectory = "$Env:userprofile\miniconda3"
-$CondaInstallationDirectory = "$Envtemp\miniconda3"
+$CondaInstallationDirectory = "$Env:temp\miniconda3"
 $MinicondaLatestUrl = "https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe"
 If ($Env:username -match " ") { $CondaInstallationDirectory = "$Env:public\miniconda3" }
 
