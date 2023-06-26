@@ -28,9 +28,9 @@ If ((-not $CondaIsInstalled) -or ($Env:ncCI)){
     Write-Host "Downloading miniconda3"
     Invoke-WebRequest $MinicondaLatestUrl -OutFile $Env:temp\Miniconda3-latest-Windows-x86_64.exe
     Invoke-Expression "ls $Env:temp"
-    Invoke-Expression -Command "$Env:temp\Miniconda3-latest-Windows-x86_64.exe /S /InstallationType=JustMe /D=$CondaInstallationDirectory"
-    Write-Host "$Env:temp\Miniconda3-latest-Windows-x86_64.exe /S /InstallationType=JustMe /D=$CondaInstallationDirectory"
-    # Start-Process -FilePath "$Env:temp\Miniconda3-latest-Windows-x86_64.exe" -ArgumentList "/InstallationType=JustMe","/D=$CondaInstallationDirectory"
+    # Invoke-Expression -Command "$Env:temp\Miniconda3-latest-Windows-x86_64.exe /S /InstallationType=JustMe /D=$CondaInstallationDirectory"
+    # Write-Host "$Env:temp\Miniconda3-latest-Windows-x86_64.exe /S /InstallationType=JustMe /D=$CondaInstallationDirectory"
+    Start-Process -FilePath "$Env:temp\Miniconda3-latest-Windows-x86_64.exe" -ArgumentList "/S","/InstallationType=JustMe","/D=$CondaInstallationDirectory" -PassThru -Wait
     # & "$Env:temp\Miniconda3-latest-Windows-x86_64.exe /InstallationType=JustMe /D=$CondaInstallationDirectory"
     Write-Host "Installed miniconda into $CondaInstallationDirectory"
     Invoke-Expression "ls $Env:temp"
