@@ -27,15 +27,16 @@ $CondaIsInstalled = Find-Miniconda
 If ((-not $CondaIsInstalled) -or ($Env:ncCI)){
     Write-Host "Downloading miniconda3"
     Invoke-WebRequest $MinicondaLatestUrl -OutFile $Env:temp\Miniconda3-latest-Windows-x86_64.exe
-    Invoke-Expression "ls $Env:temp"
-    $Command = '$Env:temp\Miniconda3-latest-Windows-x86_64.exe /InstallationType=JustMe /S /D=$CondaInstallationDirectory'
-    Invoke-Expression "& `"$Env:temp\Miniconda3-latest-Windows-x86_64.exe`" '/InstallationType=JustMe' '/S' '/D=`"$CondaInstallationDirectory`"'"
+    Start-Process -WorkingDirectory "$Env:temp" -Wait -FilePath "Miniconda3-latest-Windows-x86_64.exe" -ArgumentList "/InstallationType=JustMe /S /D=`"$CondaInstallationDirectory`""
+    # $Command = '$Env:temp\Miniconda3-latest-Windows-x86_64.exe /InstallationType=JustMe /S /D=$CondaInstallationDirectory'
+    # Invoke-Expression "& `"$Env:temp\Miniconda3-latest-Windows-x86_64.exe`" '/InstallationType=JustMe' '/S' '/D=`"$CondaInstallationDirectory`"'"
     # Invoke-Expression "$Env:temp\Miniconda3-latest-Windows-x86_64.exe /InstallationType=JustMe /S /D=$CondaInstallationDirectory"
     # Write-Host "$Env:temp\Miniconda3-latest-Windows-x86_64.exe /S /InstallationType=JustMe /D=$CondaInstallationDirectory"
     # Start-Process -FilePath "$Env:temp\Miniconda3-latest-Windows-x86_64.exe" -ArgumentList "/InstallationType=JustMe","/S","/D=$CondaInstallationDirectory" -PassThru -Wait
     # (& "$Env:temp\Miniconda3-latest-Windows-x86_64.exe" "/InstallationType=JustMe" "/S" "/D=$CondaInstallationDirectory")  | Out-String | Invoke-Expression
     # & "$Env:temp\Miniconda3-latest-Windows-x86_64.exe /InstallationType=JustMe /D=$CondaInstallationDirectory"
-    Write-Host "Installed miniconda into $CondaInstallationDirectory"
+    # Write-Host "Installed miniconda into $CondaInstallationDirectory"
+    Write-Host "Did it do anything?"
     Invoke-Expression "ls $Env:temp"
     # Invoke-Expression -Command "$CondaInstallationDirectory\shell\condabin\conda-hook.ps1"
     (& "$CondaInstallationDirectory\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
