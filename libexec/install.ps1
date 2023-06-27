@@ -1,6 +1,6 @@
 # Install miniconda3 if not installed
 $CondaInstallationDirectory = "$Env:userprofile\miniconda3"
-$CondaInstallationDirectory = "$Env:temp\miniconda3"
+# $CondaInstallationDirectory = "$Env:temp\miniconda3"
 $MinicondaLatestUrl = "https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe"
 If ($Env:username -match " ") { $CondaInstallationDirectory = "$Env:public\miniconda3" }
 
@@ -27,6 +27,7 @@ $CondaIsInstalled = Find-Miniconda
 If ((-not $CondaIsInstalled) -or ($Env:ncCI)){
     Write-Host "Downloading miniconda3"
     Invoke-WebRequest $MinicondaLatestUrl -OutFile $Env:temp\Miniconda3-latest-Windows-x86_64.exe
+    Write-Host "Done"
     Start-Process -WorkingDirectory "$Env:temp" -Wait -FilePath "Miniconda3-latest-Windows-x86_64.exe" -ArgumentList "/InstallationType=JustMe /S /D=`"$CondaInstallationDirectory`""
     # $Command = '$Env:temp\Miniconda3-latest-Windows-x86_64.exe /InstallationType=JustMe /S /D=$CondaInstallationDirectory'
     # Invoke-Expression "& `"$Env:temp\Miniconda3-latest-Windows-x86_64.exe`" '/InstallationType=JustMe' '/S' '/D=`"$CondaInstallationDirectory`"'"
@@ -37,7 +38,7 @@ If ((-not $CondaIsInstalled) -or ($Env:ncCI)){
     # & "$Env:temp\Miniconda3-latest-Windows-x86_64.exe /InstallationType=JustMe /D=$CondaInstallationDirectory"
     # Write-Host "Installed miniconda into $CondaInstallationDirectory"
     Write-Host "Did it do anything?"
-    Invoke-Expression "ls $Env:temp"
+    Invoke-Expression "ls $CondaInstallationDirectory"
     # Invoke-Expression -Command "$CondaInstallationDirectory\shell\condabin\conda-hook.ps1"
     (& "$CondaInstallationDirectory\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
     # Invoke-Expression "$CondaInstallationDirectory\shell\condabin\conda.exe init powershell"
