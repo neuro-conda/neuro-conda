@@ -2,7 +2,7 @@
 If ($Env:ncDebug){
     $DebugPreference = "Continue"
 }
-If ($Env:ncCI)){
+If ($Env:ncCI){
     Write-Debug "Running inside CI pipeline"
 }
 If ($Env:ncTargetDirectory){
