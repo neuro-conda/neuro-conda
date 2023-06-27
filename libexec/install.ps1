@@ -53,7 +53,6 @@ If ((-not $CondaIsInstalled) -or ($Env:ncCI)){
     Write-Debug "Done"
     Write-Debug "Initializing PowerShell for conda"
     Invoke-Expression "$CondaInstallationDirectory\shell\condabin\conda-hook.ps1"
-    # (& "$CondaInstallationDirectory\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
     Write-Debug "Done"
 }
 Else { Write-Host "miniconda3 is already installed" }

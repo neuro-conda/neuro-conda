@@ -19,7 +19,7 @@ jobs:
             install_script: .\libexec\install.ps1
             uninstall_script: Write-Host "Not implemented yet"
             use_shell : pwsh
-            prepare_shell: Write-Host "Not implemented yet"
+            prepare_shell: Invoke-Expression "$Env:userprofile\miniconda3\shell\condabin\conda-hook.ps1"
           - os: macos-latest
             install_script: ./libexec/install.sh
             uninstall_script: ./libexec/uninstall.sh
