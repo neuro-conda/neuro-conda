@@ -29,7 +29,7 @@ If ((-not $CondaIsInstalled) -or ($Env:ncCI)){
     Invoke-WebRequest $MinicondaLatestUrl -OutFile $Env:temp\Miniconda3-latest-Windows-x86_64.exe
     Invoke-Expression "ls $Env:temp"
     $Command = '$Env:temp\Miniconda3-latest-Windows-x86_64.exe /InstallationType=JustMe /S /D=$CondaInstallationDirectory'
-    Invoke-Expression $Command
+    Invoke-Expression "& `"$Env:temp\Miniconda3-latest-Windows-x86_64.exe`" /InstallationType=JustMe /S /D=`"$CondaInstallationDirectory`""
     # Invoke-Expression "$Env:temp\Miniconda3-latest-Windows-x86_64.exe /InstallationType=JustMe /S /D=$CondaInstallationDirectory"
     # Write-Host "$Env:temp\Miniconda3-latest-Windows-x86_64.exe /S /InstallationType=JustMe /D=$CondaInstallationDirectory"
     # Start-Process -FilePath "$Env:temp\Miniconda3-latest-Windows-x86_64.exe" -ArgumentList "/InstallationType=JustMe","/S","/D=$CondaInstallationDirectory" -PassThru -Wait
