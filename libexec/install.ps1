@@ -1,8 +1,29 @@
-# Install miniconda3 if not installed
-$CondaInstallationDirectory = "$Env:userprofile\miniconda3"
+# Set up env variables
+If ($Env:ncDebug){
+    $DebugPreference = "Continue"
+}
+If ($Env:ncCI){
+    Write-Debug "Running inside CI pipeline"
+}
+If ($Env:ncTargetDirectory){
+    Write-Debug "Found ncTargetDirectory=$Env:ncTargetDirectory"
+    $CondaInstallationDirectory = "$Env:ncTargetDirectory"
+}
+Else {
+    If ($Env:username -match " "){
+        $CondaInstallationDirectory = "$Env:public\miniconda3"
+    }
+    Else {
+        $CondaInstallationDirectory = "$Env:userprofile\miniconda3"
+    }
+}
 $MinicondaLatestUrl = "https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe"
-If ($Env:username -match " ") { $CondaInstallationDirectory = "$Env:public\miniconda3" }
 
+# Start actual script execution
+Write-Debug "Installation started at $(Get-Date)"
+$tic=(Get-Date).Minute
+
+Write-Debug "Using CondaInstallationDirectory=$CondaInstallationDirectory"
 
 function Find-Miniconda {
     $name = "Miniconda3"
@@ -26,10 +47,13 @@ $CondaIsInstalled = Find-Miniconda
 If ((-not $CondaIsInstalled) -or ($Env:ncCI)){
     Write-Host "Downloading miniconda3"
     Invoke-WebRequest $MinicondaLatestUrl -OutFile $Env:temp\Miniconda3-latest-Windows-x86_64.exe
-    Invoke-Expression "$Env:temp\Miniconda3-latest-Windows-x86_64.exe /RegisterPython=1 /S /InstallationType=JustMe /D=$CondaInstallationDirectory"
-    Write-Host "Installed miniconda into $CondaInstallationDirectory"
-    & "$CondaInstallationDirectory\shell\condabin\conda-hook.ps1"
-    conda init powershell
+    Write-Debug "Done"
+    Write-Host "Installing miniconda3"
+    Start-Process -WorkingDirectory "$Env:temp" -Wait -FilePath "Miniconda3-latest-Windows-x86_64.exe" -ArgumentList "/InstallationType=JustMe /S /D=`"$CondaInstallationDirectory`""
+    Write-Debug "Done"
+    Write-Debug "Initializing PowerShell for conda"
+    Invoke-Expression "$CondaInstallationDirectory\shell\condabin\conda-hook.ps1"
+    Write-Debug "Done"
 }
 Else { Write-Host "miniconda3 is already installed" }
 
@@ -38,12 +62,17 @@ If (-not (Get-Command "conda" -errorAction SilentlyContinue)) {
 }
 
 # update conda
+Write-Debug "Updating conda itself"
 conda update -n base conda -c defaults -y
+Write-Debug "Done"
 
 # install mamba for faster dependency resolution
+Write-Debug "Installing mamba"
 conda install mamba -n base -c conda-forge -y
+Write-Debug "Done"
 
 # activate conda and install environment
+Write-Debug "Activating conda"
 conda activate
 
 # download environment file if not on GitHub runner
@@ -52,16 +81,24 @@ If (-not $Env:ncCI)
     $NeuroCondaLatestUrl = "https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-latest.yml"
     Invoke-WebRequest $NeuroCondaLatestUrl -OutFile "$Env:temp\neuro-conda-latest.yml"
     $filename = "$Env:temp\neuro-conda-latest.yml"
+    Write-Debug "Downloaded $NeuroCondaLatestUrl to $Env:temp\neuro-conda-latest.yml"
 }
 Else
 {
     $filename = "envs\neuro-conda-latest.yml"
+    Write-Debug "Using local repository version of latest environment file"
 }
 
+Write-Host "Creating latest neuro-conda environment"
 mamba env create --file $filename
+Write-Debug "Done"
 
 If ($Env:ncEditor)
 {
     Write-Host "Installing Spyder on Windows is not yet supported. You can add it later on by activating the neuro-conda environment and installing it via"
     Write-Host "    conda install spyder"
 }
+
+# If we're debugging, print timing info
+$toc = (Get-Date).Minute
+Write-Debug "Installation finished. Runtime: $($toc - $tic)  minutes"
