@@ -195,6 +195,14 @@ if [[ ! -z "${ncNoninteractive-}" ]]; then
   warn "Running in non-interactive mode - will not prompt for input!"
 fi
 
+# Check if installation directory has been provided by user
+if [[ ! -z "${ncTargetDirectory-}" ]]; then
+  info "Found ncTargetDirectory, setting CondaInstallationDirectory = ${ncTargetDirectory}"
+  CondaInstallationDirectory="${ncTargetDirectory}"
+else
+  debug "Using default CondaInstallationDirectory = ${CondaInstallationDirectory}"
+fi
+
 # ----------------------------------------------------------------------
 #   PERFORM INSTALLATION
 # ----------------------------------------------------------------------
