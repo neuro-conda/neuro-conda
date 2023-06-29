@@ -3,7 +3,11 @@ If ($Env:ncDebug){
     $DebugPreference = "Continue"
 }
 If ($Env:ncCI){
-    Write-Debug "Running inside CI pipeline"
+    Write-Debug "Running inside CI pipeline, turning on non-interactive mode"
+    $Env:ncNoninteractive = $true
+}
+If ($Env:ncNoninteractive){
+    Write-Warning "Running in non-interactive mode - will not prompt for input!"
 }
 If ($Env:ncTargetDirectory){
     Write-Debug "Found ncTargetDirectory=$Env:ncTargetDirectory"
@@ -18,6 +22,13 @@ Else {
     }
 }
 $MinicondaLatestUrl = "https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe"
+
+function User-Input {
+    $ans = Read-Host "Press RETURN/ENTER to continue or any other key to abort:"
+    if ($ans -eq ""){
+        Exit
+    }
+}
 
 # Start actual script execution
 Write-Debug "Installation started at $(Get-Date)"
@@ -55,7 +66,16 @@ If ((-not $CondaIsInstalled) -or ($Env:ncCI)){
     Invoke-Expression "$CondaInstallationDirectory\shell\condabin\conda-hook.ps1"
     Write-Debug "Done"
 }
-Else { Write-Host "miniconda3 is already installed" }
+Else {
+    Write-Warning "miniconda3 is already installed"
+    If (-not $Env:ncNoninteractive){
+        Write-Warning "Do you really want to install neuro-conda alongside the existing miniconda3?"
+        User-Input
+    }
+    Else {
+        Write-Host "Installing neuro-conda alongside existing miniconda3"
+    }
+}
 
 If (-not (Get-Command "conda" -errorAction SilentlyContinue)) {
     throw "Conda is installed but not available in this PowerShell. Please continue with the neuro-conda installation from a PowerShell with conda activated."

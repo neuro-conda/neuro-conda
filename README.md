@@ -90,21 +90,55 @@ Open `Terminal.App` and run the following command:
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/libexec/install.sh)"
 ```
 
-
 ## Install neuro-conda using an existing conda installation
 
 ### Windows 10/11 (PowerShell)
+
 ```
 Invoke-WebRequest "https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-latest.yml" -OutFile "$Env:temp\neuro-conda-latest.yml"
 conda env create --file "$Env:temp\neuro-conda-latest.yml"
 ```
 
 ### Linux, WSL, macOS
+
 ```bash
 wget "https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-latest.yml" -O /tmp/neuro-conda-latest.yml
 conda env create --file /tmp/neuro-conda-latest.yml
 ```
 
+## Uninstall neuro-conda
+
+### Windows 10 and 11 (PowerShell)
+
+Open a PowerShell and run the following command:
+
+```PowerShell
+Invoke-WebRequest https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/libexec/uninstall.ps1 -OutFile $Env:temp\uninstall_neuroconda.ps1; Invoke-Expression $Env:temp\uninstall_neuroconda.ps1;
+```
+
+### Linux, WSL, macOS
+
+Open a terminal and run the following command:
+
+```zsh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/libexec/uninstall.sh)"
+```
+
+## Customizing neuro-conda
+
+The following environment variables can be used to modify the neuro-conda
+installer
+
+| Variable            | Description                    | Windows | Linux  | macOS |
+|---------------------|--------------------------------|:-------:|:------:|:-----:|
+| `ncTargetDirectory` | installation location          |  [ x ]  |  [ x ] | [ x ] |
+| `ncDebug`           | show debug messages            |  [ x ]  |  [ x ] | [ x ] |
+| `ncEnv`             | choose neuro-conda environment |  [ x ]  |  [ x ] | [ x ] |
+| `ncEditor`          | install Spyder                 |  [   ]  |  [ x ] | [ x ] |
+| `ncNoninteractive`  | do not prompt for input        |  [ x ]  |  [ x ] | [ x ] |
+| `ncCI`              | CI pipeline mode               |  [ x ]  |  [ x ] | [ x ] |
+
 ## Extending a neuro-conda installation
+
 Coming soon...
 
