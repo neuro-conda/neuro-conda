@@ -31,7 +31,8 @@ function User-Input {
 Write-Debug "Installation started at $(Get-Date)"
 $tic=(Get-Date).Minute
 
-Write-Host "(Get-Command conda).Path"
+$test = (Get-Command conda).Path
+Write-Host "$test"
 
 # Determine root dir of active conda installation
 try {
