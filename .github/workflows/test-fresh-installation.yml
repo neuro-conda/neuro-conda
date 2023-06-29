@@ -17,7 +17,7 @@ jobs:
         include:
           - os: windows-latest
             install_script: .\libexec\install.ps1
-            uninstall_script: Write-Host "Not implemented yet"
+            uninstall_script: .\libexec\uninstall.ps1
             use_shell : pwsh
             prepare_shell: Invoke-Expression "$Env:userprofile\miniconda3\shell\condabin\conda-hook.ps1"
           - os: macos-latest
@@ -49,4 +49,6 @@ jobs:
           conda activate ${{ env.ncEnv }}
           pytest -sv
       - name: Run uninstall script ${{ matrix.uninstall_script }} for ${{ matrix.os }}
-        run: ${{ matrix.uninstall_script }}
+        run: |
+          ${{ matrix.prepare_shell }}
+          ${{ matrix.uninstall_script }}
