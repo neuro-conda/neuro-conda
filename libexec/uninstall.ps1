@@ -40,7 +40,7 @@ catch {
 }
 
 # Check if we're working with a default installation
-If $condaBinPath.Contains($CondaInstallationDirectory) {
+If ($condaBinPath.Contains($CondaInstallationDirectory)) {
     Write-Debug "Found neuro-conda in default location"
 }
 Else {
