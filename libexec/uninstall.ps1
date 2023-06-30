@@ -33,7 +33,10 @@ $tic=(Get-Date).Minute
 
 Invoke-Expression "$Env:userprofile\miniconda3\shell\condabin\conda-hook.ps1"
 $test = (Get-Command conda).Path
-Write-Host "Found conda path $test"
+Write-Debug "Found conda path $test"
+Write-Debug "Try launching conda..."
+conda info
+Write-Debug "Done"
 
 # Determine root dir of active conda installation
 try {
