@@ -80,7 +80,7 @@ Write-Debug "Done"
 
 # Step 2: run uninstaller
 Write-Host "Running uninstaller..."
-Start-Process "Uninstall-Miniconda3.exe" -ArgumentList "/S" -Wait
+Start-Process (Join-Path -Path $CondaInstallationDirectory -ChildPath "Uninstall-Miniconda3.exe") -ArgumentList "/S" -Wait
 Write-Host "All done."
 Write-Host "Please close this window and open a new terminal."
 
