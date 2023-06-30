@@ -31,16 +31,8 @@ function User-Input {
 Write-Debug "Installation started at $(Get-Date)"
 $tic=(Get-Date).Minute
 
-# Invoke-Expression "$Env:userprofile\miniconda3\shell\condabin\conda-hook.ps1"
-# $test = (Get-Command conda).Path
-# Write-Debug "Found conda path $test"
-# Write-Debug "Try launching conda..."
-# conda info
-# Write-Debug "Done"
-
 # Determine root dir of active conda installation
 try {
-    # $condaBinPath = Split-Path (Split-Path (Get-Command conda).Path)
     $condaBinPath = ((conda info --system | Select-String -Pattern "sys.prefix") -split " ", 2)[1]
 }
 catch {
@@ -83,7 +75,7 @@ Else {
 # Step 1: delete `envs` and `pkgs` folders
 Write-Host "Removing envs and pkgs folders..."
 Remove-Item -Path (Join-Path -Path $CondaInstallationDirectory -ChildPath "envs") -Recurse -Force
-Remove-Item -Path (Join-Path -Path $CondaInstallationDirectory -ChildPath "envs") -Recurse -Force
+Remove-Item -Path (Join-Path -Path $CondaInstallationDirectory -ChildPath "pkgs") -Recurse -Force
 Write-Debug "Done"
 
 # Step 2: run uninstaller
