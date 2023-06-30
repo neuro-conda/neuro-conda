@@ -31,16 +31,17 @@ function User-Input {
 Write-Debug "Installation started at $(Get-Date)"
 $tic=(Get-Date).Minute
 
-Invoke-Expression "$Env:userprofile\miniconda3\shell\condabin\conda-hook.ps1"
-$test = (Get-Command conda).Path
-Write-Debug "Found conda path $test"
-Write-Debug "Try launching conda..."
-conda info
-Write-Debug "Done"
+# Invoke-Expression "$Env:userprofile\miniconda3\shell\condabin\conda-hook.ps1"
+# $test = (Get-Command conda).Path
+# Write-Debug "Found conda path $test"
+# Write-Debug "Try launching conda..."
+# conda info
+# Write-Debug "Done"
 
 # Determine root dir of active conda installation
 try {
-    $condaBinPath = Split-Path (Split-Path (Get-Command conda).Path)
+    # $condaBinPath = Split-Path (Split-Path (Get-Command conda).Path)
+    $condaBinPath = ((conda info --system | Select-String -Pattern "sys.prefix") -split " ", 2)[1]
 }
 catch {
     Write-Error "No neuro-conda installation found on this system. Exiting..."
