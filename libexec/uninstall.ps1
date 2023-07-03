@@ -21,8 +21,8 @@ Else {
 }
 
 function User-Input {
-    $ans = Read-Host "Press RETURN/ENTER to continue or any other key to abort:"
-    if ($ans -eq ""){
+    $ans = Read-Host "Press RETURN/ENTER to continue or any other key to abort"
+    if ($ans -ne ""){
         Exit
     }
 }
