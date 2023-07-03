@@ -155,11 +155,11 @@ directory must not exist.
 
 - **Linux/macOS/WSL**: By default, `ncTargetDirectory="${HOME}/.local/miniconda3"`,
   to install neuro-conda to `/path/to/conda` use `export ncTargetDirectory="/path/to/conda"`
-- **Windows PowerShell**: By default, neuro-conda is installed in the
-  directory "miniconda3" inside the active user's home folder (usually
-  `C:\Users\<username>`). If no active  user is detected, the installer
-  falls back on the "public" folder (usually `C:\Users\public`). To point
-  the installer to another location use, e.g., `$Env:ncTargetDirectory = "F:\work\neuro-conda"`
+- **Windows PowerShell**: By default, neuro-conda is installed in the directory "miniconda3"
+  inside the active user's home folder (usually `C:\Users\<username>`). If no active user is
+  detected or the [username contains spaces](https://github.com/conda/conda/issues/8725),
+  the installer falls back on the "public" folder (usually `C:\Users\Public`). To point the
+  installer to another location use, e.g., `$Env:ncTargetDirectory = "F:\work\neuro-conda"`
 
 ### `ncDebug`
 
