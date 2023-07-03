@@ -195,6 +195,14 @@ if [[ ! -z "${ncNoninteractive-}" ]]; then
   warn "Running in non-interactive mode - will not prompt for input!"
 fi
 
+# Check if installation directory has been provided by user
+if [[ ! -z "${ncTargetDirectory-}" ]]; then
+  info "Found ncTargetDirectory, setting CondaInstallationDirectory = ${ncTargetDirectory}"
+  CondaInstallationDirectory="${ncTargetDirectory}"
+else
+  debug "Using default CondaInstallationDirectory = ${CondaInstallationDirectory}"
+fi
+
 # ----------------------------------------------------------------------
 #   PERFORM INSTALLATION
 # ----------------------------------------------------------------------
@@ -315,8 +323,14 @@ debug "Auto-activate ${envName}"
 # Everything works, remove tmp dir
 info "Cleaning up"
 execute "rm" "-rf" "${CondaDownloadDirectory}"
+
+# Final notes
 info "All done."
-info "Please close this window and open a new terminal to start using neuo-conda"
+if [[ "${OS}" == "Linux" ]]; then
+  info "If you use mnelab: Please install libGL.so with your system package manager (e.g., sudo apt install liggl1)"
+  info "If you use torchaudio/torchvideo/tensorflow with NVIDIA GPUs: Please install CUDA (https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)"
+fi
+info "Please close this window and open a new terminal to start using neuro-conda"
 
 # If we're debugging, print timing info
 toc=`date +%s`

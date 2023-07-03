@@ -21,7 +21,6 @@ Currently neuro-conda includes the following neuroscientific Python packages (in
   - [mne-bids-pipeline](https://mne.tools/mne-bids-pipeline/1.1/index.html)
   - [mne-connectivity](https://mne.tools/mne-connectivity/stable/index.html)
   - [mne-features](https://mne.tools/mne-features/)
-  - [mne-hcp](http://mne.tools/mne-hcp/#)
   - [mne-icalabel](https://mne.tools/mne-icalabel/stable/index.html)
   - [mnelab](https://mnelab.readthedocs.io/en/latest/index.html)
   - [mne-microstates](https://github.com/wmvanvliet/mne_microstates)
@@ -35,11 +34,9 @@ Currently neuro-conda includes the following neuroscientific Python packages (in
 - [neurodsp](https://neurodsp-tools.github.io)
 - [nibabel](https://nipy.org/nibabel/) + [napari-nibabel](https://nipy.org/packages/napari-nibabel/index.html)
 - [nilearn](https://nilearn.github.io/stable/index.html)
-- [nipy](https://nipy.org/nipy/) (only on Linux)
 - [nipype](https://nipype.readthedocs.io/en/latest/)
 - [nitime](https://nipy.org/nitime/) (only on Windows and Linux)
 - [nixio](https://nixio.readthedocs.io)
-- [popeye](https://kdesimone.github.io/popeye/) (only on Windows and Linux)
 - [pybids](https://bids-standard.github.io/pybids/)
 - [pydicom](https://pydicom.github.io/) + [deid](https://pydicom.github.io/deid/)
 - [pynwb](https://pynwb.readthedocs.io)
@@ -77,37 +74,165 @@ Open a PowerShell and run the following command:
 Invoke-WebRequest https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/libexec/install.ps1 -OutFile $Env:temp\install_neuroconda.ps1; Invoke-Expression $Env:temp\install_neuroconda.ps1;
 ```
 
-### Linux and Windows Subsystem for Linux (WSL)
+### Linux, macOS and Windows Subsystem for Linux (WSL)
 
-Open a terminal and run the following command:
-
-```zsh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/libexec/install.sh)"
-```
-
-### macOS
-
-Open `Terminal.App` and run the following command:
+Open a terminal (`Terminal.App` in macOS) and run the following command:
 
 ```zsh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/libexec/install.sh)"
 ```
-
 
 ## Install neuro-conda using an existing conda installation
 
 ### Windows 10/11 (PowerShell)
+
 ```
 Invoke-WebRequest "https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-latest.yml" -OutFile "$Env:temp\neuro-conda-latest.yml"
 conda env create --file "$Env:temp\neuro-conda-latest.yml"
 ```
 
 ### Linux, WSL, macOS
+
 ```bash
 wget "https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-latest.yml" -O /tmp/neuro-conda-latest.yml
 conda env create --file /tmp/neuro-conda-latest.yml
 ```
 
-## Extending a neuro-conda installation
-Coming soon...
+## Uninstall neuro-conda
 
+### Windows 10 and 11 (PowerShell)
+
+Open a PowerShell and run the following command:
+
+```PowerShell
+Invoke-WebRequest https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/libexec/uninstall.ps1 -OutFile $Env:temp\uninstall_neuroconda.ps1; Invoke-Expression $Env:temp\uninstall_neuroconda.ps1;
+```
+
+### Linux, WSL, macOS
+
+Open a terminal and run the following command:
+
+```zsh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/libexec/uninstall.sh)"
+```
+
+## Customizing neuro-conda
+
+The following environment variables can be used to control the neuro-conda
+installer/uninstaller (detailed explanation below).
+
+| Variable            | Description                    | Windows | Linux/WSL  | macOS |
+|---------------------|--------------------------------|:-------:|:----------:|:-----:|
+| `ncTargetDirectory` | installation location          |   ✅    |     ✅     |  ✅   |
+| `ncDebug`           | show debug messages            |   ✅    |     ✅     |  ✅   |
+| `ncEnv`             | choose neuro-conda environment |   ✅    |     ✅     |  ✅   |
+| `ncEditor`          | install Spyder                 |   ❌    |     ✅     |  ✅   |
+| `ncNoninteractive`  | do not prompt for input        |   ✅    |     ✅     |  ✅   |
+| `ncCI`              | CI pipeline mode               |   ✅    |     ✅     |  ✅   |
+
+The variables have to be set **before** running the neuro-conda installer/uninstaller
+and must be available to other processes started by the installer, e.g.,
+
+- **Linux/macOS/WSL**:
+
+  ```zsh
+  export ncDebug=1
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/libexec/install.sh)"
+  ```
+
+- **Windows PowerShell**:
+
+  ```PowerShell
+  $Env:ncDebug = 1
+  Invoke-WebRequest https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/libexec/install.ps1 -OutFile $Env:temp\install_neuroconda.ps1; Invoke-Expression $Env:temp\install_neuroconda.ps1;
+  ```
+
+### `ncTargetDirectory` (installer only)
+
+Specify the location of the neuro-conda installation. By default, neuro-conda
+is installed inside the active user's home directory. Note that the specified
+directory must not exist.
+
+- **Linux/macOS/WSL**: By default, `ncTargetDirectory="${HOME}/.local/miniconda3"`,
+  to install neuro-conda to `/path/to/conda` use `export ncTargetDirectory="/path/to/conda"`
+- **Windows PowerShell**: By default, neuro-conda is installed in the directory "miniconda3"
+  inside the active user's home folder (usually `C:\Users\<username>`). If no active user is
+  detected or the [username contains spaces](https://github.com/conda/conda/issues/8725),
+  the installer falls back on the "public" folder (usually `C:\Users\Public`). To point the
+  installer to another location use, e.g., `$Env:ncTargetDirectory = "F:\work\neuro-conda"`
+
+### `ncDebug`
+
+If set, the (un)installer prints (a lot of) additional progress/status messages.
+Note that the actual value of `ncDebug` is irrelevant, if the variable is
+set (to anything), the (un)installer picks it up.
+
+- **Linux/macOS/WSL**: By default, `ncDebug` is not defined. Setting it
+  to an arbitrary value, e.g., `export ncDebug=1` activates debug messaging.
+- **Windows PowerShell**: By default `ncDebug` is not set. Debug messages
+  are shown if `ncDebug` is set to an arbitrary value, e.g., `$Env:ncDebug = 1`
+
+### `ncEnv` (installer only)
+
+Specifies the environment to create during the installation process. By default,
+the installer always creates the most recent neuro-conda environment defined
+in the YAML file [neuro-conda-latest.yml](./envs/neuro-conda-latest.yml)
+(consult the [envs](./envs/) directory for all available environments)
+
+> ℹ️ **INFO** As of June 2023, neuro-conda only ships with a single environment
+file (`neuro-conda-latest.yml`) that contains the environment `neuro-conda-2023a`.
+Setting `ncEnv` to anything other than `neuro-conda-2023a` results in an
+error.
+
+- **Linux/macOS/WSL**: To create an older neuro-conda environment, use, e.g.,
+  `export ncEnv="neuro-conda-2023a"`
+- **Windows PowerShell**: To create a specific neuro-conda environment,
+  use, e.g., `$Env:ncEnv = "neuro-conda-2023a"`
+
+### `ncEditor` (installer only)
+
+If set, the Python IDE [Spyder](https://www.spyder-ide.org/) is installed
+alongside neuro-conda.
+
+- **Linux/macOS/WSL**: By default, `ncEditor` is not defined. Setting it
+  to an arbitrary value, e.g., `export ncEditor=1` installs Spyder.
+- **Windows PowerShell**: Not yet supported.
+
+### `ncNonInteractive`
+
+If set, the (un)installer does not ask for confirmation. The actual value of
+`ncNonInteractive` is irrelevant, if the variable is set (to anything),
+any confirmation dialogs will be automatically answered with "yes".
+By default, the (un)installer asks the user for confirmation when performing
+changes to the system.
+
+> ⚠️ **WARNING** The (un)installer only asks for confirmation before making
+permanent changes to the system. Automatically confirming all dialogs
+without double-checking may result in damaged installations.
+
+- **Linux/macOS/WSL**: By default, `ncNonInteractive` is not defined. Setting it
+  to an arbitrary value, e.g., `export ncNonInteractive=1` prevents the
+  (un)installer from prompting for confirmation
+- **Windows PowerShell**: By default `ncNonInteractive` is not set. All
+  confirmation dialogs are automatically answered with "yes" if `ncNonInteractive`
+  is set to an arbitrary value, e.g., `$Env:ncNonInteractive = 1`
+
+### `ncCI`
+
+If set, the (un)installer assumes it was executed by a continuous integration
+pipeline (e.g., [GitHub Action](https://github.com/features/actions)) and
+activates `ncNonInteractive`. Note that the actual value of `ncCI` is
+irrelevant, if the variable is set (to anything), the (un)installer picks
+it up.
+
+> ⚠️ **WARNING** Setting `ncCI` turns off all confirmation prompts
+(see [`ncNonInteractive`](#ncnoninteractive) above).
+
+- **Linux/macOS/WSL**: By default, `ncCI` is not defined. Setting it
+  to an arbitrary value, e.g., `export ncCI=1` activates CI mode.
+- **Windows PowerShell**: By default `ncCI` is not set. CI mode is activated
+  if `ncCI` is set to an arbitrary value, e.g., `$Env:ncCI = 1`
+
+## Extending a neuro-conda installation
+
+Coming soon...

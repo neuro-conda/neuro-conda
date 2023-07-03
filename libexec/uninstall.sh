@@ -130,7 +130,14 @@ config_restore() {
   fi
 }
 
-# All neuro-conda specific env vars
+# (Try to) fetch neuro-conda installation directory from config file(s)
+get_condabinpath() {
+  configFile="$1"
+  if test -f "${configFile}"; then condaBinPath=`awk -F"'" '/__conda_setup/{print $2}' "${configFile}"`; fi
+  return
+}
+
+# Default neuro-conda installation directory
 CondaInstallationDirectory="${HOME}/.local/miniconda3"
 
 # ----------------------------------------------------------------------
@@ -169,9 +176,33 @@ fi
 #   UNINSTALL
 # ----------------------------------------------------------------------
 
-# Check if there's even anythin to uninstall
-if [[ ! -d "${CondaInstallationDirectory}" ]]; then
+# Use helper to set `condaBinPath`
+configFile="${HOME}/.bashrc"
+get_condabinpath "${HOME}/.bashrc"
+if [[ -z "${condaBinPath-}" ]]; then
+  get_condabinpath "${HOME}/.zshrc"
+fi
+
+# Abort if no conda installation was found
+if [[ -z "${condaBinPath-}" ]]; then
   error "No neuro-conda installation found on this system. Exiting..."
+fi
+
+# Check if we're working with a default installation
+if [[ "${condaBinPath}" == *"${CondaInstallationDirectory}"* ]]; then
+  debug "Found neuro-conda in default location"
+else
+  CondaInstallationDirectory="${condaBinPath%%/bin/conda}"
+  warn "Found non-standard neuro-conda installation at ${CondaInstallationDirectory}"
+  if [[ -z "${ncNoninteractive-}" ]]; then
+    warn "Do you want to proceed removing this installation?"
+    user_input
+  fi
+fi
+
+# Check if there's even anything to uninstall
+if [[ ! -d "${CondaInstallationDirectory}" ]]; then
+  error "The directory ${CondaInstallationDirectory} does not exist. Exiting..."
 fi
 
 # Be specific: show which conda installation we're about to wipe
@@ -191,7 +222,7 @@ if [[ ! -z "$(command -v conda)" ]]; then
       warn "neuro-conda environment NOT found in ${CondaInstallationDirectory}. Are you sure you want to delete this installation?"
       user_input
     else
-      info "Removing ${CondaInstallationDirectory} despite it not containing a neuro-conda environment"
+      warn "Removing ${CondaInstallationDirectory} despite it not containing a neuro-conda environment"
     fi
   fi
 else
