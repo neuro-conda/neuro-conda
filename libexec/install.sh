@@ -203,6 +203,10 @@ else
   debug "Using default CondaInstallationDirectory = ${CondaInstallationDirectory}"
 fi
 
+# Trim trailing slashes (if any) from install dir
+CondaInstallationDirectory=$(echo "${CondaInstallationDirectory}" | sed 's:/*$::')
+debug "Sanitized CondaInstallationDirectory: ${CondaInstallationDirectory}"
+
 # ----------------------------------------------------------------------
 #   PERFORM INSTALLATION
 # ----------------------------------------------------------------------
@@ -278,6 +282,13 @@ debug "Updated conda itself"
 # Install mamba for faster dependency resolution
 execute "conda" "install" "mamba" "-n" "base" "-c" "conda-forge" "-y"
 debug "Installed mamba"
+
+# Hotfix: ensure macOS finds libarchive.13.dylib
+if [[ "${OS}" == "Darwin" ]]; then
+  CondaInstallationDirectory="${HOME}/.local/miniconda3"
+  debug "Creating symlink for libarchive.13.dylib"
+  execute "ln" "-s" "${CondaInstallationDirectory}/lib/libarchive.dylib" "${CondaInstallationDirectory}/lib/libarchive.13.dylib"
+fi
 
 # Download latest neuro-conda environment (if necessary)
 # In a CI job, copy the yml file from the repo to test most recent changes
