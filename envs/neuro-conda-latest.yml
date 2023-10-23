@@ -1,73 +1,72 @@
-name: neuro-conda-2023a
+name: neuro-conda-2023b
 channels:
   - defaults
   - conda-forge
 dependencies:
   - python=3.10.*
-  - scipy=1.10.*
-  - numpy=1.23.*
+  - scipy=1.11.*
+  - numpy=1.24.*
   - cython
   - numcodecs
   - hdf5=1.12.*
   - mpi4py=3.1.*
-  - matplotlib=3.6.*
+  - matplotlib=3.7.*
   - seaborn
-  - pandas=1.5.*
+  - pandas=2.1.*
   - jupyter
   - ipympl
   - imageio
   - r-base=4.*
-  - r-irkernel=1.3.*
-  - dipy=1.5.*
+  - r-irkernel=1.3*
+  - dipy=1.7*
   - nilearn=0.10.*
-  - mne=1.3.*
+  - mne=1.5.*
   - mnelab=0.8.*
-  - mne-realtime=0.2.*
-  - mne-rsa=0.8
+  - mne-realtime=0.3.*
+  - mne-rsa=0.9
   - mne-nirs=0.5.*
   - mne-icalabel=0.4
   - mne-connectivity=0.5.*
-  - mne-features=0.2.*
-  - mne-bids-pipeline=1.1.*
+  - mne-features=0.3*
+  - mne-bids-pipeline=1.4.*
   - mne-ari=0.1.*
   - mne-microstates=0.3.*
   - pactools=0.3.*
-  - eelbrain=0.38.*
+  - eelbrain=0.39.*
   - pyprep=0.4.*
   - deid=0.3.*
   - intensity-normalization=2.1.*
+  - bokeh<3
   - pip
   - pip:
-    - pytest==7.2.*
-    - tqdm==4.64.*
-    - seaborn==0.12.*
+    - pytest==7.4.*
     - nixio==1.5.*
-    - h5py==3.8.*
+    - h5py==3.9.*
     - neo==0.12.*
-    - pynwb==2.3.*
-    - esi-acme==2022.12.*
-    - esi-syncopy==2022.12.*
-    - dask==2022.10.*
-    - elephant[extras]==0.11.*
-    - viziphant==0.2.*
+    - pynwb==2.5.*
+    - esi-acme==2023.4.*
+    - esi-syncopy==2023.5.*
+    - dask==2023.3.*
+    - elephant[extras]==0.13.*
+    - viziphant==0.3.*
     - neurodsp==2.2.*
     - pywavelets==1.4.*
     - dataconf==2.1.*
-    - fooof==1.0.*
-    - bycycle==1.0.*
-    - spikeinterface[full]==0.97.*
+    - fooof==1.1.*
+    - bycycle==1.1.*
+    - spikeinterface[full]==0.98.*
     - scikit-image==0.20.*
-    - torch==1.13.*; platform_system == "Linux"
-    - opencv-python==4.7.*; platform_system == "Linux"
-    - torchvision==0.14.1; platform_system == "Linux"
-    - torchaudio==0.13.1; platform_system == "Linux"
-    - tensorflow==2.11.*; platform_system == "Linux"
-    - scikit-learn==1.2.*; platform_system == "Linux"
+    - torch==2.1.*; platform_system == "Linux"
+    - opencv-python==4.8.*; platform_system == "Linux"
+    - torchvision==0.16.*; platform_system == "Linux"
+    - torchaudio==2.1.*; platform_system == "Linux"
+    - tensorflow==2.14.*; platform_system == "Linux"
+    - scikit-learn==1.3.*; platform_system == "Linux"
     - scikit-learn-intelex; platform_machine == "x86_64"
-    - napari-nibabel==0.1.0
-    - pybids==0.15.*
+    - napari-nibabel==0.1.*
+    - pybids==0.16.*
     - nipype==1.8.*
-    - nitime==0.9.*; platform_system != "Darwin"
+    - nitime==0.10.*; platform_system != "Darwin"
     - alphacsc==0.4.*
     - sesameeg==0.*
     - invertmeeg==0.*; platform_system == "Linux"
