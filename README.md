@@ -32,6 +32,7 @@ Currently neuro-conda includes the following neuroscientific Python packages (in
   - [sesameeg](https://pybees.github.io/sesameeg/)
 - [neo](https://neo.readthedocs.io)
 - [neurodsp](https://neurodsp-tools.github.io)
+- [neurotic](https://neurotic.readthedocs.io/en/latest/)
 - [nibabel](https://nipy.org/nibabel/) + [napari-nibabel](https://nipy.org/packages/napari-nibabel/index.html)
 - [nilearn](https://nilearn.github.io/stable/index.html)
 - [nipype](https://nipype.readthedocs.io/en/latest/)
@@ -39,21 +40,26 @@ Currently neuro-conda includes the following neuroscientific Python packages (in
 - [nixio](https://nixio.readthedocs.io)
 - [pybids](https://bids-standard.github.io/pybids/)
 - [pydicom](https://pydicom.github.io/) + [deid](https://pydicom.github.io/deid/)
+- [pynapple](https://pynapple-org.github.io/pynapple/)
 - [pynwb](https://pynwb.readthedocs.io)
 - [spikeinterface](https://spikeinterface.readthedocs.io)
+- [spikeinterface-gui](https://github.com/SpikeInterface/spikeinterface-gui)
 
 More neuroscience tools will be added in the future. Please open an [issue](https://github.com/neuro-conda/neuro-conda/issues) or [pull request](https://github.com/neuro-conda/neuro-conda/pulls) if you'd like a specific package to be included.
 
 Other included non-neuroscience packages are (see [the environment files](/envs) for details)
 
+- [black](https://black.readthedocs.io/en/stable/)
 - [dask](https://www.dask.org)
 - [esi-acme](https://esi-acme.readthedocs.io)
+- [flake8](https://flake8.pycqa.org/en/latest/index.html#) + [pep8-naming](https://github.com/PyCQA/pep8-naming)
 - [HDF5](https://www.hdfgroup.org/solutions/hdf5/) + [h5py](https://www.h5py.org/)
 - [imageio](https://imageio.readthedocs.io/en/stable/)
 - [jupyter](https://jupyter.org)
 - [NumPy](https://numpy.org/)
 - [SciPy](https://scipy.org/)
 - [Matplotlib](https://matplotlib.org/) + [Seaborn](https://seaborn.pydata.org/)
+- [mat 7.3](https://github.com/skjerns/mat7.3)
 - [R](https://www.r-project.org/)
 
 On Linux, several machine-learning tools are installed as well:
