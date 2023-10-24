@@ -41,11 +41,13 @@ def test_imports():
          "esi-syncopy" : "syncopy",
          "invertmeeg" : "invert",
          "opencv-python" : "cv2",
+         "pep8-naming": "pep8ext_naming",
          "pybids" : "bids",
          "pywavelets" : "pywt",
          "scikit-image" : "skimage",
          "scikit-learn" : "sklearn",
          "scikit-learn-intelex" : "sklearnex",
+         "spyking-circus": "circus"
     }
 
     # Split off pip-installed packages since those contain additional
