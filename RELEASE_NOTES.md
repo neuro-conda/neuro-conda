@@ -4,7 +4,7 @@
 
 2nd release of neuro-conda with a few new packages and updates.
 
-### Added packages
+**Added**
 
 - pynapple (#37)
 - spyking-circuse (#24)
@@ -13,7 +13,7 @@
 - spikeinterface-gui (#21)
 - black, pylint, flake (#34)
 
-## Updated packages
+**Updated**
 
 ...
 
