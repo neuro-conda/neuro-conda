@@ -58,8 +58,11 @@ def test_imports():
     pkgList = ymlDict["dependencies"]
     for pkg in pipDeps["pip"]:
         platformSpec = pkg.partition("platform_")[-1]
-        expr = platformSpec.replace("machine", "machine()").replace("system", "system()")
-        if not platformSpec or eval("platform.%s"%(expr)):
+        platformExpr = []
+        for expr in platformSpec.split("and"):
+            expr = expr.replace("machine", "machine()").replace("system", "system()").replace("platform_", "")
+            platformExpr.append(expr)
+        if not platformSpec or all(eval("platform.%s"%(expr)) for expr in platformExpr):
             pkgList.append(pkg.partition(";")[0])
 
     # Filter based on above ignore-list
