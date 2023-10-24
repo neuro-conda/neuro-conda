@@ -6,10 +6,10 @@ Although creating a virtual environment for each project is considered best prac
 
 Currently neuro-conda includes the following neuroscientific Python packages (in alphabetic order):
 
-- **Electrophysiology (spikes + LFP)**: 
-[elephant](https://elephant.readthedocs.io),   [viziphant](https://viziphant.readthedocs.io),  [esi-syncopy](https://syncopy.readthedocs.io),  [neurotic](https://neurotic.readthedocs.io/en/latest/),  [pynapple](https://pynapple-org.github.io/pynapple/),  [spyking-circus](https://spyking-circus.readthedocs.io/en/latest/),  [spikeinterface](https://spikeinterface.readthedocs.io),  [spikeinterface-gui](https://github.com/SpikeInterface/spikeinterface-gui)
+- **Electrophysiology (spikes + LFP)**:
+[brian2](https://briansimulator.org/), [elephant](https://elephant.readthedocs.io),   [viziphant](https://viziphant.readthedocs.io),  [esi-syncopy](https://syncopy.readthedocs.io),  [neurotic](https://neurotic.readthedocs.io/en/latest/),  [pynapple](https://pynapple-org.github.io/pynapple/),  [spyking-circus](https://spyking-circus.readthedocs.io/en/latest/),  [spikeinterface](https://spikeinterface.readthedocs.io),  [spikeinterface-gui](https://github.com/SpikeInterface/spikeinterface-gui), [suite2p](https://suite2p.readthedocs.io/en/latest/index.html)
 
-- **Electrophysiology (LFP + M/EEG)**:  
+- **Electrophysiology (LFP + M/EEG)**:
  [bycycle](https://bycycle-tools.github.io),
  [fooof](https://fooof-tools.github.io),
  [neurodsp](https://neurodsp-tools.github.io),
@@ -27,14 +27,15 @@ Currently neuro-conda includes the following neuroscientific Python packages (in
     [mne-nirs](https://mne.tools/mne-nirs/stable/index.html),
     [mne-realtime](https://mne.tools/mne-realtime/),
     [mne-rsa](https://users.aalto.fi/~vanvlm1/mne-rsa/),
+    [neurokit2](https://neuropsychology.github.io/NeuroKit/),
     [pactools](https://pactools.github.io/index.html),
     [pyprep](https://github.com/sappelhoff/pyprep),
     [sesameeg](https://pybees.github.io/sesameeg/)),
 
-- **Neuroimaging**: 
+- **Neuroimaging**:
   [dipy](https://dipy.org/), [intensity-normalization](https://intensity-normalization.readthedocs.io/en/latest/readme.html)
 
-- **File/data formats**: 
+- **File/data formats**:
   [neo](https://neo.readthedocs.io),
   [nibabel](https://nipy.org/nibabel/),
   [napari-nibabel](https://nipy.org/packages/napari-nibabel/index.html),
@@ -42,7 +43,7 @@ Currently neuro-conda includes the following neuroscientific Python packages (in
   [pybids](https://bids-standard.github.io/pybids/),
   [pydicom](https://pydicom.github.io/) +  [deid](https://pydicom.github.io/deid/),
   [pynwb](https://pynwb.readthedocs.io)
- 
+
 - **Machine Learning**:
   [nilearn](https://nilearn.github.io/stable/index.html),
   [nipype](https://nipype.readthedocs.io/en/latest/),
@@ -52,7 +53,7 @@ Currently neuro-conda includes the following neuroscientific Python packages (in
   [tensorflow](https://www.tensorflow.org),
 
 - **Parallelization**:
-  [dask](https://www.dask.org)
+  [dask](https://www.dask.org),
   [esi-acme](https://esi-acme.readthedocs.io)
 
 
