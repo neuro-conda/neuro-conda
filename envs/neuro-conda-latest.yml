@@ -31,6 +31,7 @@ dependencies:
   - mne-bids-pipeline=1.4.*
   - mne-ari=0.1.*
   - mne-microstates=0.3.*
+  - neurokit2=0.2.*
   - neurotic=1.5.*
   - pactools=0.3.*
   - eelbrain=0.39.*
@@ -41,6 +42,7 @@ dependencies:
   - flake8=6.*
   - pep8-naming=0.12.*
   - black=23.3.*
+  - brian2=2.5.*
   - pip
   - pip:
     - pytest==7.4.*
@@ -79,3 +81,4 @@ dependencies:
     - invertmeeg==0.*; platform_system == "Linux"
     - mat73==0.62.*
     - pynapple==0.4.*
+    - suite2p==0.14.*
