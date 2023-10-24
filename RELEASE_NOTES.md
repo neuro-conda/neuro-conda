@@ -57,8 +57,6 @@ Initial release of neuro-conda including
 - [pynwb](https://pynwb.readthedocs.io)
 - [spikeinterface](https://spikeinterface.readthedocs.io)
 
-More neuroscience tools will be added in the future. Please open an [issue](https://github.com/neuro-conda/neuro-conda/issues) or [pull request](https://github.com/neuro-conda/neuro-conda/pulls) if you'd like a specific package to be included.
-
 Other included non-neuroscience packages are (see [the environment files](/envs) for details)
 
 - [dask](https://www.dask.org)
