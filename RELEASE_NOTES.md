@@ -6,16 +6,50 @@
 
 **Added**
 
-- pynapple (#37)
-- spyking-circuse (#24)
-- neurotic (#22)
-- mat73 (#35)
 - spikeinterface-gui (#21)
-- black, pylint, flake (#34)
+- neurotic (#22)
+- spyking-circuse (#24)
+- black, pylint, flake, pep8-naming (#34)
+- mat73 (#35)
+- pynapple (#37)
+- suite2p (#39)
+- brian2 (#40)
+- neurokit2 (#41)
+- tensorflow-datasets
+- sbxreader
 
 **Updated**
 
-...
+- numpy 1.23 &rarr; 1.24
+- scipy 1.10 &rarr; 1.11
+- matplotlib 3.6 &rarr; 3.7
+- pandas 1.5 &rarr; 2.1
+- dipy 1.5 &rarr; 1.7
+- mne 1.3 &rarr; 1.5
+- mne-realtime 0.2 &rarr; 0.3
+- mne-rsa 0.8 &rarr; 0.9
+- mne-features 0.2 &rarr; 0.3
+- mne-bids-pipeline 1.1 &rarr; 1.4
+- eelbrain 0.38 &rarr; 0.39
+- pytest 7.2 &rarr; 7.4
+- h5py 3.8 &rarr; 3.9
+- pynwb 2.3 &rarr; 2.5
+- esi-acme 2022.12 &rarr; 2023.4
+- esi-syncopy 2022.12 &rarr; 2023.5
+- dask 2022.10 &rarr; 2023.3
+- elephant 0.11 &rarr; 0.14
+- viziphant 0.2 &rarr; 0.3
+- foof 1.0 &rarr; 1.1
+- bycycle 1.0 &rarr; 1.1
+- spikeinterface 0.97 &rarr; 0.98
+- torch 1.13 &rarr; 2.1
+- torchvision 0.14.1 &rarr; 0.16
+- torchaudio 0.13.1 &rarr; 2.1
+- opencv 4.7 &rarr; 4.8
+- tensorflow 2.11 &rarr; 2.14
+- scikit-learn 1.2 &rarr; 1.3
+- pybids 0.15 &rarr; 0.16
+- nitime 0.9 &rarr; 0.10
 
 ## neuro-conda-2023a
 
@@ -27,7 +61,7 @@ Initial release of neuro-conda including
 - [esi-syncopy](https://syncopy.readthedocs.io)
 - [fooof](https://fooof-tools.github.io)
 - [intensity-normalization](https://intensity-normalization.readthedocs.io/en/latest/readme.html)
-- [mne](https://mne.tools) including the extensions 
+- [mne](https://mne.tools) including the extensions
     [alphaCSC](https://alphacsc.github.io/stable/index.html),
     [eelbrain](https://eelbrain.readthedocs.io/en/stable/index.html),
     [invertmeeg](https://github.com/LukeTheHecker/invert) (only on Linux),
