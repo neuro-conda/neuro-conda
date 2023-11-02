@@ -53,7 +53,7 @@ dependencies:
     - esi-acme==2023.4.*
     - esi-syncopy==2023.5.*
     - dask==2023.3.*
-    - elephant[extras]==0.13.*
+    - elephant[extras]==0.14.*
     - viziphant==0.3.*
     - neurodsp==2.2.*
     - pywavelets==1.4.*
@@ -82,3 +82,4 @@ dependencies:
     - mat73==0.62.*
     - pynapple==0.4.*
     - suite2p==0.14.*
+    - sbxreader==0.2.*
