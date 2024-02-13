@@ -4,7 +4,7 @@ on: [push]
 env:
   ncDebug: 1
   ncCI: 1
-  ncEnv: neuro-conda-2023b
+  ncEnv: neuro-conda-2024a
 jobs:
   Test-Install:
     name: Install (${{ matrix.python-version }}, ${{ matrix.os }})
