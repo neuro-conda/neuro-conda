@@ -45,7 +45,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install libgl1 libegl -y
+          sudo apt-get install libgl1 libegl1 -y
       - name: Run installation script ${{ matrix.install_script }} for ${{ matrix.os }}
         run: ${{ matrix.install_script }}
       - name: Activate environment ${{ env.ncEnv }} and run tests on ${{ matrix.os }}
