@@ -43,6 +43,7 @@ dependencies:
   - pep8-naming=0.12.*
   - black=23.3.*
   - brian2=2.5.*
+  - qt6-main=6.4.3
   - pip
   - pip:
     - pytest==7.4.*
