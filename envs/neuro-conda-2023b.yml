@@ -1,10 +1,10 @@
-name: neuro-conda-2024a
+name: neuro-conda-2023b
 channels:
   - defaults
   - conda-forge
 dependencies:
-  - python=3.11.*
-  - scipy=1.12.*
+  - python=3.10.*
+  - scipy=1.11.*
   - numpy=1.24.*
   - cython
   - numcodecs
@@ -15,14 +15,17 @@ dependencies:
   - pandas=2.1.*
   - jupyter
   - ipympl
-  - imageio=2.34.*
-  - dipy=1.8*
+  - imageio
+  - r-base=4.*
+  - r-irkernel=1.3*
+  - dipy=1.7*
   - nilearn=0.10.*
-  - mne==1.6.*
+  - mne=1.5.*
+  - mnelab=0.8.*
   - mne-realtime=0.3.*
   - mne-rsa=0.9
-  - mne-nirs=0.6.*
-  - mne-icalabel=0.6
+  - mne-nirs=0.5.*
+  - mne-icalabel=0.4
   - mne-connectivity=0.5.*
   - mne-features=0.3*
   - mne-bids-pipeline=1.4.*
@@ -34,41 +37,39 @@ dependencies:
   - eelbrain=0.39.*
   - pyprep=0.4.*
   - deid=0.3.*
+  - intensity-normalization=2.1.*
   - bokeh<3
-  - flake8=7.*
-  - pep8-naming=0.13.*
-  - black=23.11.*
+  - flake8=6.*
+  - pep8-naming=0.12.*
+  - black=23.3.*
   - brian2=2.5.*
-  - qt6-main
   - pip
-  - pip:    
-    - mnelab==0.9.*
+  - pip:
     - pytest==7.4.*
     - nixio==1.5.*
-    - h5py==3.10.*
-    - neo==0.13.*
+    - h5py==3.9.*
+    - neo==0.12.*
     - pynwb==2.5.*
-    - esi-acme==2023.12.*
-    - esi-syncopy==2023.9.*
+    - esi-acme==2023.4.*
+    - esi-syncopy==2023.5.*
     - dask==2023.3.*
-    - elephant[extras]==1.0.*
-    - viziphant==0.4.*
+    - elephant[extras]==0.14.*
+    - viziphant==0.3.*
     - neurodsp==2.2.*
-    - pywavelets==1.5.*
-    - dataconf==2.5.*
+    - pywavelets==1.4.*
+    - dataconf==2.1.*
     - fooof==1.1.*
     - bycycle==1.1.*
-    - spikeinterface[full]==0.100.*
+    - spikeinterface[full]==0.98.*
     - spikeinterface-gui==0.7.*
-    - scikit-image==0.22.*
-    - intensity-normalization==2.2.*
+    - scikit-image==0.20.*
     - torch==2.1.*; platform_system == "Linux"
     - opencv-python==4.8.*; platform_system == "Linux"
     - torchvision==0.16.*; platform_system == "Linux"
-    - torchaudio==2.2.*; platform_system == "Linux"
-    - tensorflow==2.15.*; platform_system == "Linux"
-    - tensorflow_datasets; platform_system == "Linux"
-    - scikit-learn==1.4.*; platform_system == "Linux"
+    - torchaudio==2.1.*; platform_system == "Linux"
+    - tensorflow==2.14.*; platform_system == "Linux"
+    - tensorflow_datasets
+    - scikit-learn==1.3.*; platform_system == "Linux"
     - scikit-learn-intelex; platform_machine == "x86_64" and platform_system != "Darwin"
     - spyking-circus==1.1.*
     - napari-nibabel==0.1.*
@@ -76,8 +77,8 @@ dependencies:
     - nipype==1.8.*
     - nitime==0.10.*; platform_system != "Darwin"
     - alphacsc==0.4.*
-    - sesameeg==0.0.2
-    - invertmeeg==0.0.6; platform_system == "Linux"
+    - sesameeg==0.*
+    - invertmeeg==0.*; platform_system == "Linux"
     - mat73==0.62.*
     - pynapple==0.4.*
     - suite2p==0.14.*
