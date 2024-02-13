@@ -47,7 +47,8 @@ def test_imports():
          "scikit-image" : "skimage",
          "scikit-learn" : "sklearn",
          "scikit-learn-intelex" : "sklearnex",
-         "spyking-circus": "circus"
+         "spyking-circus": "circus",
+         "qt6-main": "PySide6"
     }
 
     # Split off pip-installed packages since those contain additional
