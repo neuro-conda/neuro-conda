@@ -62,7 +62,7 @@ dependencies:
     - spikeinterface-gui==0.7.*
     - scikit-image==0.22.*
     - intensity-normalization==2.2.*
-    - torch==2.1.*; platform_system == "Linux"
+    - torch==2.2.*; platform_system == "Linux"
     - opencv-python==4.8.*; platform_system == "Linux"
     - torchvision==0.16.*; platform_system == "Linux"
     - torchaudio==2.2.*; platform_system == "Linux"
