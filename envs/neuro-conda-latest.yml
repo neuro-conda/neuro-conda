@@ -42,7 +42,7 @@ dependencies:
   - qt6-main=6.5.*
   - pip
   - pip:    
-    - mnelab==0.9.*
+    - mnelab==0.8.*
     - pytest==7.4.*
     - nixio==1.5.*
     - h5py==3.10.*
