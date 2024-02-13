@@ -34,8 +34,7 @@ jobs:
       run:
         shell: ${{ matrix.use_shell }}
     steps:
-      - name: Free Disk Space (Ubuntu)
-        runs-on: ubuntu-latest
+      - name: Free Disk Space (Ubuntu)        
         uses: jlumbroso/free-disk-space@main
         with:
           # this might remove tools that are actually needed,
