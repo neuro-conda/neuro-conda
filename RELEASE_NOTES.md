@@ -6,7 +6,7 @@
 
 **Updated**
 
-- dataconf 2.1 dataconf 2.5
+- dataconf 2.1 &rarr; 2.5
 - dipy 1.7 &rarr; 1.8
 - elephant 0.14 &rarr; 1.0
 - esi-acme 2023.4 &rarr; 2023.12
@@ -15,7 +15,6 @@
 - mne 1.5 &rarr; 1.6
 - mne-icalabel 0.4 &rarr; 0.6
 - mne-nirs 0.5 &rarr; 0.6
-- mnelab &rarr; 0.9
 - neo 0.12 &rarr; 0.13
 - pywavelets 1.4 &rarr; 1.5
 - scikit-image 0.20 &rarr; 0.22
