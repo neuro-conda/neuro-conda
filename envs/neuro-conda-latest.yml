@@ -3,7 +3,7 @@ channels:
   - defaults
   - conda-forge
 dependencies:
-  - python=3.11.*
+  - python=3.10.*
   - scipy=1.12.*
   - numpy=1.24.*
   - cython
@@ -39,7 +39,7 @@ dependencies:
   - pep8-naming=0.13.*
   - black=23.11.*
   - brian2=2.5.*
-  - qt6-main
+  - qt6-main=6.5.*
   - pip
   - pip:    
     - mnelab==0.9.*
@@ -64,7 +64,7 @@ dependencies:
     - intensity-normalization==2.2.*
     - torch==2.2.*; platform_system == "Linux"
     - opencv-python==4.8.*; platform_system == "Linux"
-    - torchvision==0.16.*; platform_system == "Linux"
+    - torchvision==0.17.*; platform_system == "Linux"
     - torchaudio==2.2.*; platform_system == "Linux"
     - tensorflow==2.15.*; platform_system == "Linux"
     - tensorflow_datasets; platform_system == "Linux"
@@ -80,5 +80,5 @@ dependencies:
     - invertmeeg==0.0.6; platform_system == "Linux"
     - mat73==0.62.*
     - pynapple==0.4.*
-    # - suite2p==0.14.* removed until https://github.com/MouseLand/suite2p/pull/1047 is merged
+    - suite2p==0.14.*
     - sbxreader==0.2.*
