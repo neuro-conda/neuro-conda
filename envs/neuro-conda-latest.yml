@@ -66,8 +66,8 @@ dependencies:
     - opencv-python==4.8.*; platform_system == "Linux"
     - torchvision==0.17.*; platform_system == "Linux"
     - torchaudio==2.2.*; platform_system == "Linux"
-    # - tensorflow==2.15.*; platform_system == "Linux"
-    # - tensorflow_datasets; platform_system == "Linux"
+    - tensorflow==2.15.*; platform_system == "Linux"
+    - tensorflow_datasets; platform_system == "Linux"
     - scikit-learn==1.4.*; platform_system == "Linux"
     - scikit-learn-intelex; platform_machine == "x86_64" and platform_system != "Darwin"
     - spyking-circus==1.1.*
