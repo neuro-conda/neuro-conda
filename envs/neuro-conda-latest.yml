@@ -44,6 +44,7 @@ dependencies:
   - pip:    
     - mnelab==0.8.*; platform_system == "Linux"
     - pytest==7.4.*
+    - ephyviewer==1.5.*
     - nixio==1.5.*
     - h5py==3.10.*
     - neo==0.13.*

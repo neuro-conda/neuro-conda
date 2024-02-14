@@ -4,6 +4,10 @@
 
 3rd release of neuro-conda with a few updates.
 
+**Added**
+
+- ephyviewer 1.5
+
 **Updated**
 
 - dataconf 2.1 &rarr; 2.5
