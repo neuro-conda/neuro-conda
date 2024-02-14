@@ -1,5 +1,38 @@
 # Release Notes for neuro-conda
 
+## neuro-conda-2024a
+
+3rd release of neuro-conda with a few updates.
+
+**Added**
+
+- ephyviewer 1.5
+
+**Updated**
+
+- dataconf 2.1 &rarr; 2.5
+- dipy 1.7 &rarr; 1.8
+- elephant 0.14 &rarr; 1.0
+- esi-acme 2023.4 &rarr; 2023.12
+- esi-syncopy 2023.5 &rarr; 2023.9
+- h5py 3.9 &rarr; 3.10
+- mne 1.5 &rarr; 1.6
+- mne-icalabel 0.4 &rarr; 0.6
+- mne-nirs 0.5 &rarr; 0.6
+- neo 0.12 &rarr; 0.13
+- pywavelets 1.4 &rarr; 1.5
+- scikit-image 0.20 &rarr; 0.22
+- scikit-learn 1.3 &rarr; 1.4
+- scipy 1.11 &rarr; 1.12
+- spikeinterface 0.98 &rarr; 0.100
+- tensorflow 2.14 &rarr; 2.15
+- torch 2.1 &rarr; 2.2
+
+**Removed**
+
+- r-base
+- r-irkernel
+
 ## neuro-conda-2023b
 
 2nd release of neuro-conda with a few new packages and updates.
