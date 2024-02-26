@@ -1,6 +1,6 @@
 name: Test Installation
 run-name: ${{ github.actor }} is running tests
-on: [push]
+on: [push]  
 env:
   ncDebug: 1
   ncCI: 1
