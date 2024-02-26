@@ -69,7 +69,6 @@ More neuroscience tools will be added in the future. Please open an [issue](http
 [SciPy](https://scipy.org/),
 [Matplotlib](https://matplotlib.org/) + [Seaborn](https://seaborn.pydata.org/),
 [mat 7.3](https://github.com/skjerns/mat7.3),
-[R](https://www.r-project.org/),
 
 
 neuro-conda is inspired by similar projects at the [Ernst Strüngmann Institute for Neuroscience](https://github.com/esi-neuroscience/esi-conda), [University of Cambridge](https://github.com/jooh/neuroconda) and [NeuroDesk](https://www.neurodesk.org), providing easy-to-install Python environments for neuroscience.
@@ -81,7 +80,7 @@ neuro-conda is inspired by similar projects at the [Ernst Strüngmann Institute 
 Open a PowerShell and run the following command:
 
 ```PowerShell
-Invoke-WebRequest https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/libexec/install.ps1 -OutFile $Env:temp\install_neuroconda.ps1; Invoke-Expression $Env:temp\install_neuroconda.ps1;
+irm https://neuro-conda.github.io/neuro-conda/libexec/install.ps1 | iex
 ```
 
 ### Linux, macOS and Windows Subsystem for Linux (WSL)
@@ -89,7 +88,7 @@ Invoke-WebRequest https://raw.githubusercontent.com/neuro-conda/neuro-conda/main
 Open a terminal (`Terminal.App` in macOS) and run the following command:
 
 ```zsh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/libexec/install.sh)"
+curl -fsSL https://neuro-conda.github.io/neuro-conda/libexec/install.sh | bash
 ```
 
 ## Install neuro-conda using an existing conda installation
