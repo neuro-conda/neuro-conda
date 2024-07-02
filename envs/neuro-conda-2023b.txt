@@ -1,0 +1,74 @@
+scipy==1.12.*
+numpy==1.24.*
+cython
+numcodecs
+h5py==3.10.*
+mpi4py==3.1.*
+matplotlib==3.7.*
+seaborn
+pandas==2.1.*
+jupyter
+ipympl
+imageio==2.34.*
+dipy
+nilearn==0.10.*
+mne==1.6.*
+mne-realtime==0.3.*
+mne-rsa==0.9.*
+mne-nirs==0.6.*
+mne-icalabel==0.6.*
+mne-connectivity==0.5.*
+mne-features==0.3.*
+mne-ari==0.1.*
+mne-microstates==0.3.*
+neurokit2==0.2.*
+neurotic==1.5.*
+pactools==0.3.*
+pyprep==0.4.*
+deid==0.3.*
+bokeh
+flake8==7.*
+pep8-naming==0.13.*
+black==23.11.*
+brian2==2.5.*
+mnelab==0.8.*; platform_system == "Linux"
+pytest==7.4.*
+ephyviewer==1.5.*
+nixio==1.5.*
+h5py==3.10.*
+neo==0.13.*
+pynwb==2.5.*
+esi-acme==2023.12.*
+esi-syncopy==2023.9.*
+dask==2023.3.*
+elephant[extras]==1.0.*
+viziphant==0.4.*
+neurodsp==2.2.*
+pywavelets==1.5.*
+dataconf==2.5.*
+fooof==1.1.*
+bycycle==1.1.*
+spikeinterface[full]==0.100.*
+spikeinterface-gui==0.7.*
+scikit-image==0.22.*
+intensity-normalization
+torch==2.2.*; platform_system == "Linux"
+opencv-python==4.8.*; platform_system == "Linux"
+torchvision==0.17.*; platform_system == "Linux"
+torchaudio==2.2.*; platform_system == "Linux"
+tensorflow==2.15.*; platform_system == "Linux"
+tensorflow_datasets; platform_system == "Linux"
+scikit-learn==1.4.*; platform_system == "Linux"
+scikit-learn-intelex; platform_machine == "x86_64" and platform_system != "Darwin"
+spyking-circus==1.1.*
+napari-nibabel==0.1.*
+pybids==0.16.*
+nipype==1.8.*
+nitime==0.10.*; platform_system != "Darwin"
+alphacsc==0.4.*
+sesameeg==0.0.2
+invertmeeg==0.0.6; platform_system == "Linux"
+mat73==0.62.*
+pynapple==0.4.*
+suite2p==0.14.*
+sbxreader==0.2.*
