@@ -19,7 +19,7 @@ jobs:
             install_script: .\libexec\install.ps1
             uninstall_script: .\libexec\uninstall.ps1
             use_shell : pwsh
-            prepare_shell: Invoke-Expression "$Env:userprofile\miniconda3\shell\condabin\conda-hook.ps1"
+            prepare_shell: Invoke-Expression "$Env:userprofile\miniforge3\shell\condabin\conda-hook.ps1"
           - os: macos-latest
             install_script: ./libexec/install.sh
             uninstall_script: ./libexec/uninstall.sh
