@@ -114,9 +114,9 @@ user_input() {
 }
 
 # All neuro-conda specific env vars
-CondaInstallationDirectory="${HOME}/.local/miniconda3"
+CondaInstallationDirectory="${HOME}/.local/miniforge3"
 CondaDownloadDirectory="${HOME}/.local/downloads"
-CondaDownloadTarget="${CondaDownloadDirectory}/miniconda.sh"
+CondaDownloadTarget="${CondaDownloadDirectory}/miniforge.sh"
 NeuroCondaLatestUrl="https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-latest.yml"
 NeuroCondaLatestTarget="${CondaDownloadDirectory}/neuro-conda-latest.yml"
 NeuroCondaDate=$(date +"%Y_%m_%d")
@@ -142,19 +142,19 @@ mArch=`uname -m`
 debug "Detected ${OS} running on ${mArch}"
 if [[ "${OS}" == "Linux" ]]; then
   if [[ "${mArch}" == "x86_64" ]]; then
-    MinicondaLatestUrl="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
+    MiniforgeLatestUrl="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"
   elif [[ "${mArch}" == "arm64" ]]; then
-    MinicondaLatestUrl="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh"
+    MiniforgeLatestUrl="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh"
   elif [[ "${mArch}" == "ppc64le" ]]; then
-    MinicondaLatestUrl="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-ppc64le.sh"
+    MiniforgeLatestUrl="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-ppc64le.sh"
   else
     error "Unsupported platform: ${mArch}"
   fi
 elif [[ "${OS}" == "Darwin" ]]; then
   if [[ "${mArch}" == "arm64" ]]; then
-    MinicondaLatestUrl="https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh"
+    MiniforgeLatestUrl="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh"
   elif [[ "${mArch}" == "x86_64" ]]; then
-    MinicondaLatestUrl="https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh"
+    MiniforgeLatestUrl="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-x86_64.sh"
   else
     error "Unsupported platform: ${mArch}"
   fi
@@ -237,19 +237,19 @@ fi
 # Install conda
 if [[ ! -f "${CondaInstallationDirectory}/bin/conda" ]]; then
   if [[ ! -f "${CondaDownloadTarget}" ]]; then
-    info "Downloading miniconda3..."
-    execute "curl" "-fsSL" "${MinicondaLatestUrl}" "-o" "${CondaDownloadTarget}"
-    debug "Downloaded ${MinicondaLatestUrl} to ${CondaDownloadTarget}"
+    info "Downloading miniforge3..."
+    execute "curl" "-fsSL" "${MiniforgeLatestUrl}" "-o" "${CondaDownloadTarget}"
+    debug "Downloaded ${MiniforgeLatestUrl} to ${CondaDownloadTarget}"
   else
-    debug "${CondaDownloadTarget} exists, miniconda has already been downloaded"
+    debug "${CondaDownloadTarget} exists, miniforge has already been downloaded"
   fi
   execute "chmod" "550" "${CondaDownloadTarget}"
   debug "Made ${CondaDownloadTarget} executable"
   info "Installing conda..."
   execute "${CondaDownloadTarget}" "-b" "-p" "${CondaInstallationDirectory}"
-  info "Installed miniconda into ${CondaInstallationDirectory}"
+  info "Installed miniforge into ${CondaInstallationDirectory}"
 else
-  info "miniconda3 is already installed"
+  info "miniforge is already installed"
 fi
 
 # Backup current shell config
@@ -278,10 +278,6 @@ debug "Found new conda at ${condaPath}"
 # Update conda
 execute "conda" "update" "-n" "base" "conda" "-c" "defaults" "-y"
 debug "Updated conda itself"
-
-# Install mamba for faster dependency resolution
-execute "conda" "install" "mamba" "-n" "base" "-c" "conda-forge" "-y"
-debug "Installed mamba"
 
 # Download latest neuro-conda environment (if necessary)
 # In a CI job, copy the yml file from the repo to test most recent changes

@@ -138,7 +138,7 @@ get_condabinpath() {
 }
 
 # Default neuro-conda installation directory
-CondaInstallationDirectory="${HOME}/.local/miniconda3"
+CondaInstallationDirectory="${HOME}/.local/miniforge"
 
 # ----------------------------------------------------------------------
 #   CHECK ENVIRONMENT
