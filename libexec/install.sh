@@ -295,7 +295,7 @@ else
 fi
 
 # Install neuro-conda environment (remove previously existing env of the same name)
-execute "${CondaInstallationDirectory}/bin/mamba" "env" "create" "--file" "${NeuroCondaLatestTarget}" "--force"
+execute "${CondaInstallationDirectory}/bin/mamba" "env" "create" "--file" "${NeuroCondaLatestTarget}"
 
 # Try to activate environment as most basal sanity check
 envName=`cat ${NeuroCondaLatestTarget} | grep "name:" | awk '{print $2}'`
