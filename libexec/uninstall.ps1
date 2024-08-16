@@ -3,33 +3,33 @@
 # https://docs.anaconda.com/free/anaconda/install/uninstall/#windows
 
 # Set up env variables + functions
-If ($Env:ncDebug){
+If ($Env:ncDebug) {
     $DebugPreference = "Continue"
 }
-If ($Env:ncCI){
+If ($Env:ncCI) {
     Write-Debug "Running inside CI pipeline, turning on non-interactive mode"
     $Env:ncNoninteractive = $true
 }
-If ($Env:ncNoninteractive){
+If ($Env:ncNoninteractive) {
     Write-Warning "Running in non-interactive mode - will not prompt for input!"
 }
-If ($Env:username -match " "){
-    $CondaInstallationDirectory = "$Env:public\miniconda3"
+If ($Env:username -match " ") {
+    $CondaInstallationDirectory = "$Env:public\miniforge3"
 }
 Else {
-    $CondaInstallationDirectory = "$Env:userprofile\miniconda3"
+    $CondaInstallationDirectory = "$Env:userprofile\miniforge3"
 }
 
 function User-Input {
     $ans = Read-Host "Press RETURN/ENTER to continue or any other key to abort"
-    if ($ans -ne ""){
+    if ($ans -ne "") {
         Exit
     }
 }
 
 # Start actual script execution
 Write-Debug "Installation started at $(Get-Date)"
-$tic=(Get-Date).Minute
+$tic = (Get-Date).Minute
 
 # Determine root dir of active conda installation
 try {
@@ -46,7 +46,7 @@ If ($condaBinPath.Contains($CondaInstallationDirectory)) {
 Else {
     $CondaInstallationDirectory = $condaBinPath
     Write-Warning "Found non-standard neuro-conda installation at $CondaInstallationDirectory"
-    If (-not $Env:ncNoninteractive){
+    If (-not $Env:ncNoninteractive) {
         Write-Warning "Do you want to proceed removing this installation?"
         User-Input
     }
@@ -54,16 +54,16 @@ Else {
 
 # Be specific: show which conda installation we're about to wipe
 Write-Host "About to remove the conda installation found in $CondaInstallationDirectory"
-If (-not $Env:ncNoninteractive){
+If (-not $Env:ncNoninteractive) {
     User-Input
 }
 
 # If deletion candidate does not contain a neuro-conda environment, ask for confirmation...
-If (conda env list | Select-String -Pattern "neuro-conda"){
+If (conda env list | Select-String -Pattern "neuro-conda") {
     Write-Debug "Found neuro-conda environment in $CondaInstallationDirectory"
 }
 Else {
-    If (-not $Env:ncNoninteractive){
+    If (-not $Env:ncNoninteractive) {
         Write-Warning "neuro-conda environment NOT found in $CondaInstallationDirectory. Are you sure you want to delete this installation?"
         User-Input
     }
@@ -80,7 +80,7 @@ Write-Debug "Done"
 
 # Step 2: run uninstaller
 Write-Host "Running uninstaller..."
-Start-Process (Join-Path -Path $CondaInstallationDirectory -ChildPath "Uninstall-Miniconda3.exe") -ArgumentList "/S" -Wait
+Start-Process (Join-Path -Path $CondaInstallationDirectory -ChildPath "Uninstall-Miniforge3.exe") -ArgumentList "/S" -Wait
 Write-Host "All done."
 Write-Host "Please close this window and open a new terminal."
 

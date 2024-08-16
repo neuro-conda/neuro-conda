@@ -1,6 +1,5 @@
 name: neuro-conda-2023a
-channels:
-  - defaults
+channels:  
   - conda-forge
 dependencies:
   - python=3.10.*
