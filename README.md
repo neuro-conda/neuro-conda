@@ -2,7 +2,7 @@
 
 # neuro-conda 🧠🐍
 
-**⚠️Warning: neuro-conda can currently not be installed via the installation script, due to an issue with mamba ([issue #49](https://github.com/neuro-conda/neuro-conda/issues/49)). We're working on getting the installer functional again.⚠️** 
+**⚠️Warning: neuro-conda on macOS is currently broken. We're working on getting the installer for macOS functional again.⚠️** 
 
 Although creating a virtual environment for each project is considered best practice, it can be a major obstacle for early-career neuroscientists that are just starting to learn programming. **neuro-conda** aims to simplify learning and using Python in neuroscience by bundling commonly used packages in neuroscience into curated conda environments, i.e. providing a **Python distribution for neuroscience based on [conda](https://conda.io)**.
 
@@ -132,14 +132,14 @@ Open a terminal and run the following command:
 The following environment variables can be used to control the neuro-conda
 installer/uninstaller (detailed explanation below).
 
-| Variable            | Description                    | Windows | Linux/WSL  | macOS |
-|---------------------|--------------------------------|:-------:|:----------:|:-----:|
-| `ncTargetDirectory` | installation location          |   ✅    |     ✅     |  ✅   |
-| `ncDebug`           | show debug messages            |   ✅    |     ✅     |  ✅   |
-| `ncEnv`             | choose neuro-conda environment |   ✅    |     ✅     |  ✅   |
-| `ncEditor`          | install Spyder                 |   ❌    |     ✅     |  ✅   |
-| `ncNoninteractive`  | do not prompt for input        |   ✅    |     ✅     |  ✅   |
-| `ncCI`              | CI pipeline mode               |   ✅    |     ✅     |  ✅   |
+| Variable            | Description                    | Windows | Linux/WSL | macOS |
+| ------------------- | ------------------------------ | :-----: | :-------: | :---: |
+| `ncTargetDirectory` | installation location          |    ✅    |     ✅     |   ✅   |
+| `ncDebug`           | show debug messages            |    ✅    |     ✅     |   ✅   |
+| `ncEnv`             | choose neuro-conda environment |    ✅    |     ✅     |   ✅   |
+| `ncEditor`          | install Spyder                 |    ❌    |     ✅     |   ✅   |
+| `ncNoninteractive`  | do not prompt for input        |    ✅    |     ✅     |   ✅   |
+| `ncCI`              | CI pipeline mode               |    ✅    |     ✅     |   ✅   |
 
 The variables have to be set **before** running the neuro-conda installer/uninstaller
 and must be available to other processes started by the installer, e.g.,
