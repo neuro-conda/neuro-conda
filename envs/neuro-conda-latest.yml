@@ -28,7 +28,6 @@ dependencies:
   - mne-ari=0.1.*
   - mne-microstates=0.3.*
   - neurokit2=0.2.*
-  - neurotic=1.5.*
   - pactools=0.3.*
   - eelbrain=0.39.*
   - pyprep=0.4.*
@@ -39,6 +38,7 @@ dependencies:
   - black=23.11.*
   - brian2=2.5.*
   - qt6-main=6.5.*
+  - ruamel.yaml=0.18.*
   - pip
   - pip:    
     - mnelab==0.8.*; platform_system == "Linux"
@@ -54,6 +54,7 @@ dependencies:
     - elephant[extras]==1.0.*
     - viziphant==0.4.*
     - neurodsp==2.2.*
+    - neurotic==1.5.*
     - pywavelets==1.5.*
     - dataconf==2.5.*
     - fooof==1.1.*

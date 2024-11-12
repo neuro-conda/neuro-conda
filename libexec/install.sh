@@ -276,7 +276,7 @@ fi
 debug "Found new conda at ${condaPath}"
 
 # Update conda
-execute "conda" "update" "-n" "base" "conda" "-c" "defaults" "-y"
+execute "conda" "update" "-n" "base" "conda" "-c" "conda-forge" "-y"
 debug "Updated conda itself"
 
 # Download latest neuro-conda environment (if necessary)

@@ -83,7 +83,7 @@ If (-not (Get-Command "conda" -errorAction SilentlyContinue)) {
 
 # update conda
 Write-Debug "Updating conda itself"
-conda update -n base conda -c defaults -y
+conda update -n base conda -c conda-forge -y
 Write-Debug "Done"
 
 # activate conda and install environment
