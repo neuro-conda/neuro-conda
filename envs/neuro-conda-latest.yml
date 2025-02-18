@@ -99,7 +99,7 @@ dependencies:
       - tensorflow_datasets; platform_system == "Linux"
 
       # Tools: Parallelization
-      - esi-acme==2023.12.*
+      - esi-acme==2025.1.*
       - dask==2023.3.*
 
       # Unsorted      
