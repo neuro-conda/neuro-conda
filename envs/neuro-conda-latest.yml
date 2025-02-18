@@ -102,8 +102,7 @@ dependencies:
       - esi-acme==2023.12.*
       - dask==2023.3.*
 
-      # Unsorted
-      - mnelab==0.8.*; platform_system == "Linux"
+      # Unsorted      
       - pytest==7.4.*
       - ephyviewer==1.5.*
       - pywavelets==1.5.*
