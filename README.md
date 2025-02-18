@@ -7,7 +7,7 @@ practice, it can be a major obstacle for early-career neuroscientists that are
 just starting to learn programming. **neuro-conda** aims to simplify learning
 and using Python in neuroscience by bundling commonly used packages in
 neuroscience into curated conda environments, i.e. providing a **Python
-distribution for neuroscience based on [conda-forge](https://conda.io)**.
+distribution for neuroscience based on [conda](https://conda.io)**.
 
 Currently neuro-conda includes the following neuroscientific Python packages (in alphabetic order):
 
@@ -89,7 +89,7 @@ specific package to be included.
 applications, which don't require users to write code. Notable mentions of
 awesome Neuroscience Python applications are [suite2p](https://www.suite2p.org),
 [phy](https://github.com/cortex-lab/phy), [SpyKING
-CIRCUS](https://spyking-circus.readthedocs.io)
+CIRCUS](https://spyking-circus.readthedocs.io),
 [Kilosort](https://kilosort.readthedocs.io) or
 [DeepLabCut](https://github.com/DeepLabCut/DeepLabCut). To use these tools it
 makes most sense to use a Python environment for each application, for example
@@ -269,7 +269,3 @@ it up.
   to an arbitrary value, e.g., `export ncCI=1` activates CI mode.
 - **Windows PowerShell**: By default `ncCI` is not set. CI mode is activated
   if `ncCI` is set to an arbitrary value, e.g., `$Env:ncCI = 1`
-
-## Extending a neuro-conda installation
-
-Coming soon...
