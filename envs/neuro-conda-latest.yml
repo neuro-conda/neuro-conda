@@ -8,7 +8,7 @@ dependencies:
   - hdf5=1.12.*
 
   # (0) System Dependencies (Python)
-  - python=3.11.*
+  - python=3.10.*
   - pip
   - numcodecs
   - scipy=1.12.*
@@ -37,7 +37,7 @@ dependencies:
   # (3) Neuroimaging
   - dipy=1.8.*
   - nilearn=0.10.*
-  - nipype=1.8.*
+  - nipype=1.9.*
   
   # (4) Simulation / Computational neuroscience
   - brian2
