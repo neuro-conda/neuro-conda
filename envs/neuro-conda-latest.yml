@@ -81,7 +81,7 @@ dependencies:
       # (5) File/data formats
       - nixio==1.5.*
       - neo==0.14.*
-      - pybids==0.16.*
+      - pybids==0.17.*
       - mat73==0.62.*
       - h5py==3.10.*
       - sbxreader==0.2.*
