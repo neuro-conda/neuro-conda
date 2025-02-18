@@ -40,7 +40,7 @@ dependencies:
   - nipype=1.9.*
   
   # (4) Simulation / Computational neuroscience
-  - brian2
+  - brian2=2.8.*
 
   # (5) File/data formats
   - pynwb=2.5.*
