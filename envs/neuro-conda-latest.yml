@@ -1,28 +1,120 @@
 name: neuro-conda-2025a
-channels:  
+channels:
   - conda-forge
 dependencies:
-  - python=3.12.*  
-  - cython
-  - numcodecs
-  - hdf5=1.14.*
-  - qt6-main=6.5.*  
-  - qt-main=5.15.*
+
+  # (-1) System Dependencies (non-Python)
+  - qt6-main=6.5.*
+  - hdf5=1.12.*
+
+  # (0) System Dependencies (Python)
+  - python=3.11.*
   - pip
-  - pip:    
-    - elephant==1.1.*
-    - pynwb==2.8.*
-    - mne==1.9.*
-    - brian2==2.8.*
-    - neo==0.14.*
-    - esi-syncopy==2023.5.*
-    - neurodsp==2.3.*
-    - fooof==1.1.*
-    - bycycle==1.1.*
-    - spikeinterface[full]==0.102.*
-    - pybids==0.18.*
-    - nipype==1.9.*
-    - invertmeeg==0.0.6; platform_system == "Linux"
-    - pynapple==0.8.*
-    - h5py
+  - numcodecs
+  - scipy=1.12.*
+  - numpy<2.0
+  - cython
+  - mpi4py=3.1.*
+  - matplotlib=3.7.*
+  - seaborn
+  - pandas=2.1.*
+
+  # (1) Electrophysiology (LFP + M/EEG)
+  - mne==1.6.*
+  - mne-realtime=0.3.*
+  - mne-rsa=0.9
+  - mne-nirs=0.6.*
+  - mne-icalabel=0.6
+  - mne-connectivity=0.5.*
+  - mne-features=0.3*
+  - mne-bids-pipeline=1.4.*
+  - mne-ari=0.1.*
+  - mne-microstates=0.3.*
+  - neurokit2=0.2.*
+  - pyprep=0.4.*
+  - pactools=0.3.*
+  - eelbrain=0.39.*
+
+  # (3) Neuroimaging
+  - dipy = 1.8.*
+  - nilearn=0.10.*
+  - nipype >= 1.8.0
+  
+  # (4) Simulation / Computational neuroscience
+  - brian2
+
+  # (5) File/data formats
+  - pynwb=2.5.*
+  - deid=0.3.*
+  - imageio=2.34.*  
+
+  # (6) Tools: Development
+  - bokeh<3
+  - flake8=7.*
+  - pep8-naming=0.13.*
+  - black=23.11.*
+  - ruamel.yaml=0.18.*
+  - jupyter
+  - ipympl
+
+  - pip:
+      # (1) Electrophysiology (LFP + M/EEG)
+      - fooof==1.1.*
+      - bycycle==1.1.*
+      - sesameeg==0.0.2
+      - pynapple==0.4.*
+      - invertmeeg==0.0.6; platform_system == "Linux"
+      - alphacsc==0.4.*
+      - nitime==0.10.*; platform_system != "Darwin"
+
+      # (2) Electrophysiology (spikes + LFP)
+      - spikeinterface = 0.102.*
+      - esi-syncopy = 2023.9.*
+      - elephant[extras]==1.0.*
+      - viziphant==0.4.*
+      - spikeinterface[full]==0.100.*
+      - spikeinterface-gui==0.7.*
+      - neurodsp==2.2.* 
+            
+      # (3) Neuroimaging
+      - intensity-normalization==2.2.*      
+
+      # (5) File/data formats
+      - nixio==1.5.*
+      - neo==0.13.*
+      - pybids==0.16.*
+      - mat73==0.62.*
+      - h5py==3.10.*
+      - sbxreader==0.2.*
+
+
+      # (4) Simulation / Computational neuroscience
+
+      # Tools: Machine Learning
+      - scikit-learn==1.4.*; platform_system == "Linux"
+      - scikit-learn-intelex; platform_machine == "x86_64" and platform_system != "Darwin"
+      - torch==2.2.*; platform_system == "Linux"
+      - opencv-python==4.8.*; platform_system == "Linux"
+      - torchvision==0.17.*; platform_system == "Linux"
+      - torchaudio==2.2.*; platform_system == "Linux"
+      - tensorflow==2.15.*; platform_system == "Linux"
+      - tensorflow_datasets; platform_system == "Linux"
+
+      # Tools: Parallelization
+      - esi-acme==2023.12.*
+      - dask==2023.3.*
+
+      # Unsorted
+      - mnelab==0.8.*; platform_system == "Linux"
+      - pytest==7.4.*
+      - ephyviewer==1.5.*
+      - pywavelets==1.5.*
+      - dataconf==2.5.*
+      - scikit-image==0.22.*
+      - napari-nibabel==0.1.*
+
+
+
+
+
 
