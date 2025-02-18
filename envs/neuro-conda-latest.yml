@@ -59,8 +59,7 @@ dependencies:
   - pip:
       # (1) Electrophysiology (LFP + M/EEG)
       - fooof==1.1.*
-      - bycycle==1.1.*
-      - sesameeg==0.0.2
+      - bycycle==1.1.*      
       - pynapple==0.8.*
       - invertmeeg==0.0.6; platform_system == "Linux"
       - alphacsc==0.4.*
