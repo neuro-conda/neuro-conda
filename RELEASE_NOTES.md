@@ -1,5 +1,40 @@
 # Release Notes for neuro-conda
 
+## neuro-conda-2025a
+
+4th release of neuro-conda with a few updates.
+
+**Added**
+
+- braindecode 0.8
+
+**Updated**
+
+- mne 1.6 &rarr; 1.9
+  - mne-rsa 0.9.*
+  - mne-nirs &rarr; 0.7
+  - mne-icalabel &rarr; 0.7
+  - mne-connectivity &rarr; 0.7
+  - mne-features &rarr; 0.3
+  - mne-bids-pipeline &rarr; 1.9
+- eelbrain 0.39 &rarr; 0.40
+- pybids 0.16 &rarr; 0.17
+- neurodsp 2.2 &rarr; 2.3
+- elephant 1.0 &rarr; 1.1
+- spikeinterface-gui 0.7 &rarr; 0.10
+- nitime 0.10 &rarr; 0.11
+- nipype 1.8 &rarr; 1.9
+- brian2 2.5 &rarr; 2.8
+- pynwb 2.5 &rarr; 2.8
+
+**Removed**
+
+- SpyKING CIRCUS: Mostly an application. Please use in its own environment.
+- suite2p: Mostly an application. Please use in its own environment.
+- mnelab: Mostly an application. Please use in its own environment.
+- sesameeg: Incompatible with mne>=1.7.1
+
+
 ## neuro-conda-2024a
 
 3rd release of neuro-conda with a few updates.
