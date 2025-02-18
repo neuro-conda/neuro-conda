@@ -4,7 +4,7 @@ on: [push]
 env:
   ncDebug: 1
   ncCI: 1
-  ncEnv: neuro-conda-2024a
+  ncEnv: neuro-conda-2025a
 jobs:
   Test-Install:
     name: Install (${{ matrix.python-version }}, ${{ matrix.os }})
@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ "macos-latest", "windows-latest", "ubuntu-latest"]
-        python-version: ["3.10"]
+        python-version: ["3.12"]
         include:
           - os: windows-latest
             install_script: .\libexec\install.ps1
