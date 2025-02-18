@@ -88,6 +88,7 @@ dependencies:
       # (4) Simulation / Computational neuroscience
 
       # Tools: Machine Learning
+      - braindecode==0.8.*; platform_system == "Linux"
       - scikit-learn==1.4.*; platform_system == "Linux"
       - scikit-learn-intelex; platform_machine == "x86_64" and platform_system != "Darwin"
       - torch==2.2.*; platform_system == "Linux"
