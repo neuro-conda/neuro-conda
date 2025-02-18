@@ -10,28 +10,32 @@
 
 **Updated**
 
+- brian2 2.5 &rarr; 2.8
+- eelbrain 0.39 &rarr; 0.40
+- elephant 1.0 &rarr; 1.1
 - mne 1.6 &rarr; 1.9
-  - mne-rsa 0.9.*
-  - mne-nirs &rarr; 0.7
-  - mne-icalabel &rarr; 0.7
+  - mne-bids-pipeline &rarr; 1.9
   - mne-connectivity &rarr; 0.7
   - mne-features &rarr; 0.3
-  - mne-bids-pipeline &rarr; 1.9
-- eelbrain 0.39 &rarr; 0.40
-- pybids 0.16 &rarr; 0.17
+  - mne-icalabel &rarr; 0.7
+  - mne-nirs &rarr; 0.7
+  - mne-rsa 0.9.*
 - neurodsp 2.2 &rarr; 2.3
-- elephant 1.0 &rarr; 1.1
-- spikeinterface-gui 0.7 &rarr; 0.10
-- nitime 0.10 &rarr; 0.11
+- neo 0.13 &rarr; 0.14
 - nipype 1.8 &rarr; 1.9
-- brian2 2.5 &rarr; 2.8
+- nitime 0.10 &rarr; 0.11
+- pybids 0.16 &rarr; 0.17
+- pynapple 0.4 &rarr; 0.8
 - pynwb 2.5 &rarr; 2.8
+- spikeinterface 0.100 &rarr; 0.102
+- spikeinterface-gui 0.7 &rarr; 0.10
 
 **Removed**
 
 - SpyKING CIRCUS: Mostly an application. Please use in its own environment.
 - suite2p: Mostly an application. Please use in its own environment.
 - mnelab: Mostly an application. Please use in its own environment.
+- neurotic: Mostly an application. Please use in its own environment.
 - sesameeg: Incompatible with mne>=1.7.1
 
 
