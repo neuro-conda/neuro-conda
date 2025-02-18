@@ -43,7 +43,7 @@ dependencies:
   - brian2=2.8.*
 
   # (5) File/data formats
-  - pynwb=2.5.*
+  - pynwb=2.8.*
   - deid=0.3.*
   - imageio=2.34.*  
 
