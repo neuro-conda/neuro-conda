@@ -71,7 +71,7 @@ dependencies:
       - esi-syncopy==2023.9.*
       - elephant[extras]==1.1.*
       - viziphant==0.4.*
-      - spikeinterface-gui==0.7.*
+      - spikeinterface-gui==0.10.*
       - neurodsp==2.3.* 
             
       # (3) Neuroimaging
