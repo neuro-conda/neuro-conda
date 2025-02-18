@@ -70,7 +70,7 @@ dependencies:
       # (2) Electrophysiology (spikes + LFP)
       - spikeinterface[full]==0.102.*
       - esi-syncopy==2023.9.*
-      - elephant[extras]==1.0.*
+      - elephant[extras]==1.1.*
       - viziphant==0.4.*
       - spikeinterface-gui==0.7.*
       - neurodsp==2.2.* 
