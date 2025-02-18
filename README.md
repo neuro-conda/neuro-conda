@@ -2,14 +2,17 @@
 
 # neuro-conda 🧠🐍
 
-**⚠️Warning: neuro-conda on macOS is currently broken. We're working on getting the installer for macOS functional again.⚠️** 
-
-Although creating a virtual environment for each project is considered best practice, it can be a major obstacle for early-career neuroscientists that are just starting to learn programming. **neuro-conda** aims to simplify learning and using Python in neuroscience by bundling commonly used packages in neuroscience into curated conda environments, i.e. providing a **Python distribution for neuroscience based on [conda](https://conda.io)**.
+Although creating a virtual environment for each project is considered best
+practice, it can be a major obstacle for early-career neuroscientists that are
+just starting to learn programming. **neuro-conda** aims to simplify learning
+and using Python in neuroscience by bundling commonly used packages in
+neuroscience into curated conda environments, i.e. providing a **Python
+distribution for neuroscience based on [conda-forge](https://conda.io)**.
 
 Currently neuro-conda includes the following neuroscientific Python packages (in alphabetic order):
 
 - **Electrophysiology (spikes + LFP)**:
-[brian2](https://briansimulator.org/), [elephant](https://elephant.readthedocs.io),   [viziphant](https://viziphant.readthedocs.io),  [esi-syncopy](https://syncopy.readthedocs.io),  [neurotic](https://neurotic.readthedocs.io/en/latest/),  [pynapple](https://pynapple-org.github.io/pynapple/),  [spyking-circus](https://spyking-circus.readthedocs.io/en/latest/),  [spikeinterface](https://spikeinterface.readthedocs.io),  [spikeinterface-gui](https://github.com/SpikeInterface/spikeinterface-gui), [suite2p](https://suite2p.readthedocs.io/en/latest/index.html)
+[brian2](https://briansimulator.org/), [elephant](https://elephant.readthedocs.io),   [viziphant](https://viziphant.readthedocs.io),  [esi-syncopy](https://syncopy.readthedocs.io),  [neurotic](https://neurotic.readthedocs.io/en/latest/),  [pynapple](https://pynapple-org.github.io/pynapple/),  [spikeinterface](https://spikeinterface.readthedocs.io),  [spikeinterface-gui](https://github.com/SpikeInterface/spikeinterface-gui), 
 
 - **Electrophysiology (LFP + M/EEG)**:
  [bycycle](https://bycycle-tools.github.io),
@@ -31,8 +34,8 @@ Currently neuro-conda includes the following neuroscientific Python packages (in
     [mne-rsa](https://users.aalto.fi/~vanvlm1/mne-rsa/),
     [neurokit2](https://neuropsychology.github.io/NeuroKit/),
     [pactools](https://pactools.github.io/index.html),
-    [pyprep](https://github.com/sappelhoff/pyprep),
-    [sesameeg](https://pybees.github.io/sesameeg/)),
+    [pyprep](https://github.com/sappelhoff/pyprep)
+    ),
 
 - **Neuroimaging**:
   [dipy](https://dipy.org/), [intensity-normalization](https://intensity-normalization.readthedocs.io/en/latest/readme.html)
@@ -46,7 +49,8 @@ Currently neuro-conda includes the following neuroscientific Python packages (in
   [pydicom](https://pydicom.github.io/) +  [deid](https://pydicom.github.io/deid/),
   [pynwb](https://pynwb.readthedocs.io)
 
-- **Machine Learning**:
+- **Machine Learning** (Linux only):
+  [braindecode](https://braindecode.org),
   [nilearn](https://nilearn.github.io/stable/index.html),
   [nipype](https://nipype.readthedocs.io/en/latest/),
   [nitime](https://nipy.org/nitime/) (only on Windows and Linux),
@@ -54,12 +58,21 @@ Currently neuro-conda includes the following neuroscientific Python packages (in
   [scikit-learn](https://scikit-learn.org),
   [tensorflow](https://www.tensorflow.org),
 
+  *Note*: Setting up Machine Learning libraries to make use of a GPU requires
+  manual setup. neuro-conda does not automatically detect the type of your GPU
+  and the necessary drivers and libraries. To make the most of your hardware you
+  should follow the installation instructions outlined in the respective
+  projects.
+
 - **Parallelization**:
   [dask](https://www.dask.org),
   [esi-acme](https://esi-acme.readthedocs.io)
 
 
-More neuroscience tools will be added in the future. Please open an [issue](https://github.com/neuro-conda/neuro-conda/issues) or [pull request](https://github.com/neuro-conda/neuro-conda/pulls) if you'd like a specific package to be included.
+More neuroscience tools will be added in the future. Please open an
+[issue](https://github.com/neuro-conda/neuro-conda/issues) or [pull
+request](https://github.com/neuro-conda/neuro-conda/pulls) if you'd like a
+specific package to be included.
 
 - **Other** useful packages are (see [the environment files](/envs) for details):
 [black](https://black.readthedocs.io/en/stable/),
@@ -72,8 +85,21 @@ More neuroscience tools will be added in the future. Please open an [issue](http
 [Matplotlib](https://matplotlib.org/) + [Seaborn](https://seaborn.pydata.org/),
 [mat 7.3](https://github.com/skjerns/mat7.3),
 
+**Not included** are Python projects that are mostly meant as GUI and CLI
+applications, which don't require users to write code. Notable mentions of
+awesome Neuroscience Python applications are [suite2p](https://www.suite2p.org),
+[phy](https://github.com/cortex-lab/phy), [SpyKING
+CIRCUS](https://spyking-circus.readthedocs.io)
+[Kilosort](https://kilosort.readthedocs.io) or
+[DeepLabCut](https://github.com/DeepLabCut/DeepLabCut). To use these tools it
+makes most sense to use a Python environment for each application, for example
+via [uv's tools](https://docs.astral.sh/uv/guides/tools/).
 
-neuro-conda is inspired by similar projects at the [Ernst Strüngmann Institute for Neuroscience](https://github.com/esi-neuroscience/esi-conda), [University of Cambridge](https://github.com/jooh/neuroconda) and [NeuroDesk](https://www.neurodesk.org), providing easy-to-install Python environments for neuroscience.
+neuro-conda is inspired by similar projects at the [Ernst Strüngmann Institute
+for Neuroscience](https://github.com/esi-neuroscience/esi-conda), [University of
+Cambridge](https://github.com/jooh/neuroconda) and
+[NeuroDesk](https://www.neurodesk.org), providing easy-to-install Python
+environments for neuroscience.
 
 ## Fresh installation
 
