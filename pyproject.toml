@@ -1,0 +1,48 @@
+[project]
+name = "neuro-conda"
+version = "2025a"
+description = "A Python distribution for neuroscience based on conda-forge"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "elephant==1.1.*",
+    "pynwb==2.8.*",
+    "mne==1.9.*",
+    "brian2==2.8.*",
+    "neo==0.14.*",
+    "esi-syncopy==2023.5.*",
+    "neurodsp==2.3.*",
+    "fooof==1.1.*",
+    "bycycle==1.1.*",
+    "spikeinterface[full]==0.102.*",
+    "pybids==0.18.*",
+    "nipype==1.9.*",
+    "invertmeeg==0.0.6",
+    "pynapple==0.8.*",
+]
+
+[tool.pixi.project]
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-arm64", "osx-64", "win-64"]
+
+[tool.pixi.dependencies]
+cython = "*"
+numcodecs = "*"
+hdf5 = "1.14.*"
+qtain = "6.5.*"
+qt-main= "5.15.*"
+
+[project.optional-dependencies]
+tools = [
+    "ipykernel>=6.29.5",
+    "ipython>=8.32.0",
+    "jupyter>=1.1.1",
+    "matplotlib>=3.10.0",
+]
+machine-learning = [
+    "tensorflow>=2.18.0",
+    "torch>=2.6.0",
+    "torchvision>=0.21.0",
+]
+
+
