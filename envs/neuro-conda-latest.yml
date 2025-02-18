@@ -32,7 +32,7 @@ dependencies:
   - neurokit2=0.2.*
   - pyprep=0.4.*
   - pactools=0.3.*
-  - eelbrain=0.39.*
+  - eelbrain=0.40.*
 
   # (3) Neuroimaging
   - dipy=1.8.*
