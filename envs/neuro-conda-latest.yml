@@ -20,13 +20,13 @@ dependencies:
   - pandas=2.1.*
 
   # (1) Electrophysiology (LFP + M/EEG)
-  - mne==1.6.*  
-  - mne-rsa=0.9
-  - mne-nirs=0.6.*
-  - mne-icalabel=0.6
-  - mne-connectivity=0.5.*
-  - mne-features=0.3*
-  - mne-bids-pipeline=1.4.*
+  - mne==1.9.*  
+  - mne-rsa=0.9.*
+  - mne-nirs=0.7.*
+  - mne-icalabel=0.7.*
+  - mne-connectivity=0.7.*
+  - mne-features=0.3.*
+  - mne-bids-pipeline=1.9.*
   - mne-ari=0.1.*
   - mne-microstates=0.3.*
   - neurokit2=0.2.*
