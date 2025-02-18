@@ -20,8 +20,7 @@ dependencies:
   - pandas=2.1.*
 
   # (1) Electrophysiology (LFP + M/EEG)
-  - mne==1.6.*
-  - mne-realtime=0.3.*
+  - mne==1.6.*  
   - mne-rsa=0.9
   - mne-nirs=0.6.*
   - mne-icalabel=0.6
