@@ -36,9 +36,9 @@ dependencies:
   - eelbrain=0.39.*
 
   # (3) Neuroimaging
-  - dipy = 1.8.*
+  - dipy=1.8.*
   - nilearn=0.10.*
-  - nipype >= 1.8.0
+  - nipype=1.8.*
   
   # (4) Simulation / Computational neuroscience
   - brian2
