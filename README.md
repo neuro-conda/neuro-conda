@@ -216,11 +216,6 @@ the installer always creates the most recent neuro-conda environment defined
 in the YAML file [neuro-conda-latest.yml](./envs/neuro-conda-latest.yml)
 (consult the [envs](./envs/) directory for all available environments)
 
-> ℹ️ **INFO** As of June 2023, neuro-conda only ships with a single environment
-file (`neuro-conda-latest.yml`) that contains the environment `neuro-conda-2023a`.
-Setting `ncEnv` to anything other than `neuro-conda-2023a` results in an
-error.
-
 - **Linux/macOS/WSL**: To create an older neuro-conda environment, use, e.g.,
   `export ncEnv="neuro-conda-2023a"`
 - **Windows PowerShell**: To create a specific neuro-conda environment,
