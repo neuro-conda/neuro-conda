@@ -10,7 +10,7 @@
 
 **Updated**
 
-- brian2 2.5 &rarr; 2.8
+- brian2 2.5 &rarr; 2.7
 - eelbrain 0.39 &rarr; 0.40
 - elephant 1.0 &rarr; 1.1
 - mne 1.6 &rarr; 1.9
