@@ -1,5 +1,67 @@
 # Release Notes for neuro-conda
 
+## neuro-conda-2025b
+
+5th release of neuro-conda with a few new packages and multiple updates. 
+First release to run on Pyhon 3.12 and NumPy 2.x. 
+
+**Added**
+
+- open-ephys-python-tools 1.0.1
+- marimo 0.18.**
+
+**Updated**
+
+- black 23.11 &rarr; 25.1
+- bokeh 2.* &rarr; 3.8
+- braindecode 0.8 &rarr; 1.2
+- brian2 2.7 &rarr; 2.9
+- bycycle 1.1 &rarr; 1.2
+- dataconf 2.5 &rarr; 3.6
+- deid 0.3 &rarr; 0.4
+- dipy 1.8 &rarr; 1.11
+- eelbrain 0.40 &rarr; 0.41
+- ephyviewer 1.5 &rarr; 1.7
+- esi-acme 2025.1 &rarr; 2025.11
+- hdf5 1.12 &rarr; 1.14
+- imageio 2.34 &rarr; 2.37
+- intensity-normalization 2.2 &rarr; 3.0
+- invertmeeg 0.0.6 &rarr; 0.1
+- mat73 0.62 &rarr; 0.65
+- matplotlib 3.7 &rarr; 3.10
+- mne 1.9 &rarr; 1.10
+  - mne-icalabel 0.7 &rarr; 0.8
+  - mne-rsa 0.9 &rarr; 0.10
+- mpi4py 3.1 &rarr; 4.1
+- nilearn 0.10 &rarr; 0.12
+- nipype 1.9 &rarr; 1.10
+- nitime 0.11 &rarr; 0.12
+- numpy 1.* &rarr; 2.*
+- opencv-python 4.8 &rarr; 4.12
+- pandas 2.1 &rarr; 2.3
+- pep8-naming 0.13 &rarr; 0.15
+- pybids 0.17 &rarr; 0.21
+- pynapple 0.8 &rarr; 0.10
+- pynwb 2.8 &rarr; 3.1
+- pyprep 0.4 &rarr; 0.5
+- pytest 7.4 &rarr; 9.0
+- python 3.10 &rarr; 3.12
+- pywavelets 1.5 &rarr; 1.9
+- qt6-main 6.5 &rarr; 6.9
+- scipy 1.12 &rarr; 1.16
+- spikeinterface 0.102 &rarr; 0.103
+- spikeinterface-gui 0.10 &rarr; 0.12
+- tensorflow 2.15 &rarr; 2.20
+- torch 2.2 &rarr; 2.9
+- torchaudio 2.2 &rarr; 2.9
+- torchvision 0.17 &rarr; 0.24
+
+**Removed**
+
+- Elephant: incompatible with NumPy 2.x
+- Viziphant: incompatible with NumPy 2.x
+- SyNCoPy: incompatible with NumPy 2.x and unmaintained
+
 ## neuro-conda-2025a
 
 4th release of neuro-conda with a few updates.
