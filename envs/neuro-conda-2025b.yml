@@ -54,6 +54,7 @@ dependencies:
   - black=25.1.*
   - jupyter
   - ipympl
+  - marimo
 
   - pip:
       # (1) Electrophysiology (LFP + M/EEG)
@@ -63,6 +64,7 @@ dependencies:
       - invertmeeg==0.1.*; platform_system == "Linux"
       - alphacsc==0.4.*
       - nitime==0.12.*; platform_system != "Darwin"
+      - open-ephys-python-tools==1.0.*
 
       # (2) Electrophysiology (spikes + LFP)
       - spikeinterface[full]==0.103.*
