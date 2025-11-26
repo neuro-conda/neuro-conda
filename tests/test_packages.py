@@ -41,17 +41,15 @@ def test_imports():
     # Packages whose name does not correspond to their Python module name
     pkgMap = {
         "esi-acme": "acme",
-        "esi-syncopy": "syncopy",
         "invertmeeg": "invert",
         "opencv-python": "cv2",
+        "open-ephys-python-tools": "open_ephys",
         "pep8-naming": "pep8ext_naming",
         "pybids": "bids",
         "pywavelets": "pywt",
         "scikit-image": "skimage",
         "scikit-learn": "sklearn",
         "scikit-learn-intelex": "sklearnex",
-        "spyking-circus": "circus",
-        # "qt6-main": "PySide6",
     }
 
     # Split off pip-installed packages since those contain additional

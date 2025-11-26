@@ -12,7 +12,7 @@ distribution for neuroscience based on [conda](https://conda.io)**.
 Currently neuro-conda includes the following neuroscientific Python packages (in alphabetic order):
 
 - **Electrophysiology (spikes + LFP)**:
-[brian2](https://briansimulator.org/), [elephant](https://elephant.readthedocs.io),   [viziphant](https://viziphant.readthedocs.io),  [esi-syncopy](https://syncopy.readthedocs.io),  [neurotic](https://neurotic.readthedocs.io/en/latest/),  [pynapple](https://pynapple-org.github.io/pynapple/),  [spikeinterface](https://spikeinterface.readthedocs.io),  [spikeinterface-gui](https://github.com/SpikeInterface/spikeinterface-gui), 
+[brian2](https://briansimulator.org/), [Open Ephys Python Tools](https://github.com/open-ephys/open-ephys-python-tools), [pynapple](https://pynapple-org.github.io/pynapple/), [spikeinterface](https://spikeinterface.readthedocs.io),  [spikeinterface-gui](https://github.com/SpikeInterface/spikeinterface-gui), 
 
 - **Electrophysiology (LFP + M/EEG)**:
  [bycycle](https://bycycle-tools.github.io),
@@ -27,10 +27,8 @@ Currently neuro-conda includes the following neuroscientific Python packages (in
     [mne-connectivity](https://mne.tools/mne-connectivity/stable/index.html),
     [mne-features](https://mne.tools/mne-features/),
     [mne-icalabel](https://mne.tools/mne-icalabel/stable/index.html),
-    [mnelab](https://mnelab.readthedocs.io/en/latest/index.html),
     [mne-microstates](https://github.com/wmvanvliet/mne_microstates),
     [mne-nirs](https://mne.tools/mne-nirs/stable/index.html),
-    [mne-realtime](https://mne.tools/mne-realtime/),
     [mne-rsa](https://users.aalto.fi/~vanvlm1/mne-rsa/),
     [neurokit2](https://neuropsychology.github.io/NeuroKit/),
     [pactools](https://pactools.github.io/index.html),
@@ -38,7 +36,7 @@ Currently neuro-conda includes the following neuroscientific Python packages (in
     ),
 
 - **Neuroimaging**:
-  [dipy](https://dipy.org/), [intensity-normalization](https://intensity-normalization.readthedocs.io/en/latest/readme.html)
+  [dipy](https://dipy.org/), [intensity-normalization](https://intensity-normalization.readthedocs.io/en/latest/readme.html), [BIDS Validator](https://github.com/bids-standard/bids-validator)
 
 - **File/data formats**:
   [neo](https://neo.readthedocs.io),
@@ -57,6 +55,9 @@ Currently neuro-conda includes the following neuroscientific Python packages (in
   [PyTorch](https://pytorch.org),
   [scikit-learn](https://scikit-learn.org),
   [tensorflow](https://www.tensorflow.org),
+  [tensorflow-datasets](https://www.tensorflow.org/datasets),
+  [Torch Audio](https://github.com/pytorch/audio),
+  [Torch Vision](https://docs.pytorch.org/vision/stable/index.html)
 
   *Note*: Setting up Machine Learning libraries to make use of a GPU requires
   manual setup. neuro-conda does not automatically detect the type of your GPU
@@ -67,6 +68,12 @@ Currently neuro-conda includes the following neuroscientific Python packages (in
 - **Parallelization**:
   [dask](https://www.dask.org),
   [esi-acme](https://esi-acme.readthedocs.io)
+  
+- **General Purpose/Computational Neuroscience**:
+  [PyWavelets](https://pywavelets.readthedocs.io/en/latest/index.html),
+  [scikit-fuzzy](https://github.com/scikit-fuzzy/scikit-fuzzy),
+  [scikit-image](https://scikit-image.org/),
+  [statsmodels](https://www.statsmodels.org/stable/index.html)
 
 
 More neuroscience tools will be added in the future. Please open an
@@ -80,6 +87,7 @@ specific package to be included.
 [HDF5](https://www.hdfgroup.org/solutions/hdf5/) + [h5py](https://www.h5py.org/),
 [imageio](https://imageio.readthedocs.io/en/stable/),
 [jupyter](https://jupyter.org),
+[marimo](https://marimo.io/),
 [NumPy](https://numpy.org/),
 [SciPy](https://scipy.org/),
 [Matplotlib](https://matplotlib.org/) + [Seaborn](https://seaborn.pydata.org/),

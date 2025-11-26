@@ -4,7 +4,7 @@ on: [push]
 env:
   ncDebug: 1
   ncCI: 1
-  ncEnv: neuro-conda-2025a
+  ncEnv: neuro-conda-2025b
 jobs:
   Test-Install:
     name: Install (${{ matrix.python-version }}, ${{ matrix.os }})
@@ -39,6 +39,7 @@ jobs:
         run: |
           sudo rm -rf "/usr/local/share/boost"
           sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+          sudo rm -rf /usr/share/dotnet
       - name: Download repository
         uses: actions/checkout@v3
       - name: Install system packages on Linux

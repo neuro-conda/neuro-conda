@@ -1,0 +1,106 @@
+name: neuro-conda-2025b
+channels:
+  - conda-forge
+dependencies:
+
+  # (-1) System Dependencies (non-Python)
+  - qt6-main=6.9.*
+  - hdf5=1.14.*
+
+  # (0) System Dependencies (Python)
+  - python=3.12.*
+  - pip
+  - numcodecs
+  - scipy=1.16.*
+  - numpy
+  - cython
+  - mpi4py=4.1.*
+  - matplotlib=3.10.*
+  - seaborn
+  - pandas=2.3.*
+
+  # (1) Electrophysiology (LFP + M/EEG)
+  - mne==1.10.*
+  - mne-rsa=0.10.*
+  - mne-nirs=0.7.*
+  - mne-icalabel=0.8.*
+  - mne-connectivity=0.7.*
+  - mne-features=0.3.*
+  - mne-bids-pipeline=1.9.*
+  - mne-ari=0.1.*
+  - mne-microstates=0.3.*
+  - neurokit2=0.2.*
+  - pyprep=0.5.*
+  - pactools=0.3.*
+  - eelbrain=0.41.*
+
+  # (3) Neuroimaging
+  - dipy=1.11.*
+  - nilearn=0.12.*
+  - nipype=1.10.*
+
+  # (4) Simulation / Computational neuroscience
+  - brian2=2.9.*
+
+  # (5) File/data formats
+  - pynwb=3.1.*
+  - deid=0.4.*
+  - imageio=2.37.*
+
+  # (6) Tools: Development
+  - bokeh=3.8.*
+  - flake8=7.*
+  - pep8-naming=0.15.*
+  - black=25.1.*
+  - jupyter
+  - ipympl
+  - marimo
+
+  - pip:
+      # (1) Electrophysiology (LFP + M/EEG)
+      - fooof==1.1.*
+      - bycycle==1.2.*
+      - pynapple==0.10.*
+      - invertmeeg==0.1.*; platform_system == "Linux"
+      - alphacsc==0.4.*
+      - nitime==0.12.*; platform_system != "Darwin"
+      - open-ephys-python-tools==1.0.*
+
+      # (2) Electrophysiology (spikes + LFP)
+      - spikeinterface[full]==0.103.*
+      # - elephant[extras]==1.1.*
+      # - viziphant==0.4.*
+      - spikeinterface-gui==0.12.*
+      - neurodsp==2.3.*
+
+      # (3) Neuroimaging
+      - intensity-normalization==3.0.*
+
+      # (5) File/data formats
+      - nixio==1.5.*
+      - neo==0.14.*
+      - pybids==0.21.*
+      - mat73==0.65.*
+      - sbxreader==0.2.*
+
+      # (4) Simulation / Computational neuroscience
+
+      # Tools: Machine Learning
+      - braindecode==1.2.*; platform_system == "Linux"
+      - scikit-learn-intelex; platform_machine == "x86_64" and platform_system != "Darwin"
+      - torch==2.9.*; platform_system == "Linux"
+      - opencv-python==4.12.*; platform_system == "Linux"
+      - torchvision==0.24.*; platform_system == "Linux"
+      - torchaudio==2.9.*; platform_system == "Linux"
+      - tensorflow==2.20.*; platform_system == "Linux"
+      - tensorflow_datasets; platform_system == "Linux"
+
+      # Tools: Parallelization
+      - esi-acme==2025.11.*
+
+      # Unsorted
+      - pytest==9.0.*
+      - ephyviewer==1.7.*
+      - pywavelets==1.9.*
+      - dataconf==3.6.*
+      - napari-nibabel==0.1.*
