@@ -21,14 +21,14 @@ dependencies:
 
   # (1) Electrophysiology (LFP + M/EEG)
   - mne==1.10.* 
-  - mne-rsa=0.10
+  - mne-rsa=0.10.*
   - mne-nirs=0.7.*
   - mne-icalabel=0.8.*
   - mne-connectivity=0.7.*
   - mne-features=0.3.*
   - mne-bids-pipeline=1.9.*
   - mne-ari=0.1.*
-  - mne-microstates=0.3
+  - mne-microstates=0.3.*
   - neurokit2=0.2.*
   - pyprep=0.5.*
   - pactools=0.3.*
@@ -58,7 +58,7 @@ dependencies:
 
   - pip:
       # (1) Electrophysiology (LFP + M/EEG)
-      - eelbrain==0.41.*; platform_machine != "ppc64le"
+      - eelbrain==0.41.*
       - fooof==1.1.*
       - bycycle==1.2.*      
       - pynapple==0.10.*
@@ -86,15 +86,15 @@ dependencies:
       # (4) Simulation / Computational neuroscience
 
       # Tools: Machine Learning
-      - braindecode==1.2.*; platform_system == "Linux" and platform_machine != "ppc64le"
-      - scikit-learn==1.8.*; platform_system == "Linux" and platform_machine != "ppc64le"
+      - braindecode==1.2.*; platform_system == "Linux"
+      - scikit-learn==1.8.*; platform_system == "Linux"
       - scikit-learn-intelex==2025.10.*; platform_machine == "x86_64" and platform_system != "Darwin"
-      - torch==2.9.*; platform_system == "Linux" and platform_machine != "ppc64le"
-      - opencv-python==4.12.*; platform_system == "Linux" and platform_machine != "ppc64le"
-      - torchvision==0.24.*; platform_system == "Linux" and platform_machine != "ppc64le"
-      - torchaudio==2.9.*; platform_system == "Linux" and platform_machine != "ppc64le"
-      - tensorflow==2.20.*; platform_system == "Linux" and platform_machine != "ppc64le"
-      - tensorflow_datasets==4.9.*; platform_system == "Linux" and platform_machine != "ppc64le"
+      - torch==2.9.*; platform_system == "Linux"
+      - opencv-python==4.12.*; platform_system == "Linux"
+      - torchvision==0.24.*; platform_system == "Linux"
+      - torchaudio==2.9.*; platform_system == "Linux"
+      - tensorflow==2.20.*; platform_system == "Linux"
+      - tensorflow_datasets==4.9.*; platform_system == "Linux"
 
       # Tools: Parallelization
       - esi-acme==2025.11
