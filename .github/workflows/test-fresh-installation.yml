@@ -59,8 +59,7 @@ jobs:
         run: |
           ${{ matrix.prepare_shell }}
           ${{ matrix.uninstall_script }}
-
-jobs:
+          
   Test-ppc-Install:
     name: Install on Power
     runs-on: ubuntu-24.04-ppc64le
