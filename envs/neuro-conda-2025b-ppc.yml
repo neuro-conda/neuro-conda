@@ -9,13 +9,13 @@ dependencies:
   # (0) System Dependencies (Python)
   - python=3.12.*
   - pip
-  - numcodecs
+  - numcodecs=0.16.*
   - scipy=1.16.*
   - numpy=2.3.*
-  - cython
+  - cython=3.2.*
   - mpi4py=4.1.*
   - matplotlib=3.10.*
-  - seaborn
+  - seaborn=0.13.*
   - pandas=2.3.*
   - opencv=4.12.*
 
@@ -47,12 +47,12 @@ dependencies:
   - flake8=7.*
   - pep8-naming=0.15.*
   - black=25.1.*
-  - jupyter
-  - ipympl
-  - marimo
+  - jupyter=1.1.*
+  - ipympl=0.9.*
+  - marimo=0.13.*
 
   - pip:
-      - psutils
+      - psutils==3.3.*
 
       # (1) Electrophysiology (LFP + M/EEG)
       - mne==1.10.*
