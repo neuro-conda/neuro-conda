@@ -59,12 +59,19 @@ jobs:
         run: |
           ${{ matrix.prepare_shell }}
           ${{ matrix.uninstall_script }}
-          
+
   Test-ppc-Install:
     name: Install on Power
     runs-on: ubuntu-24.04-ppc64le
     strategy:
       fail-fast: false
+      matrix:
+        python-version: ["3.10"]
+        include:
+          - install_script: ./libexec/install.sh
+            uninstall_script: ./libexec/uninstall.sh
+            use_shell : bash -il {0}
+            prepare_shell: source ~/.bashrc
     steps:
       - name: Free Disk Space (Ubuntu)        
         run: |
@@ -74,15 +81,17 @@ jobs:
       - name: Download repository
         uses: actions/checkout@v3
       - name: Install system packages on Linux
+        run: |
           sudo apt-get update
           sudo apt-get install libgl1 libegl1 -y
       - name: Run installation script
-        run: ./libexec/install.sh
+        run: .${{ matrix.install_script }}
       - name: Activate environment ${{ env.ncEnv_power }} and run tests
         run: |
-          source ~/.bashrc
+          ${{ matrix.prepare_shell }}
           conda activate ${{ env.ncEnv_power }}
           pytest -sv
       - name: Run uninstall script
         run: |
-          run: ./libexec/uninstall.sh
+          ${{ matrix.prepare_shell }}
+          ${{ matrix.uninstall_script }}
