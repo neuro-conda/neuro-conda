@@ -89,7 +89,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install libgl1 libegl1 -y
       - name: Run installation script
-        run: .${{ matrix.install_script }}
+        run: |
+          bash -il ${{ matrix.install_script }}
       - name: Activate environment ${{ env.ncEnv_power }} and run tests
         run: |
           ${{ matrix.prepare_shell }}
@@ -97,5 +98,4 @@ jobs:
           pytest -sv
       - name: Run uninstall script
         run: |
-          ${{ matrix.prepare_shell }}
-          ${{ matrix.uninstall_script }}
+          bash -il ${{ matrix.uninstall_script }}
