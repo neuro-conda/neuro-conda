@@ -80,6 +80,10 @@ jobs:
           sudo rm -rf /usr/share/dotnet
       - name: Download repository
         uses: actions/checkout@v3
+      - name: Check path for files
+        run: |
+          ${{ matrix.prepare_shell }}
+          ls -l ./libexec
       - name: Install system packages on Linux
         run: |
           sudo apt-get update
