@@ -45,30 +45,19 @@ def test_imports():
 
     
     # Packages whose name does not correspond to their Python module name
-    if current_machine == "ppc64le":
-        pkgMap = {
-            "esi-acme": "acme",
-            "opencv": "cv2",
-            "open-ephys-python-tools": "open_ephys",
-            "pep8-naming": "pep8ext_naming",
-            "pybids": "bids",
-            "pywavelets": "pywt",
-            "scikit-image": "skimage",
-            "scikit-learn": "sklearn",
-        }
-    else:
-        pkgMap = {
-            "esi-acme": "acme",
-            "invertmeeg": "invert",
-            "opencv-python": "cv2",
-            "open-ephys-python-tools": "open_ephys",
-            "pep8-naming": "pep8ext_naming",
-            "pybids": "bids",
-            "pywavelets": "pywt",
-            "scikit-image": "skimage",
-            "scikit-learn": "sklearn",
-            "scikit-learn-intelex": "sklearnex",
-        }
+    pkgMap = {
+        "esi-acme": "acme",
+        "invertmeeg": "invert",
+        "opencv-python": "cv2",
+        "opencv": "cv2",
+        "open-ephys-python-tools": "open_ephys",
+        "pep8-naming": "pep8ext_naming",
+        "pybids": "bids",
+        "pywavelets": "pywt",
+        "scikit-image": "skimage",
+        "scikit-learn": "sklearn",
+        "scikit-learn-intelex": "sklearnex",
+    }
 
     # Split off pip-installed packages since those contain additional
     # platform/arch restrictions that have to be dealt with separately

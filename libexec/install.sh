@@ -117,10 +117,15 @@ user_input() {
 CondaInstallationDirectory="${HOME}/.local/miniforge3"
 CondaDownloadDirectory="${HOME}/.local/downloads"
 CondaDownloadTarget="${CondaDownloadDirectory}/miniforge.sh"
-NeuroCondaLatestUrl="https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-latest.yml"
-NeuroCondaLatestTarget="${CondaDownloadDirectory}/neuro-conda-latest.yml"
-NeuroCondaPPCLatestUrl="https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-ppc-latest.yml"
-NeuroCondaPPCLatestTarget="${CondaDownloadDirectory}/neuro-conda-ppc-latest.yml"
+if [[ "${mArch}" == "ppc64le" ]]; then
+  NeuroCondaLatestUrl="https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-ppc-latest.yml"
+  NeuroCondaLatestTarget="${CondaDownloadDirectory}/neuro-conda-ppc-latest.yml"
+  NeuroCondaFile="neuro-conda-ppc-latest.yml"
+else
+  NeuroCondaLatestUrl="https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-latest.yml"
+  NeuroCondaLatestTarget="${CondaDownloadDirectory}/neuro-conda-latest.yml"
+  NeuroCondaFile="neuro-conda-latest.yml"
+fi
 NeuroCondaDate=$(date +"%Y_%m_%d")
 
 # ----------------------------------------------------------------------
@@ -284,43 +289,24 @@ debug "Updated conda itself"
 # Download latest neuro-conda environment (if necessary)
 # In a CI job, copy the yml file from the repo to test most recent changes
 info "Creating latest neuro-conda environment"
-if [[ "${mArch}" == "ppc64le" ]]; then
-  if [[ ! -f "${NeuroCondaPPCLatestTarget}" ]]; then
-    if [[ ! -z "${ncCI-}" ]]; then
-      execute "cp" "./envs/neuro-conda-ppc-latest.yml" "${NeuroCondaPPCLatestTarget}"
-      debug "Copied local repository version of latest environment file to ${NeuroCondaPPCLatestTarget}"
-    else
-      execute "curl" "-fsSL" "${NeuroCondaPPCLatestUrl}" "-o" "${NeuroCondaPPCLatestTarget}"
-      debug "Downloaded ${NeuroCondaPPCLatestUrl} to ${NeuroCondaPPCLatestTarget}"
-    fi
+if [[ ! -f "${NeuroCondaLatestTarget}" ]]; then
+  if [[ ! -z "${ncCI-}" ]]; then
+    execute "cp" "./envs/${NeuroCondaFile}" "${NeuroCondaLatestTarget}"
+    debug "Copied local repository version of latest environment file to ${NeuroCondaLatestTarget}"
   else
-    debug "${NeuroCondaPPCLatestTarget} exists, environment file has already been downloaded"
+    execute "curl" "-fsSL" "${NeuroCondaLatestUrl}" "-o" "${NeuroCondaLatestTarget}"
+    debug "Downloaded ${NeuroCondaLatestUrl} to ${NeuroCondaLatestTarget}"
   fi
-  # Install neuro-conda environment (remove previously existing env of the same name)
-  execute "${CondaInstallationDirectory}/bin/mamba" "env" "create" "--file" "${NeuroCondaPPCLatestTarget}"
-
-  # Try to activate environment as most basal sanity check
-  envName=`cat ${NeuroCondaPPCLatestTarget} | grep "name:" | awk '{print $2}'`
-
 else
-  if [[ ! -f "${NeuroCondaLatestTarget}" ]]; then
-    if [[ ! -z "${ncCI-}" ]]; then
-      execute "cp" "./envs/neuro-conda-latest.yml" "${NeuroCondaLatestTarget}"
-      debug "Copied local repository version of latest environment file to ${NeuroCondaLatestTarget}"
-    else
-      execute "curl" "-fsSL" "${NeuroCondaLatestUrl}" "-o" "${NeuroCondaLatestTarget}"
-      debug "Downloaded ${NeuroCondaLatestUrl} to ${NeuroCondaLatestTarget}"
-    fi
-  else
-    debug "${NeuroCondaLatestTarget} exists, environment file has already been downloaded"
-  fi
-
-  # Install neuro-conda environment (remove previously existing env of the same name)
-  execute "${CondaInstallationDirectory}/bin/mamba" "env" "create" "--file" "${NeuroCondaLatestTarget}"
-
-  # Try to activate environment as most basal sanity check
-  envName=`cat ${NeuroCondaLatestTarget} | grep "name:" | awk '{print $2}'`
+  debug "${NeuroCondaLatestTarget} exists, environment file has already been downloaded"
 fi
+
+# Install neuro-conda environment (remove previously existing env of the same name)
+execute "${CondaInstallationDirectory}/bin/mamba" "env" "create" "--file" "${NeuroCondaLatestTarget}"
+
+# Try to activate environment as most basal sanity check
+envName=`cat ${NeuroCondaLatestTarget} | grep "name:" | awk '{print $2}'`
+
 
 execute "conda" "activate" "${envName}"
 debug "Activated ${envName}"
