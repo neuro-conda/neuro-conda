@@ -27,7 +27,12 @@ def test_imports():
 
     # We only do this for the current neuro-conda environment
     ncDir = pathlib.Path(__file__).resolve().parents[1]
-    envFile = ncDir / "envs" / "neuro-conda-latest.yml"
+    current_machine = platform.machine()
+    if current_machine == "ppc64le":
+        envFile = ncDir / "envs" / "neuro-conda-ppc-latest.yml"
+    else:
+        envFile = ncDir / "envs" / "neuro-conda-latest.yml"
+
     with open(envFile, "r", encoding="utf-8") as ymlFile:
         ymlDict = yaml.safe_load(ymlFile)
 
