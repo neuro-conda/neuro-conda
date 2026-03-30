@@ -5,7 +5,6 @@ env:
   ncDebug: 1
   ncCI: 1
   ncEnv: neuro-conda-2025b
-  ncENV_power: neuro-conda-2025b-ppc
 jobs:
   Test-Install:
     name: Install (${{ matrix.python-version }}, ${{ matrix.os }})
@@ -94,10 +93,10 @@ jobs:
       - name: Checking .bashrc files
         run: |
           less ~/.bashrc
-      - name: Activate environment ${{ env.ncEnv_power }} and run tests
+      - name: Activate environment ${{ env.ncEnv }} and run tests
         run: |
           source ~/.local/miniforge3/etc/profile.d/conda.sh
-          conda activate ${{ env.ncEnv_power }}
+          conda activate ${{ env.ncEnv }}
           pytest -sv
       - name: Run uninstall script
         run: |
