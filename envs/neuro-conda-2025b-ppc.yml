@@ -88,7 +88,6 @@ dependencies:
 
       # Unsorted
       - pytest==9.0.*
-      - ephyviewer==1.7.*
       - pywavelets==1.9.*
       - dataconf==3.6.*
       - napari-nibabel==0.1.*
