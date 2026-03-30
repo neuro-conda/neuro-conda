@@ -113,10 +113,16 @@ user_input() {
   fi
 }
 
+# First ensure OS and machine architecture are supported
+OS="$(uname)"
+mArch=`uname -m`
+debug "Detected ${OS} running on ${mArch}"
+
 # All neuro-conda specific env vars
 CondaInstallationDirectory="${HOME}/.local/miniforge3"
 CondaDownloadDirectory="${HOME}/.local/downloads"
 CondaDownloadTarget="${CondaDownloadDirectory}/miniforge.sh"
+
 if [[ "${mArch}" == "ppc64le" ]]; then
   NeuroCondaLatestUrl="https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-ppc-latest.yml"
   NeuroCondaLatestTarget="${CondaDownloadDirectory}/neuro-conda-ppc-latest.yml"
@@ -126,6 +132,7 @@ else
   NeuroCondaLatestTarget="${CondaDownloadDirectory}/neuro-conda-latest.yml"
   NeuroCondaFile="neuro-conda-latest.yml"
 fi
+
 NeuroCondaDate=$(date +"%Y_%m_%d")
 
 # ----------------------------------------------------------------------
@@ -143,10 +150,8 @@ if [[ -z "${USER-}" ]]; then
 fi
 debug "Running as user ${USER}"
 
-# First ensure OS and machine architecture are supported
-OS="$(uname)"
-mArch=`uname -m`
-debug "Detected ${OS} running on ${mArch}"
+
+# Pick right installer
 if [[ "${OS}" == "Linux" ]]; then
   if [[ "${mArch}" == "x86_64" ]]; then
     MiniforgeLatestUrl="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"
