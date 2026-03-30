@@ -91,9 +91,13 @@ jobs:
       - name: Run installation script
         run: |
           bash -il ${{ matrix.install_script }}
+      - name: Checking .bashrc files
+        run: |
+          less ~/.bashrc
       - name: Activate environment ${{ env.ncEnv_power }} and run tests
         run: |
           ${{ matrix.prepare_shell }}
+          source ~/.local/miniforge3/etc/profile.d/conda.sh
           conda activate ${{ env.ncEnv_power }}
           pytest -sv
       - name: Run uninstall script
