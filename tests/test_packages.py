@@ -27,7 +27,12 @@ def test_imports():
 
     # We only do this for the current neuro-conda environment
     ncDir = pathlib.Path(__file__).resolve().parents[1]
-    envFile = ncDir / "envs" / "neuro-conda-latest.yml"
+    current_machine = platform.machine()
+    if current_machine == "ppc64le":
+        envFile = ncDir / "envs" / "neuro-conda-ppc-latest.yml"
+    else:
+        envFile = ncDir / "envs" / "neuro-conda-latest.yml"
+
     with open(envFile, "r", encoding="utf-8") as ymlFile:
         ymlDict = yaml.safe_load(ymlFile)
 
@@ -38,11 +43,13 @@ def test_imports():
     if os.getenv("ncCI"):
         ignorePkgs += ["invertmeeg", "torchaudio", "tensorflow"]
 
+    
     # Packages whose name does not correspond to their Python module name
     pkgMap = {
         "esi-acme": "acme",
         "invertmeeg": "invert",
         "opencv-python": "cv2",
+        "opencv": "cv2",
         "open-ephys-python-tools": "open_ephys",
         "pep8-naming": "pep8ext_naming",
         "pybids": "bids",

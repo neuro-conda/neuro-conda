@@ -7,13 +7,12 @@ env:
   ncEnv: neuro-conda-2025b
 jobs:
   Test-Install:
-    name: Install (${{ matrix.python-version }}, ${{ matrix.os }})
+    name: Install python, ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os: [ "macos-latest", "windows-latest", "ubuntu-latest"]
-        python-version: ["3.10"]
         include:
           - os: windows-latest
             install_script: .\libexec\install.ps1
@@ -58,3 +57,32 @@ jobs:
         run: |
           ${{ matrix.prepare_shell }}
           ${{ matrix.uninstall_script }}
+
+  Test-ppc-Install:
+    name: Install on Power
+    runs-on: ubuntu-24.04-ppc64le
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Free Disk Space (Ubuntu)        
+        run: |
+          sudo rm -rf "/usr/local/share/boost"
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+          sudo rm -rf /usr/share/dotnet
+      - name: Download repository
+        uses: actions/checkout@v3
+      - name: Install system packages on Linux
+        run: |
+          sudo apt-get update
+          sudo apt-get install libgl1 libegl1 -y
+      - name: Run installation script
+        run: |
+          bash -il ./libexec/install.sh
+      - name: Activate environment ${{ env.ncEnv }} and run tests
+        run: |
+          source ~/.local/miniforge3/etc/profile.d/conda.sh
+          conda activate ${{ env.ncEnv }}
+          pytest -sv
+      - name: Run uninstall script
+        run: |
+          bash -il ./libexec/uninstall.sh

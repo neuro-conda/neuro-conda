@@ -113,12 +113,26 @@ user_input() {
   fi
 }
 
+# First ensure OS and machine architecture are supported
+OS="$(uname)"
+mArch=`uname -m`
+debug "Detected ${OS} running on ${mArch}"
+
 # All neuro-conda specific env vars
 CondaInstallationDirectory="${HOME}/.local/miniforge3"
 CondaDownloadDirectory="${HOME}/.local/downloads"
 CondaDownloadTarget="${CondaDownloadDirectory}/miniforge.sh"
-NeuroCondaLatestUrl="https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-latest.yml"
-NeuroCondaLatestTarget="${CondaDownloadDirectory}/neuro-conda-latest.yml"
+
+if [[ "${mArch}" == "ppc64le" ]]; then
+  NeuroCondaLatestUrl="https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-ppc-latest.yml"
+  NeuroCondaLatestTarget="${CondaDownloadDirectory}/neuro-conda-ppc-latest.yml"
+  NeuroCondaFile="neuro-conda-ppc-latest.yml"
+else
+  NeuroCondaLatestUrl="https://raw.githubusercontent.com/neuro-conda/neuro-conda/main/envs/neuro-conda-latest.yml"
+  NeuroCondaLatestTarget="${CondaDownloadDirectory}/neuro-conda-latest.yml"
+  NeuroCondaFile="neuro-conda-latest.yml"
+fi
+
 NeuroCondaDate=$(date +"%Y_%m_%d")
 
 # ----------------------------------------------------------------------
@@ -136,10 +150,8 @@ if [[ -z "${USER-}" ]]; then
 fi
 debug "Running as user ${USER}"
 
-# First ensure OS and machine architecture are supported
-OS="$(uname)"
-mArch=`uname -m`
-debug "Detected ${OS} running on ${mArch}"
+
+# Pick right installer
 if [[ "${OS}" == "Linux" ]]; then
   if [[ "${mArch}" == "x86_64" ]]; then
     MiniforgeLatestUrl="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"
@@ -284,7 +296,7 @@ debug "Updated conda itself"
 info "Creating latest neuro-conda environment"
 if [[ ! -f "${NeuroCondaLatestTarget}" ]]; then
   if [[ ! -z "${ncCI-}" ]]; then
-    execute "cp" "./envs/neuro-conda-latest.yml" "${NeuroCondaLatestTarget}"
+    execute "cp" "./envs/${NeuroCondaFile}" "${NeuroCondaLatestTarget}"
     debug "Copied local repository version of latest environment file to ${NeuroCondaLatestTarget}"
   else
     execute "curl" "-fsSL" "${NeuroCondaLatestUrl}" "-o" "${NeuroCondaLatestTarget}"
@@ -299,6 +311,8 @@ execute "${CondaInstallationDirectory}/bin/mamba" "env" "create" "--file" "${Neu
 
 # Try to activate environment as most basal sanity check
 envName=`cat ${NeuroCondaLatestTarget} | grep "name:" | awk '{print $2}'`
+
+
 execute "conda" "activate" "${envName}"
 debug "Activated ${envName}"
 if [[ -z "$(command -v python | grep ${CondaInstallationDirectory})" ]]; then
