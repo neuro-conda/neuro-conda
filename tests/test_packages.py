@@ -48,6 +48,7 @@ def test_imports():
         "esi-acme": "acme",
         "invertmeeg": "invert",
         "opencv-python": "cv2",
+        "opencv": "cv2",
         "open-ephys-python-tools": "open_ephys",
         "pep8-naming": "pep8ext_naming",
         "pybids": "bids",
