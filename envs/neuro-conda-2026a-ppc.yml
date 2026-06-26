@@ -1,0 +1,96 @@
+name: neuro-conda-2026a-ppc
+channels:
+  - conda-forge
+dependencies:
+
+  # (-1) System Dependencies (non-Python)
+  - hdf5=1.14.*
+
+  # (0) System Dependencies (Python)
+  - python=3.13.*
+  - pip
+  - numcodecs=0.16.*
+  - scipy=1.17.*
+  - numpy=2.4.*
+  - cython=3.2.*
+  - mpi4py=4.1.*
+  - matplotlib=3.11.*
+  - seaborn=0.13.*
+  - pandas=3.0.*
+  - opencv=4.13.*
+
+  # (1) Electrophysiology (LFP + M/EEG)
+  - mne-nirs=0.7.*
+  - mne-connectivity=0.8.*
+  - mne-features=0.3.*
+  - mne-ari=0.1.*
+  - mne-microstates=0.3.*
+  - neurokit2=0.2.*
+  - pyprep=0.7.*
+  - pactools=0.3.*
+  
+  # (3) Neuroimaging
+  - dipy=1.12.*
+  - nilearn=0.13.*
+  - nipype=1.10.*
+
+  # (4) Simulation / Computational neuroscience
+  - brian2=2.10.*
+
+  # (5) File/data formats
+  - pynwb=3.1.*
+  - deid=0.4.*
+  - imageio=2.37.*
+
+  # (6) Tools: Development
+  - bokeh=3.9.*
+  - flake8=7.3.*
+  - pep8-naming=0.15.*
+  - black=26.5.*
+  - ruamel.yaml=0.19.*
+  - jupyter=1.1.*
+  - ipympl=0.10.*
+
+  - pip:
+      - psutils==3.3.*
+
+      # (1) Electrophysiology (LFP + M/EEG)
+      - mne==1.12.*
+      - mne-icalabel==0.9.*
+      - fooof==1.1.*
+      - bycycle==1.2.*
+      - pynapple==0.11.*
+      - alphacsc==0.4.*
+      - nitime==0.12.*; platform_system != "Darwin"
+      - open-ephys-python-tools==1.0.*
+
+      # (2) Electrophysiology (spikes + LFP)
+      # - elephant[extras]==1.1.*
+      # - viziphant==0.4.*
+      - neurodsp==2.3.*
+
+      # (3) Neuroimaging
+      - intensity-normalization==3.0.*
+
+      # (5) File/data formats
+      - nixio==1.5.*
+      - neo==0.14.*
+      - pybids==0.22.*
+      - mat73==0.65.*
+      - sbxreader==0.2.*
+
+      # (4) Simulation / Computational neuroscience
+
+      # Tools: Machine Learning
+      
+      # Tools: Parallelization
+      - esi-acme==2026.6.*
+      - dask==2026.6.*
+
+      # Unsorted
+      - pytest==9.0.*
+      - pywavelets==1.9.*
+      - dataconf==3.6.*
+      - napari-nibabel==0.1.*
+      - marimo==0.23.*
+      - pylabianca==0.3.*
