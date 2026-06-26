@@ -1,4 +1,4 @@
-name: neuro-conda-2026a-ppc
+name: neuro-conda-2026a
 channels:
   - conda-forge
 dependencies:
