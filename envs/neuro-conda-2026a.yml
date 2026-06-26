@@ -15,7 +15,7 @@ dependencies:
   - numpy=2.4.* 
   - cython=3.2.*
   - mpi4py=4.1.*
-  - matplotlib=3.11.*
+  - matplotlib=3.10.*
   - seaborn=0.13.*
   - pandas=3.0.*
 

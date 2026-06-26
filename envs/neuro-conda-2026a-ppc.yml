@@ -14,7 +14,7 @@ dependencies:
   - numpy=2.4.*
   - cython=3.2.*
   - mpi4py=4.1.*
-  - matplotlib=3.11.*
+  - matplotlib=3.10.*
   - seaborn=0.13.*
   - pandas=3.0.*
   - opencv=4.13.*
@@ -27,7 +27,7 @@ dependencies:
   - mne-microstates=0.3.*
   - neurokit2=0.2.*
   - pyprep=0.7.*
-  - pactools=0.3.*
+  - pactools=0.3.* 
   
   # (3) Neuroimaging
   - dipy=1.12.*
@@ -50,6 +50,7 @@ dependencies:
   - ruamel.yaml=0.19.*
   - jupyter=1.1.*
   - ipympl=0.10.*
+  - scikit-learn=1.7.*
 
   - pip:
       - psutils==3.3.*
