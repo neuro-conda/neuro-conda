@@ -51,6 +51,7 @@ dependencies:
   - jupyter=1.1.*
   - ipympl=0.10.*
   - scikit-learn=1.7.*
+  - scikit-image=0.26.*
 
   - pip:
       - psutils==3.3.*
